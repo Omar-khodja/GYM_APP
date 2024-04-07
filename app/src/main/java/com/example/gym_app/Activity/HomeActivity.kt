@@ -3,6 +3,7 @@ package com.example.gym_app.Activity
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
@@ -31,9 +32,10 @@ class HomeActivity : AppCompatActivity() {
     lateinit var biding:ActivityHomeBinding
     var auth= Firebase.auth
     var db= FirebaseFirestore.getInstance()
-    val tabarry = arrayOf(R.drawable.homee, R.drawable.add,R.drawable.profile)
     var userId = auth.currentUser?.uid
+    lateinit var tabarry:Array<Int>
     var userCollection = db.collection("Users").whereEqualTo("userId", userId)
+    var type =""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,20 +49,6 @@ class HomeActivity : AppCompatActivity() {
 
         biding = DataBindingUtil.setContentView(this , R.layout.activity_home)
         adapter = FragmentAdapter(supportFragmentManager , lifecycle)
-        biding.viewpager.orientation = ViewPager2.ORIENTATION_HORIZONTAL
-        adapter.AddFragmentToList(HomeFragment())
-        adapter.AddFragmentToList(CreateFragment())
-        adapter.AddFragmentToList(ProfileFragment())
-
-        biding.viewpager.adapter = adapter
-        TabLayoutMediator(
-            biding.tablayout,
-            biding.viewpager
-        ){
-            tab,position ->
-            tab.setIcon(tabarry[position])
-        }.attach()
-
         userCollection.whereEqualTo("userId",userId).get()
             .addOnSuccessListener { qury ->
                 if (!qury.isEmpty) {
@@ -72,8 +60,35 @@ class HomeActivity : AppCompatActivity() {
                     User.Email = document.getString("email").toString()
                     User.UserPhonenb = document.getString("userphonenb").toString()
                     User.CoachOrClient = document.getString("type").toString()
+                    type = document.getString("type").toString()
+                    if(type == "Coach") {
+                        tabarry = arrayOf(R.drawable.homee, R.drawable.add, R.drawable.profile)
+                        adapter.AddFragmentToList(HomeFragment())
+                        adapter.AddFragmentToList(CreateFragment())
+                        adapter.AddFragmentToList(ProfileFragment())
+                    }else{
+                        tabarry = arrayOf(R.drawable.homee, R.drawable.profile)
+                        adapter.AddFragmentToList(HomeFragment())
+                        adapter.AddFragmentToList(ProfileFragment())
+
+                    }
+                    biding.viewpager.orientation = ViewPager2.ORIENTATION_HORIZONTAL
+                    biding.viewpager.adapter = adapter
+                    TabLayoutMediator(
+                        biding.tablayout,
+                        biding.viewpager
+                    ){
+                            tab,position ->
+                        tab.setIcon(tabarry[position])
+                    }.attach()
                 }
             }
+
+        Log.i("tagy",type)
+
+
+
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
