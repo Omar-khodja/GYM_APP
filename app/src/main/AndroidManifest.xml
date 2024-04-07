@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@drawable/gymmale"
+        android:label="@string/app_name"
+        android:roundIcon="@color/dark_blue"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.GYM_APP"
+        tools:targetApi="31">
+        <activity
+            android:name=".Activity.DisplayVideos_Activity"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.DisplayExerciseList_Activity"
+            android:exported="false">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Activity.HomeActivity" />
+        </activity>
+        <activity
+            android:name=".Activity.ChatActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Activity.NewMessageActivity" />
+        </activity>
+        <activity
+            android:name=".Activity.MessagesActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Activity.HomeActivity" />
+        </activity>
+        <activity
+            android:name=".Activity.NewMessageActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Activity.MessagesActivity" />
+        </activity>
+        <activity
+            android:name=".Activity.HomeActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Login.SingupActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Login.LoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Login.MainActivity"
+            android:exported="false" />
+    </application>
+
+</manifest>

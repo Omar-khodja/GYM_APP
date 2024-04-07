@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+<androidx.constraintlayout.widget.ConstraintLayout
+
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.ChatActivity"
+    android:fitsSystemWindows="true"
+    android:windowSoftInputMode="adjustResize">
+
+
+    <EditText
+        android:id="@+id/chat"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:background="@drawable/char_editetext_background"
+        android:gravity="center"
+        android:layout_marginBottom="10dp"
+        android:hint="Write Message"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/Senbtn"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/Senbtn"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:text="Send"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/chatRecycleView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="35dp"
+        android:background="@color/white"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toTopOf="@+id/Senbtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

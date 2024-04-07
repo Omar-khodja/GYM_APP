@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+<androidx.constraintlayout.widget.ConstraintLayout
+
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/dark_blue"
+    android:fitsSystemWindows="true"
+    tools:context=".Login.MainActivity">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="0dp"
+        android:layout_height="255dp"
+        android:layout_marginBottom="277dp"
+        android:src="@drawable/gymmale"
+        app:layout_constraintBottom_toTopOf="@+id/loginbtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/light_blue"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <TextView
+        android:id="@+id/Login_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Welcom to our app"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="32dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/view" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="-10dp"
+        app:layout_constraintBottom_toTopOf="@+id/view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/arc_1" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="267dp"
+        android:layout_height="94dp"
+        android:layout_marginTop="10dp"
+        android:text="A gym app is a mobile application designed to assist  individuals in achieving their fitness goals, whether they are beginners, intermediate, or advanced fitness enthusiasts"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Login_title" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/loginbtn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="69dp"
+        android:layout_marginEnd="69dp"
+        android:layout_marginBottom="11dp"
+        android:background="@drawable/button_backgeound"
+        android:text="Login"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/singupbtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/singupbtn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="74dp"
+        android:layout_marginEnd="74dp"
+        android:layout_marginBottom="76dp"
+        android:background="@drawable/button_backgeound"
+        android:text="Singup"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/loginbtn" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
