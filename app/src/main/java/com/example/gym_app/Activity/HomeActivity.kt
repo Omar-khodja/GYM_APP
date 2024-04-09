@@ -82,9 +82,19 @@ class HomeActivity : AppCompatActivity() {
             }
 
 
+        biding.appbar.setOnMenuItemClickListener {
+            when(it.itemId){
+                R.id.message -> goToMessages()
+            }
+            true
+        }
 
 
+    }
 
+    private fun goToMessages(){
+        val i = Intent(this, NewMessageActivity::class.java)
+        startActivity(i)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

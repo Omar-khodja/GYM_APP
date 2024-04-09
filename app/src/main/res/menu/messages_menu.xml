@@ -6,5 +6,6 @@
     android:title="TODO"
     android:icon="@drawable/facebook_messenger"
     app:showAsAction="always"
+    android:iconTint="@color/white"
     />
 </menu>
