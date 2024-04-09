@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -16,6 +15,12 @@
         android:theme="@style/Theme.GYM_APP"
         tools:targetApi="31">
         <activity
+            android:name=".Activity.DisplayWorkoutPlan_Activity"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.Create_video_Activity"
+            android:exported="false" />
+        <activity
             android:name=".Activity.DisplayVideos_Activity"
             android:exported="false" />
         <activity
@@ -26,26 +31,26 @@
                 android:value=".Activity.HomeActivity" />
         </activity>
         <activity
-            android:name=".Activity.ChatActivity"
+            android:name=".Activity.Messages.ChatActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".Activity.NewMessageActivity" />
+                android:value=".Activity.Messages.NewMessageActivity" />
         </activity>
         <activity
-            android:name=".Activity.MessagesActivity"
+            android:name=".Activity.Messages.MessagesActivity"
             android:exported="false">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Activity.HomeActivity" />
         </activity>
         <activity
-            android:name=".Activity.NewMessageActivity"
+            android:name=".Activity.Messages.NewMessageActivity"
             android:exported="false">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".Activity.MessagesActivity" />
+                android:value=".Activity.Messages.MessagesActivity" />
         </activity>
         <activity
             android:name=".Activity.HomeActivity"

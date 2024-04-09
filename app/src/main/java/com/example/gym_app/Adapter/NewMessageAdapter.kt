@@ -9,7 +9,7 @@ import com.bumptech.glide.Glide
 import com.example.gym_app.NewMessageData
 import com.example.gym_app.databinding.NewmessagesadapterBinding
 
-class NewMessageAdapter( val context: Context,val itemList:List<NewMessageData>,private val onItemClick: (NewMessageData) -> Unit):
+class NewMessageAdapter(val context: Context, val itemList:List<NewMessageData>, private val onItemClick: (NewMessageData) -> Unit):
     RecyclerView.Adapter<NewMessageAdapter.ViewHolder>() {
     lateinit var biding:NewmessagesadapterBinding
 

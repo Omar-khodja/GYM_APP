@@ -2,13 +2,15 @@
 <layout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    >
 <androidx.constraintlayout.widget.ConstraintLayout
+
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/light_blue"
-    tools:context=".fragment.CreateFragment">
-
+    android:fitsSystemWindows="true"
+    tools:context=".Activity.Create_video_Activity">
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/createRecyclerView"
         android:layout_width="match_parent"
@@ -19,9 +21,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

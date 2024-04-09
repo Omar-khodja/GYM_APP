@@ -5,7 +5,6 @@ import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import androidx.recyclerview.widget.DividerItemDecoration
 import com.example.gym_app.Adapter.ExerciseList_Adapter
 import com.example.gym_app.DisplayVideo_Singlton
 import com.example.gym_app.ExerciseLis_Data
@@ -50,6 +49,8 @@ class DisplayExerciseList_Activity : AppCompatActivity() {
                         DisplayVideo_Singlton.title = item.Title
                         DisplayVideo_Singlton.videoUrl=item.videoUrl
                         DisplayVideo_Singlton.des = item.des
+                        DisplayVideo_Singlton.imagUrl = item.imagUrl
+
                         startActivity(intent)
 
                     }

@@ -8,15 +8,14 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.gym_app.MessagesData
-import com.example.gym_app.NewMessageData
 import com.example.gym_app.databinding.MessagesDesginBinding
 
-class MessagesAdapter(val context: Context, val itemlist:MutableList<MessagesData>,private val onItemClick: (MessagesData) -> Unit)
+class MessagesAdapter(val context: Context, val itemlist:MutableList<MessagesData>, private val onItemClick: (MessagesData) -> Unit)
     :RecyclerView.Adapter<MessagesAdapter.ViewHolder>() {
         lateinit var biding : MessagesDesginBinding
         class ViewHolder(var binding:MessagesDesginBinding):RecyclerView.ViewHolder(binding.root){
             @SuppressLint("SetTextI18n")
-            fun bind(chat:MessagesData){
+            fun bind(chat: MessagesData){
                 Glide.with(binding.root)
                     .load(chat.imagUri)
                     .into(binding.ProfileImag)

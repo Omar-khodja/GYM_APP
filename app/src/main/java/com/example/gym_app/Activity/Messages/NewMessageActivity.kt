@@ -1,4 +1,4 @@
-package com.example.gym_app.Activity
+package com.example.gym_app.Activity.Messages
 
 import android.content.Intent
 import android.os.Bundle
@@ -43,10 +43,12 @@ class NewMessageActivity : AppCompatActivity() {
                 val adapter: MutableList<NewMessageData> = mutableListOf()
                 for(doucment in it){
                     Log.i("tagy","$doucment")
-                    adapter.add(NewMessageData(
+                    adapter.add(
+                        NewMessageData(
                         doucment.getString("userId").toString()
                         ,doucment.getString("username").toString()
-                        ,doucment.getString("ProfileimagUri").toString()))
+                        ,doucment.getString("ProfileimagUri").toString())
+                    )
                 }
                 biding.recyclerViewNewMessage.adapter = NewMessageAdapter(this , adapter){item->
                     Toast.makeText(this, "Clicked item: ${item.username}", Toast.LENGTH_SHORT).show()

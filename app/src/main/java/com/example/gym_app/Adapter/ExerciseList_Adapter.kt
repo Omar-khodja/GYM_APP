@@ -1,22 +1,19 @@
 package com.example.gym_app.Adapter
 
 import android.content.Context
-import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.MediaController
-import android.widget.VideoView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.gym_app.ExerciseLis_Data
 import com.example.gym_app.databinding.CustomExerciseBinding
 
 
-class ExerciseList_Adapter(private val context: Context, val itemlist:MutableList<ExerciseLis_Data>,val OnClikItem :(ExerciseLis_Data)->Unit)
+class ExerciseList_Adapter(private val context: Context, val itemlist:MutableList<ExerciseLis_Data>, val OnClikItem :(ExerciseLis_Data)->Unit)
     :RecyclerView.Adapter<ExerciseList_Adapter.ViewHolder>(){
         lateinit var biding:CustomExerciseBinding
         class ViewHolder(val biding:CustomExerciseBinding):RecyclerView.ViewHolder(biding.root){
-            fun bind(data:ExerciseLis_Data){
+            fun bind(data: ExerciseLis_Data){
                 biding.data = data
                Glide.with(biding.root)
                    .load(data.imagUrl)

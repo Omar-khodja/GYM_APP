@@ -16,7 +16,7 @@ class ChatOneAdapter(val context: Context,val itemlist:List<ChatActivityData>)
     private val VIEW_TYPE_LEFT = 1
     private val VIEW_TYPE_RIGHT = 2
     inner class LeftViewHolder(var biding:ChatOneBinding ) : RecyclerView.ViewHolder(biding.root) {
-        fun bind(chat:ChatActivityData){
+        fun bind(chat: ChatActivityData){
             biding.chatmessage.text = chat.mesg
             Glide.with(biding.root)
                 .load(chat.imagUri)
@@ -25,7 +25,7 @@ class ChatOneAdapter(val context: Context,val itemlist:List<ChatActivityData>)
     }
 
     inner class RightViewHolder(var biding:ChatTowBinding) : RecyclerView.ViewHolder(biding.root) {
-        fun bind(chat:ChatActivityData){
+        fun bind(chat: ChatActivityData){
             biding.chatmessage.text = chat.mesg
             Glide.with(biding.root)
                 .load(chat.imagUri)

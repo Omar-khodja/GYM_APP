@@ -1,7 +1,6 @@
-package com.example.gym_app.Activity
+package com.example.gym_app.Activity.Messages
 
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
@@ -14,12 +13,9 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.example.gym_app.Adapter.MessagesAdapter
-import com.example.gym_app.Adapter.NewMessageAdapter
-import com.example.gym_app.ChatActivityData
 import com.example.gym_app.ChatOtherUser
 import com.example.gym_app.Login.MainActivity
 import com.example.gym_app.MessagesData
-import com.example.gym_app.NewMessageData
 import com.example.gym_app.R
 import com.example.gym_app.User
 import com.example.gym_app.databinding.ActivityMessagesBinding
@@ -72,7 +68,7 @@ class MessagesActivity : AppCompatActivity() {
                 }
                 biding.recyclerView.adapter = MessagesAdapter(this , itemlist){item->
                     Toast.makeText(this, "Clicked item: ${item.userId}", Toast.LENGTH_SHORT).show()
-                    val intent = Intent(this,ChatActivity::class.java)
+                    val intent = Intent(this, ChatActivity::class.java)
                     ChatOtherUser.username = item.username
                     ChatOtherUser.otherId = item.userId
                     ChatOtherUser.imguri = item.imagUri
@@ -134,7 +130,7 @@ class MessagesActivity : AppCompatActivity() {
         // Handle menu item clicks
         when (item.itemId) {
             R.id.newMassages -> {
-                startActivity(Intent(this,NewMessageActivity::class.java))
+                startActivity(Intent(this, NewMessageActivity::class.java))
             }
         }
         return super.onOptionsItemSelected(item)

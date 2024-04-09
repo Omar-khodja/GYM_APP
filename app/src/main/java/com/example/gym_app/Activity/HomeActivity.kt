@@ -3,9 +3,7 @@ package com.example.gym_app.Activity
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
-import android.view.MenuInflater
 import android.view.MenuItem
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -13,19 +11,18 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.databinding.DataBindingUtil
 import androidx.viewpager2.widget.ViewPager2
-import com.bumptech.glide.Glide
+import com.example.gym_app.Activity.Messages.MessagesActivity
 import com.example.gym_app.R
 import com.example.gym_app.databinding.ActivityHomeBinding
-import com.example.gym_app.fragment.CreateFragment
+import com.example.gym_app.fragment.HomeFegment
 import com.example.gym_app.Adapter.FragmentAdapter
 import com.example.gym_app.User
-import com.example.gym_app.fragment.HomeFragment
+import com.example.gym_app.fragment.CreateWorkoutPlane_Fragment
 import com.example.gym_app.fragment.ProfileFragment
 import com.google.android.material.tabs.TabLayoutMediator
 import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.storage.FirebaseStorage
 
 class HomeActivity : AppCompatActivity() {
     lateinit var adapter : FragmentAdapter
@@ -62,13 +59,13 @@ class HomeActivity : AppCompatActivity() {
                     User.CoachOrClient = document.getString("type").toString()
                     type = document.getString("type").toString()
                     if(type == "Coach") {
-                        tabarry = arrayOf(R.drawable.homee, R.drawable.add, R.drawable.profile)
-                        adapter.AddFragmentToList(HomeFragment())
-                        adapter.AddFragmentToList(CreateFragment())
+                        tabarry = arrayOf(R.drawable.home, R.drawable.add, R.drawable.profile)
+                        adapter.AddFragmentToList(HomeFegment())
+                        adapter.AddFragmentToList(CreateWorkoutPlane_Fragment())
                         adapter.AddFragmentToList(ProfileFragment())
                     }else{
-                        tabarry = arrayOf(R.drawable.homee, R.drawable.profile)
-                        adapter.AddFragmentToList(HomeFragment())
+                        tabarry = arrayOf(R.drawable.home, R.drawable.profile)
+                        adapter.AddFragmentToList(CreateWorkoutPlane_Fragment())
                         adapter.AddFragmentToList(ProfileFragment())
 
                     }
@@ -84,7 +81,6 @@ class HomeActivity : AppCompatActivity() {
                 }
             }
 
-        Log.i("tagy",type)
 
 
 
@@ -99,11 +95,19 @@ class HomeActivity : AppCompatActivity() {
         // Handle menu item clicks
         when (item.itemId) {
             R.id.message -> {
-                startActivity(Intent(this,MessagesActivity::class.java))
+                startActivity(Intent(this, MessagesActivity::class.java))
             }
         }
         return super.onOptionsItemSelected(item)
 
+    }
+
+    override fun onStart() {
+        if(auth.currentUser ==null){
+            startActivity(Intent(this, MessagesActivity::class.java))
+        }
+
+        super.onStart()
     }
 
 

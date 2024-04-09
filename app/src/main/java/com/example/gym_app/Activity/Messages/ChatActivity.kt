@@ -1,4 +1,4 @@
-package com.example.gym_app.Activity
+package com.example.gym_app.Activity.Messages
 
 import android.net.Uri
 import android.os.Bundle
