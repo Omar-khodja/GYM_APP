@@ -37,6 +37,7 @@ class HomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+        supportActionBar?.hide()
         setContentView(R.layout.activity_home)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -77,23 +78,19 @@ class HomeActivity : AppCompatActivity() {
                     ){
                             tab,position ->
                         tab.setIcon(tabarry[position])
+
                     }.attach()
                 }
             }
 
 
-        biding.appbar.setOnMenuItemClickListener {
-            when(it.itemId){
-                R.id.message -> goToMessages()
-            }
-            true
-        }
+
 
 
     }
 
     private fun goToMessages(){
-        val i = Intent(this, NewMessageActivity::class.java)
+        val i = Intent(this, MessagesActivity::class.java)
         startActivity(i)
     }
 
@@ -116,7 +113,6 @@ class HomeActivity : AppCompatActivity() {
         if(auth.currentUser ==null){
             startActivity(Intent(this, MessagesActivity::class.java))
         }
-
         super.onStart()
     }
 

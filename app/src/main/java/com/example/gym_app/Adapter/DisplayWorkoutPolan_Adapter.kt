@@ -1,9 +1,14 @@
 package com.example.gym_app.Adapter
 
+import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.gym_app.Activity.DisplayExerciseList_Activity
+import com.example.gym_app.Activity.HomeActivity
+import com.example.gym_app.Activity.PlayVideo_Activity
 import com.example.gym_app.MyWorckoutPlna_Data
 import com.example.gym_app.databinding.DisplayWorkoutplanBinding
 
@@ -16,6 +21,13 @@ class DisplayWorkoutPolan_Adapter(val itemlis:MutableList<MyWorckoutPlna_Data>)
                 Glide.with(binding.root)
                     .load(data.imagUrl)
                     .into(binding.imageView)
+                binding.btn.setOnClickListener{
+                    var intent = Intent(binding.root.context,PlayVideo_Activity::class.java)
+                    intent.putExtra("videUrl",data.videoUrl)
+                    binding.root.context.startActivity(intent)
+
+                }
+
 
 
             }

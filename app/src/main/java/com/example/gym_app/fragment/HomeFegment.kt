@@ -6,7 +6,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import com.example.gym_app.Activity.DisplayExerciseList_Activity
+import com.example.gym_app.Activity.Messages.MessagesActivity
 import com.example.gym_app.Adapter.CardView_CreateAdapter
 import com.example.gym_app.CardView_CreateData
 import com.example.gym_app.R
@@ -19,6 +21,7 @@ class HomeFegment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
+
     ): View? {
         // Inflate the layout for this fragment
         biding = FragmentHomeBinding.inflate(inflater,container,false)
@@ -33,6 +36,10 @@ class HomeFegment : Fragment() {
         }
 
         return biding.root
+    }
+
+    override fun onStart() {
+        super.onStart()
     }
 
 

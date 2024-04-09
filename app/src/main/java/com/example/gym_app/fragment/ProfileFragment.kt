@@ -10,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.example.gym_app.Login.MainActivity
 import com.example.gym_app.User
@@ -114,6 +115,7 @@ class ProfileFragment : Fragment() {
         if(auth.currentUser ==null){
             startActivity(Intent(context, MainActivity::class.java))
         }
+
         super.onStart()
     }
     }

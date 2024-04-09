@@ -81,23 +81,22 @@ class CreateWorkoutPlane_Fragment : Fragment() {
         var itemlist = mutableListOf<WoroutPlanList_Data>()
         val collection = db.collection("Coach_Workout_Plan").document(User.UserId).collection("Workoutplan")
 
-
+        var Title = ""
         collection.get().addOnSuccessListener { result ->
             for (document in result.documents) {
-                var Title = document.getString("name").toString()
+                 Title = document.getString("name").toString()
                 Log.i("tagy",Title)
                 itemlist.add(WoroutPlanList_Data(Title, R.drawable.workout))
-
                 binding.RecyclerView.adapter = WorkoutPlan_Adapter(itemlist){item ->
                     var intent = Intent(context, DisplayWorkoutPlan_Activity::class.java)
                     intent.putExtra("name",Title)
                     startActivity(intent)
-
-
+                }
                 }
 
             }
-        }
+
+        binding.textView.visibility = View.INVISIBLE
 
 
         super.onStart()
