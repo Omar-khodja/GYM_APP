@@ -17,16 +17,8 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:menu="@menu/messages_menu"
         >
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Home"
-            android:textColor="@color/white"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            android:layout_gravity="center"/>
+
 
     </com.google.android.material.appbar.MaterialToolbar>
 
@@ -34,7 +26,7 @@
         android:id="@+id/createRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="@color/light_blue"
+        android:background="#4A4A4A"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

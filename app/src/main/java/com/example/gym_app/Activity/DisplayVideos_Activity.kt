@@ -69,7 +69,8 @@ class DisplayVideos_Activity : AppCompatActivity() {
     }
 
     private fun AddVideoToPlane() {
-        var name = TrueOrFalse.name
+        val name = TrueOrFalse.name
+
         var collection = db.collection("/Coach_Workout_Plan")
                                 .document(User.UserId)
                                 .collection("Workoutplan")
@@ -88,7 +89,9 @@ class DisplayVideos_Activity : AppCompatActivity() {
             "CoachId" to User.UserId,
             "VideoUrl" to videoUrl,
             "ImahUrl" to DisplayVideo_Singlton.imagUrl,
-            "des" to DisplayVideo_Singlton.des
+            "des" to DisplayVideo_Singlton.des,
+            "VideoName" to DisplayVideo_Singlton.title,
+            "Note" to ""
         )
         val data1 = hashMapOf(
             "name" to name)

@@ -15,8 +15,11 @@
         android:theme="@style/Theme.GYM_APP"
         tools:targetApi="31">
         <activity
+            android:name=".Activity.Search_Activity"
+            android:exported="false" />
+        <activity
             android:name=".Activity.PlayVideo_Activity"
-            android:exported="false" >
+            android:exported="false">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Activity.DisplayWorkoutPlan_Activity" />

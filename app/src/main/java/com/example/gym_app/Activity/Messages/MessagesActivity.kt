@@ -25,9 +25,9 @@ import com.google.firebase.firestore.FirebaseFirestore
 
 class MessagesActivity : AppCompatActivity() {
     lateinit var biding : ActivityMessagesBinding
-
+    var auth = Firebase.auth
     var db = FirebaseFirestore.getInstance()
-    val myId = User.UserId
+    val myId = auth.currentUser?.uid
     var itemlist:MutableList<MessagesData> = mutableListOf()
 
 

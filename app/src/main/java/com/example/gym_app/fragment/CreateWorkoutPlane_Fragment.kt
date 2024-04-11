@@ -83,20 +83,23 @@ class CreateWorkoutPlane_Fragment : Fragment() {
 
         var Title = ""
         collection.get().addOnSuccessListener { result ->
-            for (document in result.documents) {
-                 Title = document.getString("name").toString()
-                Log.i("tagy",Title)
+            for (document in result) {
+                 Title = document.id
                 itemlist.add(WoroutPlanList_Data(Title, R.drawable.workout))
-                binding.RecyclerView.adapter = WorkoutPlan_Adapter(itemlist){item ->
-                    var intent = Intent(context, DisplayWorkoutPlan_Activity::class.java)
-                    intent.putExtra("name",Title)
-                    startActivity(intent)
-                }
-                }
 
+                }
+            binding.RecyclerView.adapter = WorkoutPlan_Adapter(itemlist){item ->
+                var intent = Intent(context, DisplayWorkoutPlan_Activity::class.java)
+                val title = item.Title
+                intent.putExtra("name",title)
+                startActivity(intent)
             }
+            binding.textView.visibility = View.INVISIBLE
+            }
+        binding.appbar.title = "Create Worckout Plan"
 
-        binding.textView.visibility = View.INVISIBLE
+
+
 
 
         super.onStart()

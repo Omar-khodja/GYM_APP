@@ -43,12 +43,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onStart() {
-        super.onStart()
         if(auth.currentUser != null){
             var intent = Intent(this , HomeActivity::class.java)
             startActivity(intent)
 
         }
+        super.onStart()
     }
 
 

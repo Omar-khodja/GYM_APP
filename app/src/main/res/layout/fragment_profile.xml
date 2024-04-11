@@ -23,36 +23,35 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <!-- this is Email text-->
+
+        <!--this is Username text-->
+
+        <!-- this is settings panel-->
+
         <TextView
             android:id="@+id/Profile_Email"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="omar@gmail.com"
+            android:layout_marginTop="10dp"
             android:textColor="@color/white"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/Profile_username"
             app:layout_constraintTop_toBottomOf="@+id/Profile_username"
             tools:ignore="HardcodedText" />
 
-        <!--this is Username text-->
         <TextView
             android:id="@+id/Profile_username"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
+            android:layout_marginStart="10dp"
             android:text="user name"
             android:textColor="@color/white"
             android:textSize="24sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/iamgeCard"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteY="156dp" />
+            app:layout_constraintStart_toEndOf="@+id/iamgeCard"
+            app:layout_constraintTop_toTopOf="@+id/iamgeCard"
+            tools:ignore="MissingConstraints" />
 
-        <!-- this is settings panel-->
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView2"
             android:layout_width="match_parent"
@@ -65,7 +64,8 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                >
 
                 <LinearLayout
                     android:id="@+id/linearLayout"
@@ -319,7 +319,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Phone:"
-                        android:textColor="@color/black"
+                        android:textColor="@color/white"
                         android:textSize="18sp" />
 
                     <TextView
@@ -328,7 +328,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
                         android:text="055727692"
-                        android:textColor="@color/black" />
+                        android:textColor="@color/white" />
                 </LinearLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -339,10 +339,9 @@
             android:id="@+id/iamgeCard"
             android:layout_width="120dp"
             android:layout_height="120dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="32dp"
             app:cardCornerRadius="75dp"
-            android:layout_marginTop="100dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="MissingConstraints">

@@ -29,16 +29,17 @@ class DisplayWorkoutPlan_Activity : AppCompatActivity() {
         biding = DataBindingUtil.setContentView(this , R.layout.activity_display_workout_plan)
         db = FirebaseFirestore.getInstance()
         val itemlist = mutableListOf<MyWorckoutPlna_Data>()
-        var name = intent.getStringExtra("name")
+        var name = intent.getStringExtra("name").toString()
         var collection = db.collection("/Coach_Workout_Plan/${User.UserId}/Workoutplan/$name/$name")
         collection.get().addOnSuccessListener {
             for (doc in it.documents){
                 val imagUrl = doc.getString("ImahUrl").toString()
-                val Title = doc.getString("ListName").toString()
+                val Title = doc.getString("VideoName").toString()
                 val videoUrl = doc.getString("VideoUrl").toString()
                 val des = doc.getString("des").toString()
                 val CoachName = doc.getString("CoachName").toString()
-                itemlist.add(MyWorckoutPlna_Data(imagUrl,Title,videoUrl,des,CoachName))
+                val note = doc.getString("Note").toString()
+                itemlist.add(MyWorckoutPlna_Data(name,imagUrl,Title,videoUrl,des,CoachName,"note"))
                 biding.RecyclerView.adapter = DisplayWorkoutPolan_Adapter(itemlist)
             }
         }

@@ -10,7 +10,7 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_margin="10dp"
-        android:layout_height="450dp"
+        android:layout_height="500dp"
         app:cardCornerRadius="20dp">
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
@@ -56,12 +56,30 @@
         app:layout_constraintStart_toStartOf="@+id/des"
         app:layout_constraintTop_toBottomOf="@+id/des" />
 
+
+    <EditText
+        android:id="@+id/writeNote"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/char_editetext_background"
+        android:enabled="true"
+        android:gravity="center"
+        android:layout_margin="10dp"
+        android:hint="write any Note"
+        android:imeOptions="actionDone"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/Note"
+        app:layout_constraintTop_toBottomOf="@+id/Note" />
+
     <TextView
         android:id="@+id/Note"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="descreption kljhgfdsdfghjk"
+        android:text="@{data.note}"
+        android:textSize="18sp"
         android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"
         app:layout_constraintStart_toStartOf="@+id/Notetitle"
         app:layout_constraintTop_toBottomOf="@+id/Notetitle" />
 
