@@ -10,7 +10,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".Activity.Create_video_Activity">
+    tools:context=".Activity.Workout_plan.Create_video_Activity">
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/createRecyclerView"
         android:layout_width="match_parent"

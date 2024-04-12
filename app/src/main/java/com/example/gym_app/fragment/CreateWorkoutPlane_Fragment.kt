@@ -11,12 +11,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.LinearLayout
-import com.example.gym_app.Activity.Create_video_Activity
-import com.example.gym_app.Activity.DisplayWorkoutPlan_Activity
+import com.example.gym_app.Activity.Workout_plan.Create_video_Activity
+import com.example.gym_app.Activity.Workout_plan.DisplayWorkoutPlan_Activity
 import com.example.gym_app.Adapter.WorkoutPlan_Adapter
 import com.example.gym_app.R
-import com.example.gym_app.TrueOrFalse
-import com.example.gym_app.User
+import com.example.gym_app.Singlton.TrueOrFalse
+import com.example.gym_app.Singlton.User
 import com.example.gym_app.WoroutPlanList_Data
 import com.example.gym_app.databinding.FragmentCtreateworoutplaneBinding
 import com.google.firebase.Firebase
@@ -40,14 +40,38 @@ class CreateWorkoutPlane_Fragment : Fragment() {
             context?.let { it1 -> showInputDialog(it1) }
         }
         auth = Firebase.auth
-
-
-
-
-
+        collections()
 
         return binding.root
     }
+
+    private fun collections() {
+        db = Firebase.firestore
+        var itemlist = mutableListOf<WoroutPlanList_Data>()
+        val collection = db.collection("Coach_Workout_Plan").document(User.instance?.UserId.toString()).collection("Workoutplan")
+
+        var Title = ""
+        collection.get().addOnSuccessListener { result ->
+            for (document in result) {
+                Title = document.id
+                itemlist.add(WoroutPlanList_Data(Title, R.drawable.workout))
+
+            }
+            binding.RecyclerView.adapter = WorkoutPlan_Adapter(itemlist){item ->
+                var intent = Intent(context, DisplayWorkoutPlan_Activity::class.java)
+                val title = item.Title
+                intent.putExtra("name",title)
+                startActivity(intent)
+            }
+            binding.textView.visibility = View.INVISIBLE
+        }
+        binding.appbar.title = "Create Worckout Plan"
+
+
+
+
+    }
+
     fun showInputDialog(context: Context) {
         val alertDialog = AlertDialog.Builder(context)
         alertDialog.setTitle("Enter Your Workout Plan Name")
@@ -62,9 +86,9 @@ class CreateWorkoutPlane_Fragment : Fragment() {
         alertDialog.setPositiveButton("OK") { dialog, _ ->
             val enteredText = input.text.toString()
             // Handle the entered text here
-            var intent = Intent(context,Create_video_Activity::class.java)
-            TrueOrFalse.boolean = true
-            TrueOrFalse.name = enteredText
+            var intent = Intent(context, Create_video_Activity::class.java)
+            TrueOrFalse.instance?.boolean = true
+            TrueOrFalse.instance?.name = enteredText
             startActivity(intent)
             dialog.dismiss()
         }
@@ -76,18 +100,19 @@ class CreateWorkoutPlane_Fragment : Fragment() {
         alertDialog.show()
     }
 
-    override fun onStart() {
+    override fun onPause() {
         db = Firebase.firestore
         var itemlist = mutableListOf<WoroutPlanList_Data>()
-        val collection = db.collection("Coach_Workout_Plan").document(User.UserId).collection("Workoutplan")
+        val collection = db.collection("Coach_Workout_Plan").document(User.instance?.UserId.toString()).collection("Workoutplan")
 
         var Title = ""
         collection.get().addOnSuccessListener { result ->
-            for (document in result) {
-                 Title = document.id
+            for (document in result.documents) {
+                Title = document.id
+                Log.i("tagy",Title)
                 itemlist.add(WoroutPlanList_Data(Title, R.drawable.workout))
 
-                }
+            }
             binding.RecyclerView.adapter = WorkoutPlan_Adapter(itemlist){item ->
                 var intent = Intent(context, DisplayWorkoutPlan_Activity::class.java)
                 val title = item.Title
@@ -95,15 +120,14 @@ class CreateWorkoutPlane_Fragment : Fragment() {
                 startActivity(intent)
             }
             binding.textView.visibility = View.INVISIBLE
-            }
+        }
         binding.appbar.title = "Create Worckout Plan"
 
 
 
-
-
-        super.onStart()
+        super.onPause()
     }
+   
 }
 
 

@@ -1,4 +1,4 @@
-package com.example.gym_app.Activity
+package com.example.gym_app.Activity.Workout_plan
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,7 +6,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.example.gym_app.Adapter.ExerciseList_Adapter
-import com.example.gym_app.DisplayVideo_Singlton
+import com.example.gym_app.Singlton.DisplayVideo_Singlton
 import com.example.gym_app.ExerciseLis_Data
 import com.example.gym_app.R
 import com.example.gym_app.databinding.ActivityDisplayexercuselistVideosBinding
@@ -46,10 +46,10 @@ class DisplayExerciseList_Activity : AppCompatActivity() {
                 itemList.add(ExerciseLis_Data(imagUrl, title,videoUrl,des))
                     binding.RecyclerView.adapter = ExerciseList_Adapter(this,itemList){item->
                         var intent = Intent(this , DisplayVideos_Activity::class.java)
-                        DisplayVideo_Singlton.title = item.Title
-                        DisplayVideo_Singlton.videoUrl=item.videoUrl
-                        DisplayVideo_Singlton.des = item.des
-                        DisplayVideo_Singlton.imagUrl = item.imagUrl
+                        DisplayVideo_Singlton.instance?.title = item.Title
+                        DisplayVideo_Singlton.instance?.videoUrl=item.videoUrl
+                        DisplayVideo_Singlton.instance?.des = item.des
+                        DisplayVideo_Singlton.instance?.imagUrl = item.imagUrl
 
                         startActivity(intent)
 

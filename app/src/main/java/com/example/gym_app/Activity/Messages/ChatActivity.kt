@@ -1,6 +1,5 @@
 package com.example.gym_app.Activity.Messages
 
-import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.enableEdgeToEdge
@@ -11,8 +10,8 @@ import androidx.databinding.DataBindingUtil
 import com.example.gym_app.Adapter.ChatOneAdapter
 import com.example.gym_app.ChatActivityData
 import com.example.gym_app.R
-import com.example.gym_app.User
-import com.example.gym_app.ChatOtherUser
+import com.example.gym_app.Singlton.User
+import com.example.gym_app.Singlton.ChatOtherUser
 import com.example.gym_app.LatestMessagesData
 import com.example.gym_app.databinding.ActivityChatBinding
 import com.google.firebase.Firebase
@@ -27,7 +26,7 @@ class ChatActivity : AppCompatActivity() {
     var db = FirebaseFirestore.getInstance()
     var itemlist: MutableList<ChatActivityData> = mutableListOf()
     var ltestitemlist: MutableList<LatestMessagesData> = mutableListOf()
-    val toid = ChatOtherUser.otherId.trim()
+    val toid = ChatOtherUser.instance?.otherId?.trim()
     val fromid = auth.currentUser?.uid.toString().trim()
     var latestMessages1 = db.collection("/Latest_Messages").document("/$fromid/Latest/$toid")
     var latestMessages2 = db.collection("/Latest_Messages").document("/$toid/Latest/$fromid")
@@ -39,7 +38,7 @@ class ChatActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        supportActionBar?.title = ChatOtherUser.username
+        supportActionBar?.title = ChatOtherUser.instance?.username
 
         setContentView(R.layout.activity_chat)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
@@ -58,7 +57,7 @@ class ChatActivity : AppCompatActivity() {
             val id = UUID.randomUUID().toString()
             var x = ChatActivityData(
                 id,
-                User.ProfileimagUri,
+                User.instance?.ProfileimagUri.toString(),
                 messag,
                 "RIGHT",
                 fromid,
@@ -69,7 +68,7 @@ class ChatActivity : AppCompatActivity() {
             collectionfrom.add(x).addOnSuccessListener {
                 x = ChatActivityData(
                     id,
-                    User.ProfileimagUri,
+                    User.instance?.ProfileimagUri.toString(),
                     messag,
                     "LEFT",
                     fromid,
@@ -90,7 +89,7 @@ class ChatActivity : AppCompatActivity() {
         collection.orderBy("time").get().addOnSuccessListener { querySnapshot ->
             for (doc in querySnapshot.documents) {
                 val messageId = doc.id
-                val imgUri = doc.getString("imagUri")
+                val imgUri = doc.getString("imagUri").toString()
                 val message = doc.getString("mesg")
                 val sender = doc.getString("sender")
                 val toId = doc.getString("toId")
@@ -99,7 +98,7 @@ class ChatActivity : AppCompatActivity() {
 
                 val chatData = ChatActivityData(
                     messageId,
-                    Uri.parse(imgUri),
+                    imgUri,
                     message,
                     sender,
                     toId,
@@ -142,7 +141,7 @@ class ChatActivity : AppCompatActivity() {
                 if (!itemlist.any { it.Id == messageId }) {
                     val chatData = ChatActivityData(
                         messageId,
-                        Uri.parse(imgUri),
+                        imgUri,
                         message,
                         sender,
                         toId,
@@ -152,24 +151,24 @@ class ChatActivity : AppCompatActivity() {
                     itemlist.add(chatData)
                     val lastchatData = LatestMessagesData(
                         messageId,
-                        Uri.parse(ChatOtherUser.imguri),
+                        ChatOtherUser.instance?.imguri.toString(),
                         message,
                         sender,
                         fromId,
                         toId,
-                        ChatOtherUser.username,
+                        ChatOtherUser.instance?.username,
                         time
                     )
                     latestMessages1.set(lastchatData).addOnSuccessListener {
                         if (sender == "RIGHT") {
                             val chatData = LatestMessagesData(
                                 messageId,
-                                User.ProfileimagUri,
+                                User.instance?.ProfileimagUri.toString(),
                                 message,
                                 "LEFT",
                                 toId,
                                 fromId,
-                                ChatOtherUser.username,
+                                ChatOtherUser.instance?.username,
                                 time
                             )
                             latestMessages2.set(chatData)
@@ -177,12 +176,12 @@ class ChatActivity : AppCompatActivity() {
                         } else {
                             val chatData = LatestMessagesData(
                                 messageId,
-                                User.ProfileimagUri,
+                                User.instance?.ProfileimagUri.toString(),
                                 message,
                                 "RIGHT",
                                 fromId,
                                 toId    ,
-                                ChatOtherUser.username,
+                                ChatOtherUser.instance?.username,
                                 time
                             )
                             latestMessages2.set(chatData)

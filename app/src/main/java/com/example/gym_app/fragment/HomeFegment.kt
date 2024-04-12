@@ -2,16 +2,11 @@ package com.example.gym_app.fragment
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
-import com.example.gym_app.Activity.DisplayExerciseList_Activity
+import com.example.gym_app.Activity.Workout_plan.DisplayExerciseList_Activity
 import com.example.gym_app.Activity.Messages.MessagesActivity
 import com.example.gym_app.Activity.Search_Activity
 import com.example.gym_app.Adapter.CardView_CreateAdapter

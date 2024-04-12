@@ -164,6 +164,7 @@
 
                 <RadioGroup
                     android:id="@+id/radio"
+                    android:orientation="horizontal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
 
@@ -176,7 +177,7 @@
                         android:textColor="@color/white"
                         android:textSize="24dp" />
 
-                </RadioGroup>
+
 
                 <RadioButton
                     android:id="@+id/cliet"
@@ -186,6 +187,7 @@
                     android:text="Client"
                     android:textColor="@color/white"
                     android:textSize="24dp" />
+                </RadioGroup>
             </LinearLayout>
         </LinearLayout>
 

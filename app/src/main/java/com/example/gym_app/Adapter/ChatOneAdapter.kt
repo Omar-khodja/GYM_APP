@@ -1,6 +1,7 @@
 package com.example.gym_app.Adapter
 
 import android.content.Context
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -19,7 +20,7 @@ class ChatOneAdapter(val context: Context,val itemlist:List<ChatActivityData>)
         fun bind(chat: ChatActivityData){
             biding.chatmessage.text = chat.mesg
             Glide.with(biding.root)
-                .load(chat.imagUri)
+                .load(Uri.parse(chat.imagUri))
                 .into(biding.profileimg)
         }
     }

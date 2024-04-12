@@ -1,4 +1,4 @@
-package com.example.gym_app.Activity
+package com.example.gym_app.Activity.Workout_plan
 
 import android.content.Intent
 import android.os.Bundle
@@ -10,7 +10,7 @@ import androidx.databinding.DataBindingUtil
 import com.example.gym_app.Adapter.CardView_CreateAdapter
 import com.example.gym_app.CardView_CreateData
 import com.example.gym_app.R
-import com.example.gym_app.TrueOrFalse
+import com.example.gym_app.Singlton.TrueOrFalse
 import com.example.gym_app.databinding.ActivityCreateVideoBinding
 import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
@@ -38,7 +38,7 @@ class Create_video_Activity : AppCompatActivity() {
         itemlis.add(CardView_CreateData(R.drawable.back,"Back","Back Exersice","4 Videos"))
 
         biding.createRecyclerView.adapter = CardView_CreateAdapter(itemlis){item->
-            val intent = Intent(this,DisplayExerciseList_Activity::class.java)
+            val intent = Intent(this, DisplayExerciseList_Activity::class.java)
             intent.putExtra("path",item.title)
             startActivity(intent)
         }
@@ -46,7 +46,7 @@ class Create_video_Activity : AppCompatActivity() {
     }
 
     override fun onDestroy() {
-        TrueOrFalse.boolean = false
+        TrueOrFalse.instance?.boolean = false
         super.onDestroy()
     }
 }

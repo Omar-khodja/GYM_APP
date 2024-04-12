@@ -1,6 +1,7 @@
 package com.example.gym_app.Login
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -9,6 +10,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.databinding.DataBindingUtil
 import com.example.gym_app.Activity.HomeActivity
 import com.example.gym_app.R
+import com.example.gym_app.Singlton.User
 import com.example.gym_app.databinding.ActivityMainBinding
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
@@ -44,9 +46,8 @@ class MainActivity : AppCompatActivity() {
 
     override fun onStart() {
         if(auth.currentUser != null){
-            var intent = Intent(this , HomeActivity::class.java)
+            var intent = Intent(this, HomeActivity::class.java)
             startActivity(intent)
-
         }
         super.onStart()
     }

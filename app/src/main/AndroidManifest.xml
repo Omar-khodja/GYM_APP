@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -14,31 +15,39 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GYM_APP"
         tools:targetApi="31">
+
+
+        <activity
+            android:name=".Activity.Notification_Activity"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.CoachProfile_Activity"
+            android:exported="false" />
         <activity
             android:name=".Activity.Search_Activity"
             android:exported="false" />
         <activity
-            android:name=".Activity.PlayVideo_Activity"
+            android:name=".Activity.Workout_plan.PlayVideo_Activity"
             android:exported="false">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".Activity.DisplayWorkoutPlan_Activity" />
+                android:value=".Activity.Workout_plan.DisplayWorkoutPlan_Activity" />
         </activity>
         <activity
-            android:name=".Activity.DisplayWorkoutPlan_Activity"
+            android:name=".Activity.Workout_plan.DisplayWorkoutPlan_Activity"
             android:exported="false">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Activity.HomeActivity" />
         </activity>
         <activity
-            android:name=".Activity.Create_video_Activity"
+            android:name=".Activity.Workout_plan.Create_video_Activity"
             android:exported="false" />
         <activity
-            android:name=".Activity.DisplayVideos_Activity"
+            android:name=".Activity.Workout_plan.DisplayVideos_Activity"
             android:exported="false" />
         <activity
-            android:name=".Activity.DisplayExerciseList_Activity"
+            android:name=".Activity.Workout_plan.DisplayExerciseList_Activity"
             android:exported="false">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -68,13 +77,7 @@
         </activity>
         <activity
             android:name=".Activity.HomeActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:exported="false"></activity>
         <activity
             android:name=".Login.SingupActivity"
             android:exported="false" />
@@ -83,7 +86,13 @@
             android:exported="false" />
         <activity
             android:name=".Login.MainActivity"
-            android:exported="false" />
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

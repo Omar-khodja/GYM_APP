@@ -1,6 +1,7 @@
 package com.example.gym_app
 
 class MyWorckoutPlna_Data(
+    val id:String,
     val listname:String,
     val imagUrl:String,
     val Title:String,

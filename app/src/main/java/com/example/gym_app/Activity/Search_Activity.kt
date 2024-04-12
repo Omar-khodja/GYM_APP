@@ -13,7 +13,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.example.gym_app.Activity.Messages.ChatActivity
 import com.example.gym_app.Adapter.NewMessageAdapter
-import com.example.gym_app.ChatOtherUser
+import com.example.gym_app.Singlton.ChatOtherUser
 import com.example.gym_app.NewMessageData
 import com.example.gym_app.R
 import com.example.gym_app.databinding.ActivitySearchBinding
@@ -65,12 +65,12 @@ class Search_Activity : AppCompatActivity() {
                             ,doucment.getString("ProfileimagUri").toString())
                     )
                 }
-                biding.RecyclerView.adapter = NewMessageAdapter(this , adapter){item->
+                biding.RecyclerView.adapter = NewMessageAdapter( adapter){item->
                     Toast.makeText(this, "Clicked item: ${item.username}", Toast.LENGTH_SHORT).show()
                     var intent= Intent(this , ChatActivity::class.java)
-                    ChatOtherUser.username = item.username
-                    ChatOtherUser.otherId = item.userId
-                    ChatOtherUser.imguri = item.imguri
+                    ChatOtherUser.instance?.username = item.username
+                    ChatOtherUser.instance?.otherId = item.userId
+                    ChatOtherUser.instance?.imguri = item.imguri
                     startActivity(intent)
                 }
                 biding.RecyclerView.addItemDecoration(

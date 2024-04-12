@@ -3,7 +3,7 @@ package com.example.gym_app
 import android.net.Uri
 
 class LatestMessagesData(val Id: String?,
-                         val imagUri: Uri,
+                         val imagUri: String,
                          val mesg:String?,
                          val sender:String?,
                          val fromId:String?,

@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import com.example.gym_app.Adapter.NewMessageAdapter
 import com.example.gym_app.NewMessageData
 import com.example.gym_app.R
-import com.example.gym_app.ChatOtherUser
+import com.example.gym_app.Singlton.ChatOtherUser
 import com.example.gym_app.databinding.ActivityNewMessage2Binding
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
@@ -53,7 +53,7 @@ class NewMessageActivity : AppCompatActivity() {
     }
 
     private fun fetchusers(collection: Query) {
-        this.collection.get()
+         collection.get()
             .addOnSuccessListener {
                 val adapter: MutableList<NewMessageData> = mutableListOf()
                 for(doucment in it){
@@ -65,12 +65,12 @@ class NewMessageActivity : AppCompatActivity() {
                         ,doucment.getString("ProfileimagUri").toString())
                     )
                 }
-                biding.recyclerViewNewMessage.adapter = NewMessageAdapter(this , adapter){item->
+                biding.recyclerViewNewMessage.adapter = NewMessageAdapter( adapter){item->
                     Toast.makeText(this, "Clicked item: ${item.username}", Toast.LENGTH_SHORT).show()
                     var intent=Intent(this , ChatActivity::class.java)
-                   ChatOtherUser.username = item.username
-                    ChatOtherUser.otherId = item.userId
-                    ChatOtherUser.imguri = item.imguri
+                   ChatOtherUser.instance?.username = item.username
+                    ChatOtherUser.instance?.otherId = item.userId
+                    ChatOtherUser.instance?.imguri = item.imguri
                     startActivity(intent)
                     finish()//we finish with this Activity so go back to messages activity
                 }

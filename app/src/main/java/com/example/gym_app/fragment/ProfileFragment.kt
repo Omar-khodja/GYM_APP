@@ -10,10 +10,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
+import com.example.gym_app.Activity.Notification_Activity
 import com.example.gym_app.Login.MainActivity
-import com.example.gym_app.User
+import com.example.gym_app.Singlton.User
 import com.example.gym_app.databinding.FragmentProfileBinding
 import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
@@ -49,12 +49,6 @@ class ProfileFragment : Fragment() {
                         .into(binding.imageView1)
                     binding.phoneNumber.text = document.getString("userphonenb")
 
-                    User.UserName = document.getString("username").toString()
-                    User.UserId = userId.toString()
-                    User.ProfileimagUri = Uri.parse(document.getString("ProfileimagUri").toString())
-                    User.Email = document.getString("email").toString()
-                    User.UserPhonenb = document.getString("userphonenb").toString()
-                    User.CoachOrClient = document.getString("type").toString()
                 }
             }
 
@@ -70,6 +64,10 @@ class ProfileFragment : Fragment() {
             val intent = Intent(Intent.ACTION_PICK)
             intent.type = "image/*" // Allow only images
             startActivityForResult(intent, 1)
+        }
+
+        binding.card3.setOnClickListener{
+            startActivity(Intent(context,Notification_Activity::class.java))
         }
 
         return binding.root
@@ -100,7 +98,7 @@ class ProfileFragment : Fragment() {
             storageRef.downloadUrl.addOnSuccessListener { uri ->
                 Log.i("tagy","Download done")
                 val profileImageUrl = uri.toString()
-                db.collection("Users").document(User.UserId).update("ProfileimagUri",profileImageUrl)
+                db.collection("Users").document(User.instance?.UserId.toString()).update("ProfileimagUri",profileImageUrl)
 
 
             }.addOnFailureListener { e ->

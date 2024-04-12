@@ -13,11 +13,10 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.example.gym_app.Adapter.MessagesAdapter
-import com.example.gym_app.ChatOtherUser
+import com.example.gym_app.Singlton.ChatOtherUser
 import com.example.gym_app.Login.MainActivity
 import com.example.gym_app.MessagesData
 import com.example.gym_app.R
-import com.example.gym_app.User
 import com.example.gym_app.databinding.ActivityMessagesBinding
 import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
@@ -69,9 +68,9 @@ class MessagesActivity : AppCompatActivity() {
                 biding.recyclerView.adapter = MessagesAdapter(this , itemlist){item->
                     Toast.makeText(this, "Clicked item: ${item.userId}", Toast.LENGTH_SHORT).show()
                     val intent = Intent(this, ChatActivity::class.java)
-                    ChatOtherUser.username = item.username
-                    ChatOtherUser.otherId = item.userId
-                    ChatOtherUser.imguri = item.imagUri
+                    ChatOtherUser.instance?.username = item.username
+                    ChatOtherUser.instance?.otherId = item.userId
+                    ChatOtherUser.instance?.imguri = item.imagUri
                     startActivity(intent)
                 }
                 biding.recyclerView.addItemDecoration(

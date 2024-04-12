@@ -4,7 +4,7 @@ import android.net.Uri
 
 class ChatActivityData(
     val Id: String?,
-    val imagUri: Uri,
+    val imagUri: String,
     val mesg:String?,
     val sender:String?,
     val fromId:String?,

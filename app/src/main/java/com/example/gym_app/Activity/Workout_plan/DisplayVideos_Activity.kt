@@ -1,4 +1,4 @@
-package com.example.gym_app.Activity
+package com.example.gym_app.Activity.Workout_plan
 
 import android.net.Uri
 import android.os.Bundle
@@ -10,11 +10,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.databinding.DataBindingUtil
-import com.bumptech.glide.Glide
-import com.example.gym_app.DisplayVideo_Singlton
+import com.example.gym_app.Singlton.DisplayVideo_Singlton
 import com.example.gym_app.R
-import com.example.gym_app.TrueOrFalse
-import com.example.gym_app.User
+import com.example.gym_app.Singlton.TrueOrFalse
+import com.example.gym_app.Singlton.User
 import com.example.gym_app.databinding.ActivityDisplayVideosBinding
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
@@ -39,9 +38,9 @@ class DisplayVideos_Activity : AppCompatActivity() {
         biding = DataBindingUtil.setContentView(this ,R.layout.activity_display_videos)
         storage=FirebaseStorage.getInstance()
         storageReference=storage.getReference()
-        val videoUrl = Uri.parse(DisplayVideo_Singlton.videoUrl)
-        val des = DisplayVideo_Singlton.des
-        val Title = DisplayVideo_Singlton.title
+        val videoUrl = Uri.parse(DisplayVideo_Singlton.instance?.videoUrl)
+        val des = DisplayVideo_Singlton.instance?.des
+        val Title = DisplayVideo_Singlton.instance?.title
         val filename = "video_${title}.mp4"
         val localFile = File(filesDir, filename)
         storageReference = storage.getReferenceFromUrl(videoUrl.toString())
@@ -60,7 +59,7 @@ class DisplayVideos_Activity : AppCompatActivity() {
             }
         biding.des.text=des
         supportActionBar?.title=Title
-        if(TrueOrFalse.boolean == true){
+        if(TrueOrFalse.instance?.boolean == true){
             biding.addbtn.visibility = View.VISIBLE
         }
         biding.addbtn.setOnClickListener{
@@ -69,28 +68,28 @@ class DisplayVideos_Activity : AppCompatActivity() {
     }
 
     private fun AddVideoToPlane() {
-        val name = TrueOrFalse.name
+        val name = TrueOrFalse.instance?.name.toString()
 
         var collection = db.collection("/Coach_Workout_Plan")
-                                .document(User.UserId)
+                                .document(User.instance?.UserId.toString())
                                 .collection("Workoutplan")
                                 .document(name)
                                 .collection(name)
         var collection2 =  db.collection("/Coach_Workout_Plan")
-            .document(User.UserId)
+            .document(User.instance?.UserId.toString())
             .collection("Workoutplan")
             .document(name)
 
 
-        var videoUrl = DisplayVideo_Singlton.videoUrl
+        var videoUrl = DisplayVideo_Singlton.instance?.videoUrl
         var data = hashMapOf(
             "ListName" to name,
-            "CoachName" to User.UserName,
-            "CoachId" to User.UserId,
+            "CoachName" to User.instance?.UserName,
+            "CoachId" to User.instance?.UserId,
             "VideoUrl" to videoUrl,
-            "ImahUrl" to DisplayVideo_Singlton.imagUrl,
-            "des" to DisplayVideo_Singlton.des,
-            "VideoName" to DisplayVideo_Singlton.title,
+            "ImahUrl" to DisplayVideo_Singlton.instance?.imagUrl,
+            "des" to DisplayVideo_Singlton.instance?.des,
+            "VideoName" to DisplayVideo_Singlton.instance?.title,
             "Note" to ""
         )
         val data1 = hashMapOf(
