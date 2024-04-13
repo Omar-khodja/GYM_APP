@@ -17,30 +17,31 @@
     <EditText
         android:id="@+id/chat"
         android:layout_width="0dp"
-        android:layout_height="50dp"
         android:layout_marginStart="5dp"
         android:layout_marginEnd="5dp"
         android:layout_marginBottom="10dp"
-        android:backgroundTint="@color/gray"
         android:textColor="@color/white"
         android:textColorHint="@color/white"
         android:background="@drawable/char_editetext_background"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#8F8F8F"
         android:gravity="center"
         android:hint="Write Message"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/Senbtn"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <Button
+    <ImageView
         android:id="@+id/Senbtn"
         android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:text="Send"
-        android:textStyle="bold"
-        android:textSize="20sp"
-        android:layout_marginBottom="10dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+        android:layout_marginEnd="10dp"
+        android:src="@drawable/send"
+        app:tint="@color/darkRed"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/chatRecycleView"
@@ -48,8 +49,9 @@
         android:layout_height="0dp"
         android:layout_marginTop="30dp"
         android:background="@color/black"
+        android:layout_marginBottom="10dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintBottom_toTopOf="@+id/Senbtn"
+        app:layout_constraintBottom_toTopOf="@+id/chat"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

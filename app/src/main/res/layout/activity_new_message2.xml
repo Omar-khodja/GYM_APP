@@ -9,17 +9,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".Activity.Messages.NewMessageActivity">
+    tools:context=".Activity.Messages.NewMessageActivity"
+    android:background="@color/darckgray">
     <EditText
         android:id="@+id/editText"
         android:layout_width="0dp"
         android:layout_height="50dp"
-        android:layout_marginTop="50dp"
         android:background="@drawable/char_editetext_background"
         android:drawableLeft="@drawable/search"
         android:hint="Search....."
+        android:backgroundTint="#636363"
         android:imeOptions="actionSearch"
         android:inputType="text"
+        android:layout_marginTop="10dp"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -31,12 +33,11 @@
         android:id="@+id/recyclerViewNewMessage"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginEnd="5dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText" />
+        app:layout_constraintTop_toBottomOf="@+id/editText"
+        android:background="@color/darckgray"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

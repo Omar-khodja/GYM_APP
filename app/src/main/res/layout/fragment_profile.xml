@@ -8,6 +8,25 @@
         android:layout_height="match_parent"
         android:background="@color/black"
         tools:context=".fragment.ProfileFragment">
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/appbar"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="#373737"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Profile"
+                android:textColor="@color/darkRed"
+                android:textSize="23sp"
+                android:textStyle="bold" />
+        </com.google.android.material.appbar.MaterialToolbar>
 
         <!-- this is background-->
         <ImageView
@@ -17,10 +36,10 @@
             android:alpha="0.6"
             android:scaleType="centerCrop"
             android:src="@drawable/gymbackground"
+            app:layout_constraintTop_toBottomOf="@+id/appbar"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintStart_toStartOf="parent" />
 
         <!-- this is Email text-->
 
@@ -33,23 +52,26 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="omar@gmail.com"
-            android:layout_marginTop="10dp"
             android:textColor="@color/white"
-            app:layout_constraintStart_toStartOf="@+id/Profile_username"
-            app:layout_constraintTop_toBottomOf="@+id/Profile_username"
+            android:layout_marginBottom="25dp"
+            app:layout_constraintBottom_toTopOf="@+id/cardView2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
             tools:ignore="HardcodedText" />
 
         <TextView
             android:id="@+id/Profile_username"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
             android:text="user name"
             android:textColor="@color/white"
             android:textSize="24sp"
             android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@+id/iamgeCard"
-            app:layout_constraintTop_toTopOf="@+id/iamgeCard"
+            app:layout_constraintBottom_toTopOf="@+id/Profile_Email"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.493"
+            app:layout_constraintStart_toStartOf="parent"
             tools:ignore="MissingConstraints" />
 
         <androidx.cardview.widget.CardView
@@ -64,8 +86,7 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                >
+                android:layout_height="match_parent">
 
                 <LinearLayout
                     android:id="@+id/linearLayout"
@@ -91,7 +112,8 @@
                             android:layout_height="100dp"
                             android:layout_margin="10dp"
                             android:backgroundTint="#373737"
-                            app:cardCornerRadius="20dp">
+                            app:cardCornerRadius="20dp"
+                            app:cardElevation="5dp">
 
                             <androidx.constraintlayout.widget.ConstraintLayout
                                 android:id="@+id/card5"
@@ -131,7 +153,8 @@
                             android:layout_height="100dp"
                             android:layout_margin="10dp"
                             android:backgroundTint="#373737"
-                            app:cardCornerRadius="20dp">
+                            app:cardCornerRadius="20dp"
+                            app:cardElevation="5dp">
 
                             <androidx.constraintlayout.widget.ConstraintLayout
                                 android:id="@+id/edite_imag"
@@ -179,7 +202,8 @@
                             android:layout_height="100dp"
                             android:layout_margin="10dp"
                             android:backgroundTint="#373737"
-                            app:cardCornerRadius="20dp">
+                            app:cardCornerRadius="20dp"
+                            app:cardElevation="5dp">
 
                             <androidx.constraintlayout.widget.ConstraintLayout
                                 android:id="@+id/card2"
@@ -219,7 +243,8 @@
                             android:layout_height="100dp"
                             android:layout_margin="10dp"
                             android:backgroundTint="#373737"
-                            app:cardCornerRadius="20dp">
+                            app:cardCornerRadius="20dp"
+                            app:cardElevation="5dp">
 
                             <androidx.constraintlayout.widget.ConstraintLayout
                                 android:id="@+id/card3"
@@ -263,10 +288,11 @@
 
                         <androidx.cardview.widget.CardView
                             android:layout_width="100dp"
-                            android:layout_height="80dp"
+                            android:layout_height="100dp"
                             android:layout_margin="10dp"
                             android:backgroundTint="#AC3E3E"
-                            app:cardCornerRadius="20dp">
+                            app:cardCornerRadius="20dp"
+                            app:cardElevation="5dp">
 
                             <androidx.constraintlayout.widget.ConstraintLayout
                                 android:id="@+id/singout"
@@ -289,8 +315,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-
-                                    android:layout_marginBottom="5dp"
+                                    android:layout_marginBottom="15dp"
                                     android:text="Sing out"
                                     android:textColor="@color/white"
                                     android:textSize="13sp"
@@ -339,12 +364,11 @@
             android:id="@+id/iamgeCard"
             android:layout_width="120dp"
             android:layout_height="120dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="32dp"
             app:cardCornerRadius="75dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="MissingConstraints">
+            app:layout_constraintBottom_toTopOf="@+id/Profile_username"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent">
 
             <ImageView
                 android:id="@+id/imageView1"

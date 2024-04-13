@@ -14,6 +14,7 @@ import com.example.gym_app.R
 import com.example.gym_app.databinding.ActivityHomeBinding
 import com.example.gym_app.fragment.HomeFegment
 import com.example.gym_app.Adapter.FragmentAdapter
+import com.example.gym_app.Login.MainActivity
 import com.example.gym_app.Singlton.User
 import com.example.gym_app.fragment.Client_Workoutplan_Fragment
 import com.example.gym_app.fragment.CoachSearch_Fragment
@@ -88,13 +89,9 @@ class HomeActivity : AppCompatActivity() {
 
     }
 
-
-
-
-
     override fun onStart() {
         if(auth.currentUser ==null){
-            startActivity(Intent(this, MessagesActivity::class.java))
+            startActivity(Intent(this, MainActivity::class.java))
         }
         super.onStart()
     }
