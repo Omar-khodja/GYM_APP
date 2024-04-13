@@ -48,7 +48,8 @@
             android:exported="false" />
         <activity
             android:name=".Activity.Workout_plan.DisplayExerciseList_Activity"
-            android:exported="false">
+            android:exported="false"
+            android:theme="@style/Theme.MaterialComponents.DayNight.DarkActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Activity.HomeActivity" />
@@ -56,28 +57,33 @@
         <activity
             android:name=".Activity.Messages.ChatActivity"
             android:exported="false"
-            android:windowSoftInputMode="adjustResize">
+            android:windowSoftInputMode="adjustResize"
+            android:theme="@style/Theme.MaterialComponents.DayNight.DarkActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Activity.Messages.NewMessageActivity" />
         </activity>
         <activity
             android:name=".Activity.Messages.MessagesActivity"
-            android:exported="false">
+            android:exported="false"
+            android:theme="@style/Theme.MaterialComponents.DayNight.DarkActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Activity.HomeActivity" />
         </activity>
         <activity
             android:name=".Activity.Messages.NewMessageActivity"
-            android:exported="false">
+            android:exported="false"
+            >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Activity.Messages.MessagesActivity" />
         </activity>
         <activity
             android:name=".Activity.HomeActivity"
-            android:exported="false"></activity>
+            android:exported="false">
+
+        </activity>
         <activity
             android:name=".Login.SingupActivity"
             android:exported="false" />

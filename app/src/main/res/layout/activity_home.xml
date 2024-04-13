@@ -26,6 +26,8 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="#373737"
+        app:tabIconTint="@color/darkRed"
+        android:foregroundTint="#AA6E6E"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

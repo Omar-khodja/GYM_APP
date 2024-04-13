@@ -10,7 +10,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".Activity.Workout_plan.DisplayWorkoutPlan_Activity">
+    tools:context=".Activity.Workout_plan.DisplayWorkoutPlan_Activity"
+    android:background="@color/gray">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/RecyclerView"

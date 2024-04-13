@@ -28,15 +28,15 @@ import com.google.firebase.firestore.firestore
 
 class CreateWorkoutPlane_Fragment : Fragment() {
     lateinit var binding: FragmentCtreateworoutplaneBinding
-     lateinit var db:FirebaseFirestore
-     lateinit var auth:FirebaseAuth
+    lateinit var db: FirebaseFirestore
+    lateinit var auth: FirebaseAuth
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentCtreateworoutplaneBinding.inflate(inflater, container, false)
-        binding.floatingActionButton.setOnClickListener{
+        binding.floatingActionButton.setOnClickListener {
             context?.let { it1 -> showInputDialog(it1) }
         }
         auth = Firebase.auth
@@ -48,7 +48,9 @@ class CreateWorkoutPlane_Fragment : Fragment() {
     private fun collections() {
         db = Firebase.firestore
         var itemlist = mutableListOf<WoroutPlanList_Data>()
-        val collection = db.collection("Coach_Workout_Plan").document(User.instance?.UserId.toString()).collection("Workoutplan")
+        val collection =
+            db.collection("Coach_Workout_Plan").document(User.instance?.UserId.toString())
+                .collection("Workoutplan")
 
         var Title = ""
         collection.get().addOnSuccessListener { result ->
@@ -57,17 +59,14 @@ class CreateWorkoutPlane_Fragment : Fragment() {
                 itemlist.add(WoroutPlanList_Data(Title, R.drawable.workout))
 
             }
-            binding.RecyclerView.adapter = WorkoutPlan_Adapter(itemlist){item ->
+            binding.RecyclerView.adapter = WorkoutPlan_Adapter(itemlist) { item ->
                 var intent = Intent(context, DisplayWorkoutPlan_Activity::class.java)
                 val title = item.Title
-                intent.putExtra("name",title)
+                intent.putExtra("name", title)
                 startActivity(intent)
             }
             binding.textView.visibility = View.INVISIBLE
         }
-        binding.appbar.title = "Create Worckout Plan"
-
-
 
 
     }
@@ -103,31 +102,33 @@ class CreateWorkoutPlane_Fragment : Fragment() {
     override fun onPause() {
         db = Firebase.firestore
         var itemlist = mutableListOf<WoroutPlanList_Data>()
-        val collection = db.collection("Coach_Workout_Plan").document(User.instance?.UserId.toString()).collection("Workoutplan")
+        val collection =
+            db.collection("Coach_Workout_Plan").document(User.instance?.UserId.toString())
+                .collection("Workoutplan")
 
         var Title = ""
         collection.get().addOnSuccessListener { result ->
             for (document in result.documents) {
                 Title = document.id
-                Log.i("tagy",Title)
+                Log.i("tagy", Title)
                 itemlist.add(WoroutPlanList_Data(Title, R.drawable.workout))
 
             }
-            binding.RecyclerView.adapter = WorkoutPlan_Adapter(itemlist){item ->
+            binding.RecyclerView.adapter = WorkoutPlan_Adapter(itemlist) { item ->
                 var intent = Intent(context, DisplayWorkoutPlan_Activity::class.java)
                 val title = item.Title
-                intent.putExtra("name",title)
+                intent.putExtra("name", title)
                 startActivity(intent)
             }
             binding.textView.visibility = View.INVISIBLE
         }
-        binding.appbar.title = "Create Worckout Plan"
+
 
 
 
         super.onPause()
     }
-   
+
 }
 
 

@@ -4,54 +4,60 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
 
     >
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:layout_width="match_parent"
-    android:layout_height="100dp">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/view2"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
-        android:elevation="12dp"
-        app:cardCornerRadius="75dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:padding="10dp">
 
-        <ImageView
-            android:id="@+id/ProfileImag"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="centerCrop" />
+        <androidx.cardview.widget.CardView
+            android:id="@+id/view2"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:elevation="12dp"
+            app:cardCornerRadius="75dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/ProfileImag"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop" />
 
 
-    </androidx.cardview.widget.CardView>
+        </androidx.cardview.widget.CardView>
 
-    <TextView
-        android:id="@+id/UserName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:text="UserName"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/view2"
-        app:layout_constraintTop_toTopOf="@+id/view2" />
+        <TextView
+            android:id="@+id/UserName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="12dp"
+            android:text="UserName"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/LatestMessage"
+            app:layout_constraintStart_toEndOf="@+id/view2"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.09" />
 
-    <TextView
-        android:id="@+id/LatestMessage"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="15dp"
-        android:text="latterst message"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/UserName"
-        app:layout_constraintTop_toBottomOf="@+id/UserName" />
+        <TextView
+            android:id="@+id/LatestMessage"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginBottom="20dp"
+            android:text="latterst message"
+            android:textColor="#D6D6D6"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/view2" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

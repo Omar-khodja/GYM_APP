@@ -62,9 +62,9 @@ class HomeActivity : AppCompatActivity() {
                         adapter.AddFragmentToList(CreateWorkoutPlane_Fragment())
                         adapter.AddFragmentToList(ProfileFragment())
                     }else{
-                        tabarry = arrayOf(R.drawable.home,R.drawable.coach, R.drawable.profile)
-                        adapter.AddFragmentToList(CreateWorkoutPlane_Fragment())
+                        tabarry = arrayOf(R.drawable.coach, R.drawable.home,R.drawable.profile)
                         adapter.AddFragmentToList(CoachSearch_Fragment())
+                        adapter.AddFragmentToList(CreateWorkoutPlane_Fragment())
                         adapter.AddFragmentToList(ProfileFragment())
 
                     }

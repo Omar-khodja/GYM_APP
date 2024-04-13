@@ -35,7 +35,6 @@ class HomeFegment : Fragment() {
             intent.putExtra("path", item.title)
             startActivity(intent)
         }
-        biding.appbar.title = "Home"
         biding.appbar.apply {
             inflateMenu(R.menu.messages_menu)
             setOnMenuItemClickListener { menuItem ->
