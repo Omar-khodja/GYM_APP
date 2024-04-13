@@ -16,6 +16,8 @@
             android:layout_height="wrap_content"
             android:drawableLeft="@drawable/search"
             android:hint="Search...."
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
             android:inputType="text"
             android:imeOptions="actionSearch"
             android:background="@drawable/char_editetext_background"

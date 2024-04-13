@@ -40,11 +40,10 @@ class DisplayWorkoutPlan_Activity : AppCompatActivity() {
                 val imagUrl = doc.getString("ImahUrl").toString()
                 val Title = doc.getString("VideoName").toString()
                 val videoUrl = doc.getString("VideoUrl").toString()
-                val des = doc.getString("des").toString()
                 val CoachName = doc.getString("CoachName").toString()
                 val note = doc.getString("Note").toString()
                 Log.i("tagy",id)
-                itemlist.add(MyWorckoutPlna_Data(id,name,imagUrl,Title,videoUrl,des,CoachName,note))
+                itemlist.add(MyWorckoutPlna_Data(id,name,imagUrl,Title,videoUrl,CoachName,note))
                 biding.RecyclerView.adapter = DisplayWorkoutPolan_Adapter(itemlist)
             }
         }

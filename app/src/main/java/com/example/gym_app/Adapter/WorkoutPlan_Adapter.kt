@@ -2,11 +2,13 @@ package com.example.gym_app.Adapter
 
 import android.app.AlertDialog
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.gym_app.Activity.Share_Activity
 import com.example.gym_app.Singlton.User
 import com.example.gym_app.WoroutPlanList_Data
 import com.example.gym_app.databinding.CustomWorkoutplanBinding
@@ -23,12 +25,20 @@ class WorkoutPlan_Adapter(val itemlist:MutableList<WoroutPlanList_Data>, val OnC
                 Glide.with(biding.root)
                     .load(data.imagUrl)
                     .into(biding.imageView)
-            biding.delete.setOnClickListener{
-                showInputDialog(biding.root.context,data.Title)
-
-
+            biding.delete.setOnClickListener {
+                showInputDialog(biding.root.context, data.Title)
             }
+                biding.share.setOnClickListener{
+                    sharebtn(data.Title)
+                }
             }
+
+            private fun sharebtn(title: String) {
+                var intent = Intent(biding.root.context, Share_Activity::class.java)
+                intent.putExtra("Title",title)
+                biding.root.context.startActivity(intent)
+            }
+
             fun showInputDialog(context: Context, title: String) {
                 val alertDialog = AlertDialog.Builder(context)
                 alertDialog.setTitle("Sure you wante to delete this collection")

@@ -4,6 +4,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -59,8 +60,6 @@ class Notification_Adapter(val itemlist : MutableList<NewMessageData>)
                 value?.documents?.forEach { doc ->
 
                     val id = doc.id
-                    val imgUri = doc.get("imagUri").toString()
-                    val username = doc.getString("UserName").toString()
 
                     // Check if the message is new
                     if (id == userId) {
@@ -68,6 +67,8 @@ class Notification_Adapter(val itemlist : MutableList<NewMessageData>)
                         biding.Confirm.text = "Confirmed"
                         biding.Confirm.isEnabled = false
                         biding.delete.visibility = View.INVISIBLE
+                        biding.mesg.visibility = View.INVISIBLE
+                        biding.Confirm.layoutParams.width = ViewGroup.LayoutParams.WRAP_CONTENT
                     }
                 }
             }

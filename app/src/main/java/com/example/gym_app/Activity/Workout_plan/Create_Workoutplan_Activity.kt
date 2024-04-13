@@ -17,7 +17,7 @@ import com.google.firebase.auth.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 
-class Create_video_Activity : AppCompatActivity() {
+class Create_Workoutplan_Activity : AppCompatActivity() {
     lateinit var biding:ActivityCreateVideoBinding
     val db = FirebaseFirestore.getInstance()
     val auth = Firebase.auth

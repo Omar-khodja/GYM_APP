@@ -26,7 +26,7 @@ class CoachProfile_Activity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        supportActionBar?.hide()
+
         enableEdgeToEdge()
         setContentView(R.layout.activity_coach_profile)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
@@ -40,6 +40,7 @@ class CoachProfile_Activity : AppCompatActivity() {
         var username = intent.getStringExtra("username").toString()
         fetchUser(id)
         buttonenable(id)
+        butonfollowing(id)
         biding.followbtn.setOnClickListener {
             addFollow(User.instance?.UserId, id)
         }
@@ -51,6 +52,34 @@ class CoachProfile_Activity : AppCompatActivity() {
             startActivity(intent)
         }
         }
+
+    private fun butonfollowing(id: String) {
+        var collection =  db.collection("Coach_Followers").document(id)
+            .collection("Followers")
+        collection.addSnapshotListener { value, error ->
+            if (error != null) {
+                Log.i("tagy", "Error listening for messages: $error")
+                return@addSnapshotListener
+            }
+
+            value?.documents?.forEach { doc ->
+
+                val id = doc.id
+                val imgUri = doc.getString("imagUri").toString()
+                val username = doc.getString("UserName").toString()
+
+                // Check if the message is new
+                if (id == User.instance?.UserId) {
+                    biding.followbtn.background =
+                        ContextCompat.getDrawable(biding.root.context, R.drawable.unablebtn)
+                    biding.followbtn.text = "Following"
+                    biding.followbtn.isEnabled = false
+                }
+            }
+
+
+        }
+    }
 
     private fun addFollow(userId: String?, id: String) {
         var collection = db.collection("Coach_Follow_request").document(id)
@@ -76,7 +105,7 @@ class CoachProfile_Activity : AppCompatActivity() {
                 Glide.with(this)
                     .load(Uri.parse(it.getString("ProfileimagUri")))
                     .into(biding.PrifileImg)
-                biding.toolbar.title = it.getString("username")
+                supportActionBar?.title = it.getString("username")
                 biding.email.text = it.getString("email")
                 biding.phoneNumber.text = it.getString("userphonenb")
             }
@@ -106,6 +135,7 @@ class CoachProfile_Activity : AppCompatActivity() {
                     biding.followbtn.isEnabled = false
                 }
             }
+
 
         }
     }

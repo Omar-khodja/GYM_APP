@@ -6,7 +6,6 @@ class MyWorckoutPlna_Data(
     val imagUrl:String,
     val Title:String,
     val videoUrl:String,
-    val des:String,
     val CoachName:String,
     val note:String
 

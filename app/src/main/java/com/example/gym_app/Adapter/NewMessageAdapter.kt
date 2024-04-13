@@ -7,14 +7,14 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.gym_app.NewMessageData
-import com.example.gym_app.databinding.NewmessagesadapterBinding
+import com.example.gym_app.databinding.CustomUsersBinding
 
 class NewMessageAdapter(val itemList:List<NewMessageData>, private val onItemClick: (NewMessageData) -> Unit):
     RecyclerView.Adapter<NewMessageAdapter.ViewHolder>() {
-    lateinit var biding:NewmessagesadapterBinding
+    lateinit var biding:CustomUsersBinding
 
 
-    class ViewHolder(var biding : NewmessagesadapterBinding):RecyclerView.ViewHolder(biding.root) {
+    class ViewHolder(var biding : CustomUsersBinding):RecyclerView.ViewHolder(biding.root) {
         fun bind(users : NewMessageData){
             Glide.with(biding.root)
                 .load(Uri.parse(users.imguri))
@@ -28,7 +28,7 @@ class NewMessageAdapter(val itemList:List<NewMessageData>, private val onItemCli
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        biding = NewmessagesadapterBinding.inflate(
+        biding = CustomUsersBinding.inflate(
             LayoutInflater.from(parent.context),
             parent,
             false

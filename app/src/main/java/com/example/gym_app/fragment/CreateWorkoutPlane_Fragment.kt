@@ -4,14 +4,13 @@ import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.LinearLayout
-import com.example.gym_app.Activity.Workout_plan.Create_video_Activity
+import com.example.gym_app.Activity.Workout_plan.Create_Workoutplan_Activity
 import com.example.gym_app.Activity.Workout_plan.DisplayWorkoutPlan_Activity
 import com.example.gym_app.Adapter.WorkoutPlan_Adapter
 import com.example.gym_app.R
@@ -86,7 +85,7 @@ class CreateWorkoutPlane_Fragment : Fragment() {
         alertDialog.setPositiveButton("OK") { dialog, _ ->
             val enteredText = input.text.toString()
             // Handle the entered text here
-            var intent = Intent(context, Create_video_Activity::class.java)
+            var intent = Intent(context, Create_Workoutplan_Activity::class.java)
             TrueOrFalse.instance?.boolean = true
             TrueOrFalse.instance?.name = enteredText
             startActivity(intent)
@@ -103,13 +102,14 @@ class CreateWorkoutPlane_Fragment : Fragment() {
     override fun onPause() {
         db = Firebase.firestore
         var itemlist = mutableListOf<WoroutPlanList_Data>()
-        val collection = db.collection("Coach_Workout_Plan").document(User.instance?.UserId.toString()).collection("Workoutplan")
+        val collection = db.collection("Coach_Workout_Plan")
+            .document(User.instance?.UserId.toString())
+            .collection("Workoutplan")
 
         var Title = ""
         collection.get().addOnSuccessListener { result ->
             for (document in result.documents) {
                 Title = document.id
-                Log.i("tagy",Title)
                 itemlist.add(WoroutPlanList_Data(Title, R.drawable.workout))
 
             }

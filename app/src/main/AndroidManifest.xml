@@ -5,7 +5,6 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -15,14 +14,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GYM_APP"
         tools:targetApi="31">
-
-
+        <activity
+            android:name=".Activity.Share_Activity"
+            android:exported="false" />
         <activity
             android:name=".Activity.Notification_Activity"
             android:exported="false" />
         <activity
             android:name=".Activity.CoachProfile_Activity"
-            android:exported="false" />
+            android:exported="false" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Activity.HomeActivity" />
+        </activity>
         <activity
             android:name=".Activity.Search_Activity"
             android:exported="false" />
@@ -41,7 +45,7 @@
                 android:value=".Activity.HomeActivity" />
         </activity>
         <activity
-            android:name=".Activity.Workout_plan.Create_video_Activity"
+            android:name=".Activity.Workout_plan.Create_Workoutplan_Activity"
             android:exported="false" />
         <activity
             android:name=".Activity.Workout_plan.DisplayVideos_Activity"
@@ -77,7 +81,7 @@
         </activity>
         <activity
             android:name=".Activity.HomeActivity"
-            android:exported="false"></activity>
+            android:exported="false" />
         <activity
             android:name=".Login.SingupActivity"
             android:exported="false" />

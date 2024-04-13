@@ -15,6 +15,7 @@ import com.example.gym_app.databinding.ActivityHomeBinding
 import com.example.gym_app.fragment.HomeFegment
 import com.example.gym_app.Adapter.FragmentAdapter
 import com.example.gym_app.Singlton.User
+import com.example.gym_app.fragment.Client_Workoutplan_Fragment
 import com.example.gym_app.fragment.CoachSearch_Fragment
 import com.example.gym_app.fragment.CreateWorkoutPlane_Fragment
 import com.example.gym_app.fragment.ProfileFragment
@@ -63,7 +64,7 @@ class HomeActivity : AppCompatActivity() {
                         adapter.AddFragmentToList(ProfileFragment())
                     }else{
                         tabarry = arrayOf(R.drawable.home,R.drawable.coach, R.drawable.profile)
-                        adapter.AddFragmentToList(CreateWorkoutPlane_Fragment())
+                        adapter.AddFragmentToList(Client_Workoutplan_Fragment())
                         adapter.AddFragmentToList(CoachSearch_Fragment())
                         adapter.AddFragmentToList(ProfileFragment())
 
