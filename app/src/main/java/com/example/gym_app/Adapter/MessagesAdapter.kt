@@ -3,7 +3,9 @@ package com.example.gym_app.Adapter
 import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Color
+import android.graphics.Typeface
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -22,9 +24,13 @@ class MessagesAdapter(val context: Context, val itemlist:MutableList<MessagesDat
                 binding.UserName.text = chat.username
                 if(chat.sender == "RIGHT") {
                     binding.LatestMessage.text = "You: ${chat.message}"
+                    binding.bluepoint.visibility = View.INVISIBLE
                 }else{
                     binding.LatestMessage.text = chat.message
-                    binding.LatestMessage.setTextColor(Color.BLUE)
+                    binding.LatestMessage.textSize=18f
+                    binding.LatestMessage.setTypeface(null, Typeface.BOLD)
+                    binding.bluepoint.visibility = View.VISIBLE
+
 
                 }
 

@@ -3,59 +3,67 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
-<androidx.constraintlayout.widget.ConstraintLayout
 
-    android:id="@+id/main"
-    android:background="@color/black"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".Activity.Messages.ChatActivity"
-    android:fitsSystemWindows="true"
-    android:windowSoftInputMode="adjustResize">
+    <androidx.constraintlayout.widget.ConstraintLayout
 
-
-    <EditText
-        android:id="@+id/chat"
-        android:layout_width="0dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginEnd="5dp"
-        android:layout_marginBottom="10dp"
-        android:textColor="@color/white"
-        android:textColorHint="@color/white"
-        android:background="@drawable/char_editetext_background"
-        android:layout_height="wrap_content"
-        android:backgroundTint="#8F8F8F"
-        android:gravity="center"
-        android:hint="Write Message"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/Senbtn"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <ImageView
-        android:id="@+id/Senbtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="15dp"
-        android:layout_marginEnd="10dp"
-        android:src="@drawable/send"
-        app:tint="@color/darkRed"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/chatRecycleView"
+        android:id="@+id/main"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginTop="30dp"
+        android:layout_height="match_parent"
         android:background="@color/black"
-        android:layout_marginBottom="10dp"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintBottom_toTopOf="@+id/chat"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:fitsSystemWindows="true"
+        android:windowSoftInputMode="adjustResize"
+        tools:context=".Activity.Messages.ChatActivity">
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/chatRecycleView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="#111"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/view3"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginTop="-5dp"
+            android:background="#111"
+            app:layout_constraintBottom_toBottomOf="@+id/chatRecycleView"
+            app:layout_constraintStart_toStartOf="@+id/chatRecycleView"
+            app:layout_constraintTop_toTopOf="@+id/chat" />
+
+        <EditText
+            android:id="@+id/chat"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/char_editetext_background"
+            android:backgroundTint="#202020"
+            android:hint="Write Message..."
+            android:textColor="@color/white"
+            android:textColorHint="#383838"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/Senbtn"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageView
+            android:id="@+id/Senbtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="15dp"
+            android:src="@drawable/send"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/chat"
+            app:tint="@color/darkRed" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

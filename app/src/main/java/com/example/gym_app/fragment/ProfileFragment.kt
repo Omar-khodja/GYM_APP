@@ -36,8 +36,7 @@ class ProfileFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentProfileBinding.inflate(inflater, container, false)
-
-
+        //fetchuser
         userCollection.get()
             .addOnSuccessListener { qury ->
                 if (!qury.isEmpty) {
@@ -71,6 +70,37 @@ class ProfileFragment : Fragment() {
         }
 
         return binding.root
+    }
+
+    private fun followingNb(callback: (Int) -> Unit) {
+        var collection = db.collection("Following")
+            .document(User.instance?.UserId.toString())
+            .collection("Following")
+
+        var i = 0 // Initialize i to 0
+
+        collection.get().addOnSuccessListener {
+            for (doc in it.documents) {
+                i++
+            }
+            callback(i) // Pass the value of i to the callback function
+        }
+
+    }
+
+    private fun followersNb( callback: (Int) -> Unit) {
+        var collection = db.collection("Followers")
+            .document(User.instance?.UserId.toString())
+            .collection("Followers")
+
+        var i = 0 // Initialize i to 0
+
+        collection.get().addOnSuccessListener {
+            for (doc in it.documents) {
+                i++
+            }
+            callback(i) // Pass the value of i to the callback function
+        }
     }
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
@@ -112,6 +142,13 @@ class ProfileFragment : Fragment() {
     override fun onStart() {
         if(auth.currentUser ==null){
             startActivity(Intent(context, MainActivity::class.java))
+        }else{
+            followersNb(){
+                binding.followersnb.text = it.toString()
+            }
+            followingNb() {
+                binding.followingnb.text = it.toString()
+            }
         }
 
         super.onStart()

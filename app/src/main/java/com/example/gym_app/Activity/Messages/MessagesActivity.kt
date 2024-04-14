@@ -1,5 +1,6 @@
 package com.example.gym_app.Activity.Messages
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -66,7 +67,6 @@ class MessagesActivity : AppCompatActivity() {
                     itemlist.add(data)
                 }
                 biding.recyclerView.adapter = MessagesAdapter(this , itemlist){item->
-                    Toast.makeText(this, "Clicked item: ${item.userId}", Toast.LENGTH_SHORT).show()
                     val intent = Intent(this, ChatActivity::class.java)
                     ChatOtherUser.instance?.username = item.username
                     ChatOtherUser.instance?.otherId = item.userId
@@ -81,6 +81,7 @@ class MessagesActivity : AppCompatActivity() {
 
             }
     }
+    @SuppressLint("NotifyDataSetChanged")
     private fun listenForNewMessages() {
         val collection = db.collection("/Latest_Messages/$myId/Latest")
 

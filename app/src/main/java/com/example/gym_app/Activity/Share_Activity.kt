@@ -30,14 +30,15 @@ class Share_Activity : AppCompatActivity() {
             insets
         }
         biding = DataBindingUtil.setContentView(this,R.layout.activity_share)
-        var collection = db.collection("Coach_Followers")
+        var collection = db.collection("Followers")
             .document(User.instance?.UserId.toString())
             .collection("Followers")
         var title = intent.getStringExtra("Title").toString()
-        fechUsers(collection,title)
+        var wourkoutplan = intent.getStringExtra("wourkoutplan").toString()
+        fechUsers(collection,title,wourkoutplan)
     }
 
-    private fun fechUsers(collection: Query, title: String) {
+    private fun fechUsers(collection: Query, title: String, wourkoutplan: String) {
         collection.get()
             .addOnSuccessListener {
                 val itemlist: MutableList<NewMessageData> = mutableListOf()
@@ -50,7 +51,7 @@ class Share_Activity : AppCompatActivity() {
                             ,doucment.getString("imagUri").toString())
                     )
                 }
-                biding.recyclerView2.adapter = Share_Adapter( title,itemlist){item->
+                biding.recyclerView2.adapter = Share_Adapter( title,wourkoutplan,itemlist){item->
 
                 }
                 biding.recyclerView2.addItemDecoration(

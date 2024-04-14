@@ -1,5 +1,7 @@
 package com.example.gym_app.Activity.Workout_plan
 
+import android.annotation.SuppressLint
+import android.icu.text.CaseMap.Title
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
@@ -63,27 +65,36 @@ class DisplayVideos_Activity : AppCompatActivity() {
             biding.addbtn.visibility = View.VISIBLE
         }
         biding.addbtn.setOnClickListener{
-            AddVideoToPlane()
+            var title = intent.getStringExtra("title")
+            AddVideoToPlane(title)
         }
     }
 
-    private fun AddVideoToPlane() {
+    @SuppressLint("SuspiciousIndentation")
+    private fun AddVideoToPlane(title: String?) {
         val name = TrueOrFalse.instance?.name.toString()
 
         var collection = db.collection("/Coach_Workout_Plan")
                                 .document(User.instance?.UserId.toString())
                                 .collection("Workoutplan")
                                 .document(name)
-                                .collection(name)
-        var collection2 =  db.collection("/Coach_Workout_Plan")
+                                .collection("List")
+                                .document(title.toString())
+                                .collection(title.toString())
+        var collection1 = db.collection("/Coach_Workout_Plan")
             .document(User.instance?.UserId.toString())
             .collection("Workoutplan")
             .document(name)
+            .collection("List")
+            .document(title.toString())
+
+
 
 
         var videoUrl = DisplayVideo_Singlton.instance?.videoUrl
         var data = hashMapOf(
-            "ListName" to name,
+            "Workoutplan" to name,
+            "ListName" to title.toString(),
             "CoachName" to User.instance?.UserName,
             "CoachId" to User.instance?.UserId,
             "VideoUrl" to videoUrl,
@@ -92,11 +103,13 @@ class DisplayVideos_Activity : AppCompatActivity() {
             "VideoName" to DisplayVideo_Singlton.instance?.title,
             "Note" to ""
         )
-        val data1 = hashMapOf(
-            "name" to name)
-        collection2.set(data1).addOnSuccessListener {
+        var data1 = hashMapOf(
+            "Title" to title.toString(),
+            "Workoutplan" to name
+        )
+        collection1.set(data1).addOnSuccessListener {
             collection.add(data).addOnSuccessListener {
-                Toast.makeText(this, "Video add to ${name}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this,"video add to ${title.toString()}",Toast.LENGTH_SHORT).show()
             }
         }
 

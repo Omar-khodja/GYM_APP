@@ -1,6 +1,7 @@
 package com.example.gym_app.Activity.Workout_plan
 
 import android.content.Intent
+import android.icu.text.CaseMap.Title
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -19,7 +20,10 @@ class DisplayExerciseList_Activity : AppCompatActivity() {
     lateinit var db: FirebaseFirestore
     lateinit var storage: FirebaseStorage
     lateinit var storageReference: StorageReference
-    lateinit var title: String
+    lateinit var Title: String
+    lateinit var path: String
+
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,9 +34,10 @@ class DisplayExerciseList_Activity : AppCompatActivity() {
         db = FirebaseFirestore.getInstance()
         storage = FirebaseStorage.getInstance()
 
-        title = intent.getStringExtra("path").toString()
-        supportActionBar?.title = title
-        val collection = db.collection("Exercise_videos/$title/Exercise")
+        path = intent.getStringExtra("path").toString()
+        Title = intent.getStringExtra("title").toString()
+        supportActionBar?.title = "DisplayExerciseList_Activity"
+        val collection = db.collection("Exercise_videos/$path/Exercise")
         val itemList = mutableListOf<ExerciseLis_Data>()
 
         collection.get().addOnSuccessListener { documentSnapshot ->
@@ -50,7 +55,7 @@ class DisplayExerciseList_Activity : AppCompatActivity() {
                         DisplayVideo_Singlton.instance?.videoUrl=item.videoUrl
                         DisplayVideo_Singlton.instance?.des = item.des
                         DisplayVideo_Singlton.instance?.imagUrl = item.imagUrl
-
+                        intent.putExtra("title",Title)
                         startActivity(intent)
 
                     }

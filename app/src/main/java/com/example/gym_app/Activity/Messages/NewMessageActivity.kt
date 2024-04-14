@@ -16,6 +16,7 @@ import com.example.gym_app.Adapter.NewMessageAdapter
 import com.example.gym_app.NewMessageData
 import com.example.gym_app.R
 import com.example.gym_app.Singlton.ChatOtherUser
+import com.example.gym_app.Singlton.User
 import com.example.gym_app.databinding.ActivityNewMessage2Binding
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
@@ -23,7 +24,9 @@ import com.google.firebase.firestore.Query
 class NewMessageActivity : AppCompatActivity() {
     lateinit var biding : ActivityNewMessage2Binding
      var db = FirebaseFirestore.getInstance()
-     val collection = db.collection("Users")
+     val collection = db.collection("Coach_Followers")
+         .document(User.instance?.UserId.toString())
+         .collection("Followers")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -47,7 +50,9 @@ class NewMessageActivity : AppCompatActivity() {
     private fun search() {
         var text = biding.editText.text.toString().trim()
         if (text.isNotEmpty()) {
-            var collection = db.collection("Users").whereEqualTo("username", text)
+            var collection = db.collection("Coach_Followers")
+                .document(User.instance?.UserId.toString())
+                .collection("Followers").whereEqualTo("username", text)
             fetchusers(collection)
         }
     }
@@ -60,9 +65,9 @@ class NewMessageActivity : AppCompatActivity() {
                     Log.i("tagy","$doucment")
                     adapter.add(
                         NewMessageData(
-                        doucment.getString("userId").toString()
-                        ,doucment.getString("username").toString()
-                        ,doucment.getString("ProfileimagUri").toString())
+                        doucment.getString("UserId").toString()
+                        ,doucment.getString("UserName").toString()
+                        ,doucment.getString("imagUri").toString())
                     )
                 }
                 biding.recyclerViewNewMessage.adapter = NewMessageAdapter( adapter){item->

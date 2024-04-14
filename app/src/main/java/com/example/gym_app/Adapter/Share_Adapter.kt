@@ -1,7 +1,6 @@
 package com.example.gym_app.Adapter
 
 import android.net.Uri
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,24 +9,25 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.gym_app.NewMessageData
 import com.example.gym_app.R
-import com.example.gym_app.Singlton.DisplayVideo_Singlton
 import com.example.gym_app.Singlton.User
 import com.example.gym_app.databinding.CustomUsersBinding
+import com.google.firebase.crashlytics.internal.model.CrashlyticsReport.Session.Event.Log
 import com.google.firebase.firestore.FirebaseFirestore
 
-class Share_Adapter(val title:String,val itemlist:MutableList<NewMessageData>,val OnclikItem:(NewMessageData)->Unit)
+class Share_Adapter(val title:String,val wourkoutplan:String,val itemlist:MutableList<NewMessageData>,val OnclikItem:(NewMessageData)->Unit)
     :RecyclerView.Adapter<Share_Adapter.ViewHolder>(){
     lateinit var biding: CustomUsersBinding
 
-    class ViewHolder(var biding : CustomUsersBinding,val Title:String):RecyclerView.ViewHolder(biding.root) {
+    class ViewHolder(var biding : CustomUsersBinding,val Title:String,val wourkoutplan:String):RecyclerView.ViewHolder(biding.root) {
         fun bind(data : NewMessageData){
             Glide.with(biding.root)
                 .load(Uri.parse(data.imguri))
                 .into(biding.imageView1)
             biding.textView.text = data.username
             biding.btn.visibility = View.VISIBLE
+
             biding.btn.setOnClickListener{
-                AddWorkoutPlan(data.userId,Title)
+                AddWorkoutPlan(data.userId,Title,wourkoutplan)
                 biding.btn.text = "Sent"
                 biding.btn.background = ContextCompat.getDrawable(biding.root.context, R.drawable.unablebtn)
                 biding.btn.isEnabled = false
@@ -36,43 +36,74 @@ class Share_Adapter(val title:String,val itemlist:MutableList<NewMessageData>,va
 
         }
 
-        private fun AddWorkoutPlan(userId: String, Title: String) {
+        private fun AddWorkoutPlan(userId: String, Title: String, wourkoutplan: String) {
             var db = FirebaseFirestore.getInstance()
             var collection = db.collection("Client_Workout_Plan")
                 .document(userId)
-                .collection("workoutplan")
-                .document(Title)
-                .collection(Title)
+                .collection("Workoutplan")
+
             var collection2 = db.collection("Coach_Workout_Plan")
                 .document(User.instance?.UserId.toString())
                 .collection("Workoutplan")
                 .document(Title)
-                .collection(Title)
+
             collection2.get().addOnSuccessListener {
-                for(doc in it.documents){
-                    var id = doc.id
-                    var ListName = doc.getString("ListName").toString()
-                    var CoachName = doc.getString("CoachName").toString()
-                    var CoachId = doc.getString("CoachId").toString()
-                    var VideoUrl = doc.getString("VideoUrl").toString()
-                    var ImahUrl = doc.getString("ImahUrl").toString()
-                    var des = doc.getString("des").toString()
-                    var VideoName = doc.getString("VideoName").toString()
-                    var Note = doc.getString("Note").toString()
+                if(it.exists()){
+                    var id = it.id
+                    var plan = it.getString("Title").toString()
                     var data = hashMapOf(
-                        "ListName" to ListName ,
-                        "CoachName" to CoachName,
-                        "CoachId" to CoachId,
-                        "VideoUrl" to VideoUrl,
-                        "ImahUrl" to ImahUrl,
-                        "des" to des,
-                        "VideoName" to VideoName,
-                        "Note" to Note
+                        "Title" to plan ,
                     )
                   collection.document(id).set(data)
                 }
-
             }
+            collection2.collection("List")
+                .get().addOnSuccessListener {
+                    for (doc in it.documents){
+                        var name = doc.id
+                            collection2.collection("List")
+                                .document(name)
+                                .collection(name).get().addOnSuccessListener {
+                                    for(doc in it.documents){
+                                        var CoachId = doc.getString("CoachId")
+                                        var CoachName = doc.getString("CoachName")
+                                        var ImahUrl = doc.getString("ImahUrl")
+                                        var ListName = doc.getString("ListName")
+                                        var Note = doc.getString("Note")
+                                        var VideoName = doc.getString("VideoName")
+                                        var VideoUrl = doc.getString("VideoUrl")
+                                        var Workoutplan = doc.getString("Workoutplan")
+
+                                        var data = hashMapOf(
+                                            "CoachId" to CoachId,
+                                            "CoachName" to CoachName,
+                                            "ImahUrl" to ImahUrl,
+                                            "ListName" to ListName,
+                                            "Note" to Note,
+                                            "VideoName" to VideoName,
+                                            "VideoUrl" to VideoUrl,
+                                            "Workoutplan" to Workoutplan
+                                        )
+                                        var data2 = hashMapOf(
+                                            "ListName" to ListName,
+                                            "Workoutplan" to Workoutplan
+                                        )
+                                        collection.document(Title).collection("List").document(name).set(data2)
+                                            .addOnSuccessListener {
+                                                collection.document(Title).collection("List").document(name)
+                                                    .collection(name)
+                                                    .add(data)
+                                            }
+
+                                    }
+                                }
+
+
+
+                    }
+                }
+
+
         }
 
     }
@@ -82,7 +113,7 @@ class Share_Adapter(val title:String,val itemlist:MutableList<NewMessageData>,va
             parent,
             false
         )
-        return ViewHolder(biding, title)
+        return ViewHolder(biding, title,wourkoutplan)
     }
 
     override fun onBindViewHolder(holder: Share_Adapter.ViewHolder, position: Int) {

@@ -28,17 +28,6 @@
                 android:textStyle="bold" />
         </com.google.android.material.appbar.MaterialToolbar>
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/floatingActionButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="20dp"
-            android:layout_marginBottom="50dp"
-            android:backgroundTint="@color/darkRed"
-            android:src="@drawable/baseline_add_24"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            tools:ignore="ContentDescription" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/RecyclerView"
@@ -65,6 +54,18 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.5"
             tools:ignore="MissingConstraints" />
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/floatingActionButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="50dp"
+            android:backgroundTint="@color/darkRed"
+            android:src="@drawable/baseline_add_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:ignore="ContentDescription" />
+
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

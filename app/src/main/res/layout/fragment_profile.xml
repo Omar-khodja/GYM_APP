@@ -381,5 +381,51 @@
                 tools:layout_editor_absoluteY="38dp" />
         </androidx.cardview.widget.CardView>
 
+        <TextView
+            android:id="@+id/followersnb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="000"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/followers"
+            app:layout_constraintEnd_toEndOf="@+id/followers"
+            app:layout_constraintStart_toStartOf="@+id/followers" />
+
+        <TextView
+            android:id="@+id/followers"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="followers"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toTopOf="@+id/Profile_username"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/iamgeCard" />
+
+        <TextView
+            android:id="@+id/followingnb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="000"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/following"
+            app:layout_constraintEnd_toEndOf="@+id/following"
+            app:layout_constraintStart_toStartOf="@+id/following" />
+
+        <TextView
+            android:id="@+id/following"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="following"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toTopOf="@+id/Profile_username"
+            app:layout_constraintEnd_toStartOf="@+id/iamgeCard"
+            app:layout_constraintStart_toStartOf="parent" />
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

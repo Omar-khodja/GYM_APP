@@ -59,5 +59,18 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/view2" />
 
+        <View
+            android:id="@+id/bluepoint"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/blue_point"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="@+id/LatestMessage"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/LatestMessage"
+            app:layout_constraintVertical_bias="1.0" />
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

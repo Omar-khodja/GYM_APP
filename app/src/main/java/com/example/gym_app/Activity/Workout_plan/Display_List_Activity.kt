@@ -15,7 +15,7 @@ import com.example.gym_app.databinding.ActivityDisplayWorkoutPlanBinding
 import com.example.gym_app.databinding.DisplayWorkoutplanBinding
 import com.google.firebase.firestore.FirebaseFirestore
 
-class DisplayWorkoutPlan_Activity : AppCompatActivity() {
+class Display_List_Activity : AppCompatActivity() {
     lateinit var biding : ActivityDisplayWorkoutPlanBinding
     lateinit var binding : DisplayWorkoutplanBinding
     lateinit var db:FirebaseFirestore
@@ -32,8 +32,10 @@ class DisplayWorkoutPlan_Activity : AppCompatActivity() {
         biding = DataBindingUtil.setContentView(this , R.layout.activity_display_workout_plan)
         db = FirebaseFirestore.getInstance()
         val itemlist = mutableListOf<MyWorckoutPlna_Data>()
-        var name = intent.getStringExtra("name").toString()
-        var collection = db.collection("/Coach_Workout_Plan/${User.instance?.UserId}/Workoutplan/$name/$name")
+        var wourkoutplan = intent.getStringExtra("WourkOut").toString()
+        var Title = intent.getStringExtra("Title").toString()
+        var plan = intent.getStringExtra("plan").toString()
+        var collection = db.collection("/$plan/${User.instance?.UserId}/Workoutplan/$wourkoutplan/List/$Title/$Title")
         collection.get().addOnSuccessListener {
             for (doc in it.documents){
                 val id = doc.id
@@ -42,8 +44,11 @@ class DisplayWorkoutPlan_Activity : AppCompatActivity() {
                 val videoUrl = doc.getString("VideoUrl").toString()
                 val CoachName = doc.getString("CoachName").toString()
                 val note = doc.getString("Note").toString()
+                val listname = doc.getString("ListName").toString()
+                val workoutplan = doc.getString("Workoutplan").toString()
+
                 Log.i("tagy",id)
-                itemlist.add(MyWorckoutPlna_Data(id,name,imagUrl,Title,videoUrl,CoachName,note))
+                itemlist.add(MyWorckoutPlna_Data(id,imagUrl,Title,videoUrl,CoachName,note,listname,workoutplan))
                 biding.RecyclerView.adapter = DisplayWorkoutPolan_Adapter(itemlist)
             }
         }

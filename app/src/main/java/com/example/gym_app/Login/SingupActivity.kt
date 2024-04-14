@@ -14,6 +14,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.databinding.DataBindingUtil
 import com.bumptech.glide.Glide
+import com.example.gym_app.Activity.HomeActivity
 import com.example.gym_app.R
 import com.example.gym_app.databinding.ActivitySingupBinding
 import com.google.firebase.Firebase
@@ -113,7 +114,7 @@ class SingupActivity : AppCompatActivity() {
                 )
                 colaction.set(userMap)
                     .addOnSuccessListener {
-                        startActivity(Intent(this, LoginActivity::class.java))
+                        startActivity(Intent(this, HomeActivity::class.java))
                     }
                     .addOnFailureListener { exception ->
                         Toast.makeText(

@@ -27,7 +27,7 @@ class Notification_Adapter(val itemlist : MutableList<NewMessageData>)
                 .load(data.imguri)
                 .into(biding.PrifileImg)
 
-            buttonenable(data.userId)
+            buttonConfirmed(data.userId)
             biding.Confirm.setOnClickListener{
                 addtofollower(data.imguri,data.userId,data.username)
             }
@@ -39,16 +39,16 @@ class Notification_Adapter(val itemlist : MutableList<NewMessageData>)
 
         private fun delete(userId: String) {
             var db = FirebaseFirestore.getInstance()
-            var collection = db.collection("Coach_Follow_request")
-                .document(User.instance?.UserId.toString())
+            db.collection("Coach_Follow_request")
+                 .document(User.instance?.UserId.toString())
                 .collection("Followers")
                 .document(userId).delete()
 
         }
 
-        private fun buttonenable(userId: String) {
+        private fun buttonConfirmed(userId: String) {
             var db = FirebaseFirestore.getInstance()
-            var collection = db.collection("Coach_Followers")
+            var collection = db.collection("Followers")
                 .document(User.instance?.UserId.toString())
                 .collection("Followers")
             collection.addSnapshotListener { value, error ->
@@ -76,15 +76,25 @@ class Notification_Adapter(val itemlist : MutableList<NewMessageData>)
 
         private fun addtofollower(imguri: String, userId: String, username: String) {
             var db = FirebaseFirestore.getInstance()
-            var collection = db.collection("Coach_Followers")
+            var collection = db.collection("Followers")
                 .document(User.instance?.UserId.toString())
                 .collection("Followers").document(userId)
+            var collection2 = db.collection("Following")
+                .document(userId)
+                    .collection("Following").document(User.instance?.UserId.toString())
             var data = hashMapOf(
                 "UserId" to userId,
                 "UserName" to username,
                 "imagUri" to imguri
             )
-            collection.set(data)
+            var data1 = hashMapOf(
+                "UserId" to User.instance?.UserId.toString(),
+                "UserName" to User.instance?.UserName.toString(),
+                "imagUri" to User.instance?.ProfileimagUri.toString()
+            )
+            collection.set(data).addOnSuccessListener {
+                collection2.set(data1)
+            }
         }
 
     }

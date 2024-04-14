@@ -41,7 +41,7 @@ class Notification_Activity : AppCompatActivity() {
     }
 
     private fun getnotification() {
-        var collection = db.collection("Coach_Follow_request")
+        var collection = db.collection("Follow_request")
             .document(User.instance?.UserId.toString())
             .collection("Followers")
         collection.get().addOnSuccessListener {
@@ -57,7 +57,7 @@ class Notification_Activity : AppCompatActivity() {
 
     }
     private fun listen() {
-        var collection = db.collection("Coach_Follow_request")
+        var collection = db.collection("Follow_request")
             .document(User.instance?.UserId.toString())
             .collection("Followers")
         collection.addSnapshotListener { value, error ->

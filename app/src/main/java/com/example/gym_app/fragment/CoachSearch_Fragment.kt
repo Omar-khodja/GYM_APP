@@ -7,7 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
-import com.example.gym_app.Activity.CoachProfile_Activity
+import com.example.gym_app.Activity.SelectedUserProfile_Activity
 import com.example.gym_app.Adapter.NewMessageAdapter
 import com.example.gym_app.NewMessageData
 import com.example.gym_app.databinding.FragmentChoachSearchBinding
@@ -58,7 +58,7 @@ class CoachSearch_Fragment : Fragment() {
                     itemlist.add(NewMessageData(userid, username, imgUrl))
                 }
                 biding.RecyclerView.adapter = NewMessageAdapter(itemlist) {
-                    var intent =Intent(context,CoachProfile_Activity::class.java)
+                    var intent =Intent(context,SelectedUserProfile_Activity::class.java)
                     var id = it.userId
                     var username = it.username
                     var img = it.imguri

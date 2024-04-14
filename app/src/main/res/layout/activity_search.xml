@@ -19,8 +19,7 @@
             android:id="@+id/editText"
             android:layout_width="0dp"
             android:layout_height="50dp"
-            android:layout_marginTop="50dp"
-
+            android:layout_marginTop="30dp"
             android:background="@drawable/char_editetext_background"
             android:backgroundTint="#636363"
             android:drawableLeft="@drawable/search"
@@ -34,20 +33,18 @@
             app:layout_constraintTop_toTopOf="parent" />
 
 
-
-
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/RecyclerView"
+            android:id="@+id/RecyclerViewClient"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginBottom="50dp"
-            android:layout_marginTop="10dp"
             android:background="@color/darckgray"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/editText" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

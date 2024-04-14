@@ -14,9 +14,23 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GYM_APP"
         tools:targetApi="31">
+        <activity
+            android:name=".Activity.Workout_plan.CeateExerciseList_Activity"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.Workout_plan.Display_Workoutplan_List_Activity"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.Workout_plan.Display_WorkoutPlan_List_Activity"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.Workout_plan.Create_WorkoutPlanList_Activity"
+            android:exported="false" />
+
         <meta-data
             android:name="firebase_performance_logcat_enabled"
             android:value="true" />
+
         <activity
             android:name=".Activity.Share_Activity"
             android:exported="false" />
@@ -24,8 +38,8 @@
             android:name=".Activity.Notification_Activity"
             android:exported="false" />
         <activity
-            android:name=".Activity.CoachProfile_Activity"
-            android:exported="false" >
+            android:name=".Activity.SelectedUserProfile_Activity"
+            android:exported="false">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Activity.HomeActivity" />
@@ -38,17 +52,17 @@
             android:exported="false">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".Activity.Workout_plan.DisplayWorkoutPlan_Activity" />
+                android:value=".Activity.Workout_plan.Display_List_Activity" />
         </activity>
         <activity
-            android:name=".Activity.Workout_plan.DisplayWorkoutPlan_Activity"
+            android:name=".Activity.Workout_plan.Display_List_Activity"
             android:exported="false">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Activity.HomeActivity" />
         </activity>
         <activity
-            android:name=".Activity.Workout_plan.Create_Workoutplan_Activity"
+            android:name=".Activity.Workout_plan.Create_List_Activity"
             android:exported="false" />
         <activity
             android:name=".Activity.Workout_plan.DisplayVideos_Activity"
@@ -64,8 +78,8 @@
         <activity
             android:name=".Activity.Messages.ChatActivity"
             android:exported="false"
-            android:windowSoftInputMode="adjustResize"
-            android:theme="@style/Theme.MaterialComponents.DayNight.DarkActionBar">
+            android:theme="@style/Theme.MaterialComponents.DayNight.DarkActionBar"
+            android:windowSoftInputMode="adjustResize">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Activity.Messages.NewMessageActivity" />
@@ -80,17 +94,14 @@
         </activity>
         <activity
             android:name=".Activity.Messages.NewMessageActivity"
-            android:exported="false"
-            >
+            android:exported="false">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Activity.Messages.MessagesActivity" />
         </activity>
         <activity
             android:name=".Activity.HomeActivity"
-            android:exported="false" >
-        </activity>
-
+            android:exported="false" />
         <activity
             android:name=".Login.SingupActivity"
             android:exported="false" />
@@ -102,9 +113,10 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
     </application>
-    </manifest>
 
+</manifest>
