@@ -13,12 +13,14 @@
         android:layout_width="match_parent"
         android:layout_margin="10dp"
         android:layout_height="wrap_content"
-        app:cardCornerRadius="20dp">
+        app:cardCornerRadius="20dp"
+        >
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="@color/darckgray">
 
             <TextView
                 android:id="@+id/Title"
@@ -27,23 +29,23 @@
                 android:text="@{data.title}"
                 android:textSize="24sp"
                 android:textStyle="bold"
-
+                android:layout_margin="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
 
-            <TextView
+            <ImageView
                 android:id="@+id/Notetitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginStart="10dp"
-                android:text="Note"
-                android:textColor="#4CAF50"
-                android:textSize="28dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView" />
+                android:layout_marginTop="16dp"
+                android:src="@drawable/addnote"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/textView"
+                app:layout_constraintTop_toBottomOf="@+id/imageView"
+                app:tint="@color/white" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn"
@@ -58,12 +60,13 @@
                 app:layout_constraintBottom_toBottomOf="@+id/imageView"
                 app:layout_constraintEnd_toEndOf="parent" />
 
-
             <ImageView
                 android:id="@+id/imageView"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
+                android:layout_marginTop="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/Title" />
 
@@ -72,43 +75,44 @@
                 android:id="@+id/writeNote"
                 android:layout_width="362dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
                 android:background="@drawable/char_editetext_background"
+                android:backgroundTint="#8E8E8E"
                 android:gravity="center"
                 android:hint="write any Note"
                 android:imeOptions="actionDone"
                 android:inputType="text"
                 android:visibility="invisible"
-                android:layout_marginBottom="10dp"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.551"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/Note" />
+                app:layout_constraintTop_toBottomOf="@+id/textView" />
 
             <TextView
                 android:id="@+id/Note"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_marginEnd="5dp"
-                android:layout_marginTop="10dp"
                 android:text="@{data.note}"
                 android:textSize="18sp"
+                android:layout_margin="15dp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/Notetitle"
-                app:layout_constraintTop_toBottomOf="@+id/Notetitle" />
-
-
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/writeNote"
+                app:layout_constraintVertical_bias="0.229" />
 
             <TextView
                 android:id="@+id/textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="(Click Note To Edite)"
                 android:layout_marginStart="10dp"
-                android:textColor="#989898"
-                app:layout_constraintBottom_toBottomOf="@+id/Notetitle"
-                app:layout_constraintStart_toEndOf="@+id/Notetitle"
-                app:layout_constraintTop_toTopOf="@+id/Notetitle" />
+                android:layout_marginTop="10dp"
+                android:text="Coach note"
+                android:textColor="#5E9886"
+                android:textSize="28sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>

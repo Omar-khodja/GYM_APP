@@ -8,6 +8,7 @@
         android:layout_height="match_parent"
         android:background="@color/black"
         tools:context=".fragment.ProfileFragment">
+
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/appbar"
             android:layout_width="match_parent"
@@ -385,46 +386,53 @@
             android:id="@+id/followersnb"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
+            android:layout_marginTop="2dp"
             android:text="000"
             android:textColor="@color/white"
             android:textSize="18sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/followers"
             app:layout_constraintEnd_toEndOf="@+id/followers"
-            app:layout_constraintStart_toStartOf="@+id/followers" />
+            app:layout_constraintStart_toStartOf="@+id/followers"
+            app:layout_constraintTop_toBottomOf="@+id/followers" />
 
         <TextView
             android:id="@+id/followers"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="48dp"
+            android:layout_marginEnd="25dp"
             android:text="followers"
             android:textColor="@color/white"
-            app:layout_constraintBottom_toTopOf="@+id/Profile_username"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/iamgeCard" />
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/iamgeCard"
+            app:layout_constraintTop_toBottomOf="@+id/appbar" />
 
         <TextView
             android:id="@+id/followingnb"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
             android:text="000"
             android:textColor="@color/white"
             android:textSize="18sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/following"
             app:layout_constraintEnd_toEndOf="@+id/following"
-            app:layout_constraintStart_toStartOf="@+id/following" />
+            app:layout_constraintStart_toStartOf="@+id/following"
+            app:layout_constraintTop_toBottomOf="@+id/following" />
 
         <TextView
             android:id="@+id/following"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:layout_marginStart="25dp"
             android:text="following"
             android:textColor="@color/white"
-            app:layout_constraintBottom_toTopOf="@+id/Profile_username"
             app:layout_constraintEnd_toStartOf="@+id/iamgeCard"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintHorizontal_bias="0.285"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/appbar" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
