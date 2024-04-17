@@ -15,11 +15,11 @@ class NewMessageAdapter(val itemList:List<NewMessageData>, private val onItemCli
 
 
     class ViewHolder(var biding : CustomUsersBinding):RecyclerView.ViewHolder(biding.root) {
-        fun bind(users : NewMessageData){
+        fun bind(data : NewMessageData){
             Glide.with(biding.root)
-                .load(Uri.parse(users.imguri))
+                .load(Uri.parse(data.imguri))
                 .into(biding.imageView1)
-            biding.textView.text = users.username
+            biding.data = data
 
         }
 

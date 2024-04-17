@@ -19,7 +19,6 @@ class DisplayExerciseList_Activity : AppCompatActivity() {
     lateinit var binding: ActivityDisplayexercuselistVideosBinding
     lateinit var db: FirebaseFirestore
     lateinit var storage: FirebaseStorage
-    lateinit var storageReference: StorageReference
     lateinit var Title: String
     lateinit var path: String
 

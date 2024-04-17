@@ -48,12 +48,11 @@ class Share_Activity : AppCompatActivity() {
                         NewMessageData(
                             doucment.getString("UserId").toString()
                             ,doucment.getString("UserName").toString()
+                            ,doucment.getString("CoachOrClient").toString()
                             ,doucment.getString("imagUri").toString())
                     )
                 }
-                biding.recyclerView2.adapter = Share_Adapter( title,wourkoutplan,itemlist){item->
-
-                }
+                biding.recyclerView2.adapter = Share_Adapter( title,wourkoutplan,itemlist)
                 biding.recyclerView2.addItemDecoration(
                     DividerItemDecoration(this,
                         DividerItemDecoration.VERTICAL)

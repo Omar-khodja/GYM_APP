@@ -12,17 +12,14 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.LinearLayout
 import com.example.gym_app.Activity.Workout_plan.Create_WorkoutPlanList_Activity
-import com.example.gym_app.Activity.Workout_plan.Display_List_Activity
 import com.example.gym_app.Activity.Workout_plan.Display_Workoutplan_List_Activity
 import com.example.gym_app.Adapter.WorkoutPlan_Adapter
 import com.example.gym_app.R
 import com.example.gym_app.Singlton.TrueOrFalse
 import com.example.gym_app.Singlton.User
-import com.example.gym_app.WoroutPlanList_Data
+import com.example.gym_app.WoroutPlan_Data
 import com.example.gym_app.databinding.FragmentCtreateworoutplaneBinding
 import com.google.firebase.Firebase
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.firestore
 
@@ -46,18 +43,25 @@ class CreateWorkoutPlane_Fragment : Fragment() {
 
     private fun collections() {
         db = Firebase.firestore
-        var itemlist = mutableListOf<WoroutPlanList_Data>()
+        var itemlist = mutableListOf<WoroutPlan_Data>()
         val collection =
             db.collection("Coach_Workout_Plan")
                 .document(User.instance?.UserId.toString())
                 .collection("Workoutplan")
 
         var Title = ""
-        collection.get().addOnSuccessListener { result ->
-            for (document in result) {
-                Title = document.id
-                itemlist.add(WoroutPlanList_Data(Title,"", R.drawable.workout))
+        collection.addSnapshotListener{ value, error ->
+            if(error!=null){
+                Log.i("tagy", "Error listening for messages: $error")
+                return@addSnapshotListener
+            }
 
+            if (value != null) {
+                for (document in value.documents) {
+                    Title = document.id
+                    itemlist.add(WoroutPlan_Data(Title,"", R.drawable.workout))
+
+                }
             }
             binding.RecyclerView.adapter = WorkoutPlan_Adapter(itemlist) { item ->
                 var intent = Intent(context, Display_Workoutplan_List_Activity::class.java)

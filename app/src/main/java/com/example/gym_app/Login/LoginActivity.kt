@@ -12,12 +12,14 @@ import com.example.gym_app.Activity.HomeActivity
 import com.example.gym_app.R
 import com.example.gym_app.databinding.ActivityLoginBinding
 import com.google.firebase.Firebase
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
+import com.google.firebase.firestore.FirebaseFirestore
 
 class LoginActivity : AppCompatActivity() {
     lateinit var binding : ActivityLoginBinding
-    lateinit var auth: FirebaseAuth
+    var auth = Firebase.auth
+    var db = FirebaseFirestore.getInstance()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -28,7 +30,7 @@ class LoginActivity : AppCompatActivity() {
             insets
         }
         binding = DataBindingUtil.setContentView(this, R.layout.activity_login)
-        auth = Firebase.auth
+
         binding.loginbtn.setOnClickListener {
             LoginWithPassword(
                 binding.loginEmail.text.toString().trim(),
@@ -42,7 +44,7 @@ class LoginActivity : AppCompatActivity() {
             .addOnCompleteListener(this){task ->
                 if(task.isSuccessful){
                     Toast.makeText(this, "Login", Toast.LENGTH_SHORT).show()
-                    val intent = Intent(this, HomeActivity::class.java)
+                    var intent = Intent(this, HomeActivity::class.java)
                     intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
                     startActivity(intent)
                 }else{
@@ -51,4 +53,6 @@ class LoginActivity : AppCompatActivity() {
             }
 
     }
+
+
 }

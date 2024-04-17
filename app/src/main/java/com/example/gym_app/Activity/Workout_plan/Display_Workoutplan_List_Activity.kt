@@ -7,10 +7,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.databinding.DataBindingUtil
-import com.example.gym_app.Adapter.Display_Workoutplan_List_Adapter
+import com.example.gym_app.Adapter.Display_Workoutplan_ListTiming_Adapter
 import com.example.gym_app.R
 import com.example.gym_app.Singlton.User
-import com.example.gym_app.WoroutPlanList_Data
+import com.example.gym_app.WoroutPlan_Data
 import com.example.gym_app.databinding.ActivityDisplayWorkoutplanListBinding
 import com.google.firebase.firestore.FirebaseFirestore
 
@@ -35,7 +35,7 @@ class Display_Workoutplan_List_Activity : AppCompatActivity() {
     }
 
     private fun displaylist(title: String, plan: String) {
-        var itemlist = mutableListOf<WoroutPlanList_Data>()
+        var itemlist = mutableListOf<WoroutPlan_Data>()
         var collection = db.collection(plan)
             .document(User.instance?.UserId.toString())
             .collection("Workoutplan")
@@ -44,19 +44,19 @@ class Display_Workoutplan_List_Activity : AppCompatActivity() {
         collection.get().addOnSuccessListener {
             for(doc in it.documents){
                 val Title = doc.id
-                val workoutplan = doc.getString("Workoutplan").toString()
+                val workoutplanName = doc.getString("Workoutplan").toString()
                 if(!itemlist.any{it.Title == Title}){
-                    itemlist.add(WoroutPlanList_Data(Title,workoutplan, 0))
+                    itemlist.add(WoroutPlan_Data(Title,workoutplanName, 0))
 
                 }
-                biding.RecyclerView.adapter = Display_Workoutplan_List_Adapter(itemlist) {
+                biding.RecyclerView.adapter = Display_Workoutplan_ListTiming_Adapter(itemlist) {
                     var intent = Intent(this,Display_List_Activity::class.java)
                     var title1 = it.Title
-                    var title2= it.wourkoutplan
+                    var title2= it.wourkoutplanName
                     var title3 = plan
                     intent.putExtra("Title",title1)
-                    intent.putExtra("WourkOut",title2)
-                    intent.putExtra("plan",title3)
+                    intent.putExtra("planName",title2)
+                    intent.putExtra("workout",title3)
                     startActivity(intent)
 
                 }

@@ -15,7 +15,6 @@ import com.example.gym_app.R
 import com.example.gym_app.databinding.FragmentHomeBinding
 
 
-@Suppress("UNREACHABLE_CODE")
 class HomeFegment : Fragment() {
     lateinit var biding: FragmentHomeBinding
 
@@ -26,15 +25,6 @@ class HomeFegment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         biding = FragmentHomeBinding.inflate(inflater, container, false)
-        val itemlis: MutableList<CardView_CreateData> = mutableListOf()
-        itemlis.add(CardView_CreateData(R.drawable.abs, "Abs", "Abs Exersice", "9 Videos"))
-        itemlis.add(CardView_CreateData(R.drawable.back, "Back", "Back Exersice", "4 Videos"))
-
-        biding.createRecyclerView.adapter = CardView_CreateAdapter(itemlis) { item ->
-            val intent = Intent(context, DisplayExerciseList_Activity::class.java)
-            intent.putExtra("path", item.title)
-            startActivity(intent)
-        }
         biding.appbar.apply {
             inflateMenu(R.menu.messages_menu)
             setOnMenuItemClickListener { menuItem ->

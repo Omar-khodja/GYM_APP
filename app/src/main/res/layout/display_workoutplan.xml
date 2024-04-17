@@ -6,7 +6,7 @@
     <data>
         <variable
             name="data"
-            type="com.example.gym_app.MyWorckoutPlna_Data" />
+            type="com.example.gym_app.MyWorckout_Plna_List_Data" />
     </data>
 
     <androidx.cardview.widget.CardView

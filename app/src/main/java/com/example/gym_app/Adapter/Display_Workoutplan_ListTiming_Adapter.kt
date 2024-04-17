@@ -3,14 +3,14 @@ package com.example.gym_app.Adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.gym_app.WoroutPlanList_Data
+import com.example.gym_app.WoroutPlan_Data
 import com.example.gym_app.databinding.CustomWorkoutlIstBinding
 
-class Display_Workoutplan_List_Adapter(val itemlist:MutableList<WoroutPlanList_Data>,val OnItemClik:(WoroutPlanList_Data)->Unit)
-        :RecyclerView.Adapter<Display_Workoutplan_List_Adapter.ViewHolder>(){
+class Display_Workoutplan_ListTiming_Adapter(val itemlist:MutableList<WoroutPlan_Data>, val OnItemClik:(WoroutPlan_Data)->Unit)
+        :RecyclerView.Adapter<Display_Workoutplan_ListTiming_Adapter.ViewHolder>(){
             lateinit var biding:CustomWorkoutlIstBinding
     class ViewHolder(val biding:CustomWorkoutlIstBinding):RecyclerView.ViewHolder(biding.root){
-        fun bind(data:WoroutPlanList_Data){
+        fun bind(data:WoroutPlan_Data){
             biding.data = data
         }
 

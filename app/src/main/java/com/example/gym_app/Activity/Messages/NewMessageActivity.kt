@@ -24,7 +24,7 @@ import com.google.firebase.firestore.Query
 class NewMessageActivity : AppCompatActivity() {
     lateinit var biding : ActivityNewMessage2Binding
      var db = FirebaseFirestore.getInstance()
-     val collection = db.collection("Coach_Followers")
+     val collection = db.collection("Followers")
          .document(User.instance?.UserId.toString())
          .collection("Followers")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,7 +50,7 @@ class NewMessageActivity : AppCompatActivity() {
     private fun search() {
         var text = biding.editText.text.toString().trim()
         if (text.isNotEmpty()) {
-            var collection = db.collection("Coach_Followers")
+            var collection = db.collection("Followers")
                 .document(User.instance?.UserId.toString())
                 .collection("Followers").whereEqualTo("username", text)
             fetchusers(collection)
@@ -67,11 +67,11 @@ class NewMessageActivity : AppCompatActivity() {
                         NewMessageData(
                         doucment.getString("UserId").toString()
                         ,doucment.getString("UserName").toString()
+                        ,doucment.getString("CoachOrClient").toString()
                         ,doucment.getString("imagUri").toString())
                     )
                 }
                 biding.recyclerViewNewMessage.adapter = NewMessageAdapter( adapter){item->
-                    Toast.makeText(this, "Clicked item: ${item.username}", Toast.LENGTH_SHORT).show()
                     var intent=Intent(this , ChatActivity::class.java)
                    ChatOtherUser.instance?.username = item.username
                     ChatOtherUser.instance?.otherId = item.userId

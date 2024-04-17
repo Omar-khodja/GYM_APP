@@ -21,9 +21,6 @@
             android:name=".Activity.Workout_plan.Display_Workoutplan_List_Activity"
             android:exported="false" />
         <activity
-            android:name=".Activity.Workout_plan.Display_WorkoutPlan_List_Activity"
-            android:exported="false" />
-        <activity
             android:name=".Activity.Workout_plan.Create_WorkoutPlanList_Activity"
             android:exported="false" />
 

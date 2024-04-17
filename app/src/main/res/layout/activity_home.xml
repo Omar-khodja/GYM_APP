@@ -8,28 +8,26 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activity.HomeActivity"
+    tools:context=".Activity.Coach_Home_Activity"
     android:fitsSystemWindows="true">
 
 
     <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/viewpager"
+        android:id="@+id/ViewPager2"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/tablayout"
+        app:layout_constraintBottom_toTopOf="@+id/TableLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tablayout"
+        android:id="@+id/TableLayout"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        app:tabTextColor="@color/white"
-        android:backgroundTint="#373737"
+        android:layout_height="75dp"
         android:background="#373737"
-        app:tabIconTint="@color/darkRed"
-        android:foregroundTint="#AA6E6E"
+        app:itemIconTint="@color/darkRed"
+        app:itemTextColor="@color/darkRed"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

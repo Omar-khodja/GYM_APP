@@ -40,22 +40,6 @@ class Notification_Activity : AppCompatActivity() {
 
     }
 
-    private fun getnotification() {
-        var collection = db.collection("Follow_request")
-            .document(User.instance?.UserId.toString())
-            .collection("Followers")
-        collection.get().addOnSuccessListener {
-            for(doc in it.documents){
-                var id = doc.getString("UserId").toString()
-                var username = doc.getString("UserName").toString()
-                var img = doc.getString("ProfileimagUri").toString()
-                itemlist.add(NewMessageData(id,username,img))
-            }
-            biding.RecyclerView.adapter = Notification_Adapter(itemlist)
-
-        }
-
-    }
     private fun listen() {
         var collection = db.collection("Follow_request")
             .document(User.instance?.UserId.toString())
@@ -70,11 +54,12 @@ class Notification_Activity : AppCompatActivity() {
             value?.documents?.forEach { doc ->
                 val id = doc.id
                 var username = doc.getString("UserName").toString()
+                var type = doc.getString("CoachOrClient").toString()
                 var img = doc.getString("ProfileimagUri").toString()
 
                 // Check if the message is new
                 if (!itemlist.any { it.userId == id }) {
-                    itemlist.add(NewMessageData(id,username,img))
+                    itemlist.add(NewMessageData(id,username,type,img))
                 }else if (itemlist.any { it.userId == id }){
                     itemlist.removeAt(i)
                 }

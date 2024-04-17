@@ -14,7 +14,7 @@ import com.example.gym_app.databinding.CustomUsersBinding
 import com.google.firebase.crashlytics.internal.model.CrashlyticsReport.Session.Event.Log
 import com.google.firebase.firestore.FirebaseFirestore
 
-class Share_Adapter(val title:String,val wourkoutplan:String,val itemlist:MutableList<NewMessageData>,val OnclikItem:(NewMessageData)->Unit)
+class Share_Adapter(val title:String,val wourkoutplan:String,val itemlist:MutableList<NewMessageData>)
     :RecyclerView.Adapter<Share_Adapter.ViewHolder>(){
     lateinit var biding: CustomUsersBinding
 
@@ -49,9 +49,9 @@ class Share_Adapter(val title:String,val wourkoutplan:String,val itemlist:Mutabl
 
             collection2.get().addOnSuccessListener {
                 if(it.exists()){
-                    var id = it.id
-                    var plan = it.getString("Title").toString()
-                    var data = hashMapOf(
+                    val id = it.id
+                    val plan = it.getString("Title").toString()
+                    val data = hashMapOf(
                         "Title" to plan ,
                     )
                   collection.document(id).set(data)
@@ -60,31 +60,35 @@ class Share_Adapter(val title:String,val wourkoutplan:String,val itemlist:Mutabl
             collection2.collection("List")
                 .get().addOnSuccessListener {
                     for (doc in it.documents){
-                        var name = doc.id
+                        val name = doc.id
                             collection2.collection("List")
                                 .document(name)
                                 .collection(name).get().addOnSuccessListener {
                                     for(doc in it.documents){
-                                        var CoachId = doc.getString("CoachId")
-                                        var CoachName = doc.getString("CoachName")
-                                        var ImahUrl = doc.getString("ImahUrl")
-                                        var ListName = doc.getString("ListName")
-                                        var Note = doc.getString("Note")
-                                        var VideoName = doc.getString("VideoName")
-                                        var VideoUrl = doc.getString("VideoUrl")
-                                        var Workoutplan = doc.getString("Workoutplan")
+                                        val CoachId = doc.getString("CoachId")
+                                        val CoachName = doc.getString("CoachName")
+                                        val ImahUrl = doc.getString("ImahUrl")
+                                        val ListName = doc.getString("ListName")
+                                        val Note = doc.getString("Note")
+                                        var sets = doc.getString("sets")
+                                        var repsets = doc.getString("repsets")
+                                        val VideoName = doc.getString("VideoName")
+                                        val VideoUrl = doc.getString("VideoUrl")
+                                        val Workoutplan = doc.getString("Workoutplan")
 
-                                        var data = hashMapOf(
+                                        val data = hashMapOf(
                                             "CoachId" to CoachId,
                                             "CoachName" to CoachName,
                                             "ImahUrl" to ImahUrl,
                                             "ListName" to ListName,
                                             "Note" to Note,
+                                            "sets" to sets,
+                                            "repsets" to repsets,
                                             "VideoName" to VideoName,
                                             "VideoUrl" to VideoUrl,
                                             "Workoutplan" to Workoutplan
                                         )
-                                        var data2 = hashMapOf(
+                                        val data2 = hashMapOf(
                                             "ListName" to ListName,
                                             "Workoutplan" to Workoutplan
                                         )
@@ -118,10 +122,7 @@ class Share_Adapter(val title:String,val wourkoutplan:String,val itemlist:Mutabl
 
     override fun onBindViewHolder(holder: Share_Adapter.ViewHolder, position: Int) {
         val data = itemlist[position]
-        holder.bind(data)
-        holder.itemView.setOnClickListener {
-            OnclikItem(data) // Call the lambda when an item is clicked
-        }    }
+        holder.bind(data)    }
 
     override fun getItemCount(): Int {
         return itemlist.size

@@ -53,11 +53,11 @@ class Search_Activity : AppCompatActivity() {
             .addOnSuccessListener {
                 val adapter: MutableList<NewMessageData> = mutableListOf()
                 for(doucment in it){
-                    var type = doucment.getString("type")
                         adapter.add(
                             NewMessageData(
                                 doucment.getString("userId").toString(),
                                 doucment.getString("username").toString(),
+                                doucment.getString("type").toString(),
                                 doucment.getString("ProfileimagUri").toString()
                             )
                         )

@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import com.example.gym_app.Activity.SelectedUserProfile_Activity
+import com.example.gym_app.Adapter.Coach_Search_Adapter
 import com.example.gym_app.Adapter.NewMessageAdapter
 import com.example.gym_app.NewMessageData
 import com.example.gym_app.databinding.FragmentChoachSearchBinding
@@ -54,20 +55,12 @@ class CoachSearch_Fragment : Fragment() {
                 if (type == "Coach") {
                     var username = doc.getString("username").toString()
                     var userid = doc.getString("userId").toString()
+                    var type = doc.getString("type").toString()
                     var imgUrl = doc.getString("ProfileimagUri").toString()
-                    itemlist.add(NewMessageData(userid, username, imgUrl))
+                    itemlist.add(NewMessageData(userid, username,type, imgUrl))
                 }
-                biding.RecyclerView.adapter = NewMessageAdapter(itemlist) {
-                    var intent =Intent(context,SelectedUserProfile_Activity::class.java)
-                    var id = it.userId
-                    var username = it.username
-                    var img = it.imguri
-                    intent.putExtra("id",id)
-                    intent.putExtra("img",img)
-                    intent.putExtra("username",username)
-                    startActivity(intent)
+                biding.ViewPager2.adapter = Coach_Search_Adapter(itemlist)
 
-                }
             }
 
 

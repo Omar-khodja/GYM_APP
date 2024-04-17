@@ -99,9 +99,10 @@ class DisplayVideos_Activity : AppCompatActivity() {
             "CoachId" to User.instance?.UserId,
             "VideoUrl" to videoUrl,
             "ImahUrl" to DisplayVideo_Singlton.instance?.imagUrl,
-            "des" to DisplayVideo_Singlton.instance?.des,
-            "VideoName" to DisplayVideo_Singlton.instance?.title,
-            "Note" to ""
+            "Note" to DisplayVideo_Singlton.instance?.des,
+            "sets" to "",
+            "repsets" to "",
+            "VideoName" to DisplayVideo_Singlton.instance?.title
         )
         var data1 = hashMapOf(
             "Title" to title.toString(),

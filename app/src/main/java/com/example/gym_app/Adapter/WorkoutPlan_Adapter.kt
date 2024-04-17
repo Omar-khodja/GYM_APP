@@ -10,17 +10,17 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.gym_app.Activity.Share_Activity
 import com.example.gym_app.Singlton.User
-import com.example.gym_app.WoroutPlanList_Data
+import com.example.gym_app.WoroutPlan_Data
 import com.example.gym_app.databinding.CustomWorkoutplanBinding
 import com.google.firebase.firestore.FirebaseFirestore
 
-class WorkoutPlan_Adapter(val itemlist:MutableList<WoroutPlanList_Data>, val OnClik : (WoroutPlanList_Data)-> Unit)
+class WorkoutPlan_Adapter(val itemlist:MutableList<WoroutPlan_Data>, val OnClik : (WoroutPlan_Data)-> Unit)
     :RecyclerView.Adapter<WorkoutPlan_Adapter.ViewHolder>(){
            lateinit var biding : CustomWorkoutplanBinding
 
 
         class ViewHolder(var biding : CustomWorkoutplanBinding):RecyclerView.ViewHolder(biding.root){
-            fun bind(data: WoroutPlanList_Data){
+            fun bind(data: WoroutPlan_Data){
                 biding.data = data
                 Glide.with(biding.root)
                     .load(data.imagUrl)
@@ -29,7 +29,7 @@ class WorkoutPlan_Adapter(val itemlist:MutableList<WoroutPlanList_Data>, val OnC
                 showInputDialog(biding.root.context, data.Title)
             }
                 biding.share.setOnClickListener{
-                    sharebtn(data.Title,data.wourkoutplan)
+                    sharebtn(data.Title,data.wourkoutplanName)
                 }
             }
 
@@ -50,6 +50,7 @@ class WorkoutPlan_Adapter(val itemlist:MutableList<WoroutPlanList_Data>, val OnC
                     var db = FirebaseFirestore.getInstance()
                     db.collection("Coach_Workout_Plan").document(User.instance?.UserId.toString()).collection("Workoutplan")
                         .document(title).delete()
+
                     dialog.dismiss()
 
                 }

@@ -7,33 +7,31 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/gymbackground"
+        android:background="@color/gray"
         tools:context=".fragment.CoachSearch_Fragment">
 
         <EditText
             android:id="@+id/editText2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/search"
-            android:hint="Search...."
-            android:textColor="@color/white"
-            android:textColorHint="@color/white"
-            android:inputType="text"
-            android:imeOptions="actionSearch"
             android:background="@drawable/char_editetext_background"
             android:backgroundTint="@color/darckgray"
-            app:layout_constraintBottom_toTopOf="@+id/RecyclerView"
+            android:drawableLeft="@drawable/search"
+            android:hint="Search...."
+            android:imeOptions="actionSearch"
+            android:inputType="text"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/RecyclerView"
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/ViewPager2"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:background="#80000000"
-            android:orientation="vertical"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:layout_height="600dp"
+            android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

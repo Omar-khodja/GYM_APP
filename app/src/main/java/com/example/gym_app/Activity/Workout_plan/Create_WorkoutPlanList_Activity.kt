@@ -12,12 +12,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.databinding.DataBindingUtil
-import com.example.gym_app.Adapter.Display_Workoutplan_List_Adapter
-import com.example.gym_app.Adapter.WorkoutPlan_Adapter
+import com.example.gym_app.Adapter.Display_Workoutplan_ListTiming_Adapter
 import com.example.gym_app.R
 import com.example.gym_app.Singlton.TrueOrFalse
 import com.example.gym_app.Singlton.User
-import com.example.gym_app.WoroutPlanList_Data
+import com.example.gym_app.WoroutPlan_Data
 import com.example.gym_app.databinding.ActivityCreateWorkoutPlanListBinding
 import com.google.firebase.firestore.FirebaseFirestore
 
@@ -45,6 +44,7 @@ class Create_WorkoutPlanList_Activity : AppCompatActivity() {
             "Title" to Title
         )
         collection.set(data)
+        //add list btn
         biding.floatingActionButton.setOnClickListener{
             showInputDialog(this)
         }
@@ -79,14 +79,13 @@ class Create_WorkoutPlanList_Activity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        var itemlist = mutableListOf<WoroutPlanList_Data>()
+        var itemlist = mutableListOf<WoroutPlan_Data>()
         var Title = TrueOrFalse.instance?.name.toString()
         var collection = db.collection("Coach_Workout_Plan")
             .document(User.instance?.UserId.toString())
             .collection("Workoutplan")
             .document(Title)
             .collection("List")
-        Log.i("tagy", "id is $Title")
         collection.addSnapshotListener { value, error ->
             if (error != null) {
                 Log.i("tagy", "Error listening for messages: $error")
@@ -96,15 +95,17 @@ class Create_WorkoutPlanList_Activity : AppCompatActivity() {
                 val Title = doc.id
                 val workoutplan = doc.getString("Workoutplan").toString()
                 if(!itemlist.any{it.Title == Title}){
-                itemlist.add(WoroutPlanList_Data(Title,workoutplan, R.drawable.workout))
+                itemlist.add(WoroutPlan_Data(Title,workoutplan, R.drawable.workout))
 
                 }
-                biding.RecyclerView.adapter = Display_Workoutplan_List_Adapter(itemlist) {
+                biding.RecyclerView.adapter = Display_Workoutplan_ListTiming_Adapter(itemlist) {
                     var intent = Intent(this,Display_List_Activity::class.java)
                     var title1 = it.Title
-                    var title2= it.wourkoutplan
+                    var title2= it.wourkoutplanName
+                    var title3 = "Coach_Workout_Plan"
                     intent.putExtra("Title",title1)
-                    intent.putExtra("WourkOut",title2)
+                    intent.putExtra("planName",title2)
+                    intent.putExtra("workout",title3)
                     startActivity(intent)
 
                 }

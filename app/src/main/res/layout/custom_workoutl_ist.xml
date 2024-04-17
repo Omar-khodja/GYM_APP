@@ -4,7 +4,7 @@
     <data>
         <variable
             name="data"
-            type="com.example.gym_app.WoroutPlanList_Data" />
+            type="com.example.gym_app.WoroutPlan_Data" />
     </data>
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"

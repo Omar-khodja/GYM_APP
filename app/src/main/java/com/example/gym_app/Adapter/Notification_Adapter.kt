@@ -4,11 +4,9 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.gym_app.ChatActivityData
 import com.example.gym_app.NewMessageData
 import com.example.gym_app.R
 import com.example.gym_app.Singlton.User
@@ -29,7 +27,7 @@ class Notification_Adapter(val itemlist : MutableList<NewMessageData>)
 
             buttonConfirmed(data.userId)
             biding.Confirm.setOnClickListener{
-                addtofollower(data.imguri,data.userId,data.username)
+                addtofollower(data.imguri,data.userId,data.username,data.type)
             }
             biding.delete.setOnClickListener{
                 delete(data.userId)
@@ -74,27 +72,46 @@ class Notification_Adapter(val itemlist : MutableList<NewMessageData>)
             }
         }
 
-        private fun addtofollower(imguri: String, userId: String, username: String) {
+        private fun addtofollower(imguri: String, userId: String, username: String, type: String) {
             var db = FirebaseFirestore.getInstance()
+            val myId = User.instance?.UserId.toString()
             var collection = db.collection("Followers")
-                .document(User.instance?.UserId.toString())
+                .document(myId)
                 .collection("Followers").document(userId)
             var collection2 = db.collection("Following")
                 .document(userId)
-                    .collection("Following").document(User.instance?.UserId.toString())
-            var data = hashMapOf(
-                "UserId" to userId,
-                "UserName" to username,
-                "imagUri" to imguri
-            )
-            var data1 = hashMapOf(
-                "UserId" to User.instance?.UserId.toString(),
-                "UserName" to User.instance?.UserName.toString(),
-                "imagUri" to User.instance?.ProfileimagUri.toString()
-            )
-            collection.set(data).addOnSuccessListener {
-                collection2.set(data1)
+                    .collection("Following").document(myId)
+            var featchUserInfo = db.collection("Follow_request").document(myId)
+                .collection("Followers").document(userId)
+            featchUserInfo.get().addOnSuccessListener {
+                if(it.exists()){
+                    val email = it.getString("Email")
+                    val UserPhonenb = it.getString("UserPhonenb")
+
+                    var data = hashMapOf(
+                        "UserId" to userId,
+                        "UserName" to username,
+                        "imagUri" to imguri,
+                        "CoachOrClient" to type,
+                        "Email" to email,
+                        "UserPhonenb" to UserPhonenb
+                    )
+                    var data1 = hashMapOf(
+                        "UserId" to User.instance?.UserId.toString(),
+                        "UserName" to User.instance?.UserName.toString(),
+                        "imagUri" to User.instance?.ProfileimagUri.toString(),
+                        "CoachOrClient" to User.instance?.CoachOrClient.toString(),
+                        "Email" to User.instance?.Email.toString(),
+                        "UserPhonenb" to User.instance?.UserPhonenb.toString()
+                    )
+                    collection.set(data).addOnSuccessListener {
+                        collection2.set(data1)
+                    }
+                }
+
             }
+
+
         }
 
     }
