@@ -25,31 +25,31 @@ class Display_Client_WorkoutPLan_Adapter(val itemlist:MutableList<WoroutPlan_Dat
                 .load(data.imagUrl)
                 .into(biding.imageView)
             biding.delete.setOnClickListener {
+                showInputDialog(biding.root.context,data.Title)
 
             }
-            fun showInputDialog(context: Context, title: String) {
-                val alertDialog = AlertDialog.Builder(context)
-                alertDialog.setTitle("Sure you wante to delete this collection")
+        }
+        fun showInputDialog(context: Context, title: String) {
+            val alertDialog = AlertDialog.Builder(context)
+            alertDialog.setTitle("Sure you wante to delete this collection")
 
-                val inputLayout = LinearLayout(context)
-                inputLayout.setPadding(50, 0, 50, 0)
-                alertDialog.setPositiveButton("yes") { dialog, _ ->
-                    var db = FirebaseFirestore.getInstance()
-                    db.collection("Client_Workout_Plan").document(User.instance?.UserId.toString())
-                        .collection("Workoutplan")
-                        .document(title).delete()
+            val inputLayout = LinearLayout(context)
+            inputLayout.setPadding(50, 0, 50, 0)
+            alertDialog.setPositiveButton("yes") { dialog, _ ->
+                var db = FirebaseFirestore.getInstance()
+                db.collection("Client_Workout_Plan").document(User.instance?.UserId.toString())
+                    .collection("Workoutplan")
+                    .document(title).delete()
 
-                    dialog.dismiss()
+                dialog.dismiss()
 
-                }
-
-                alertDialog.setNegativeButton("No") { dialog, _ ->
-                    dialog.cancel()
-                }
-
-                alertDialog.show()
             }
 
+            alertDialog.setNegativeButton("No") { dialog, _ ->
+                dialog.cancel()
+            }
+
+            alertDialog.show()
         }
     }
 

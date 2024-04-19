@@ -36,14 +36,7 @@ class Create_WorkoutPlanList_Activity : AppCompatActivity() {
         var Title = TrueOrFalse.instance?.name.toString()
         biding.toolbar.title =Title
 
-        var collection = db.collection("Coach_Workout_Plan")
-            .document(User.instance?.UserId.toString())
-            .collection("Workoutplan")
-                .document(Title)
-        var data= hashMapOf(
-            "Title" to Title
-        )
-        collection.set(data)
+
         //add list btn
         biding.floatingActionButton.setOnClickListener{
             showInputDialog(this)
@@ -95,7 +88,7 @@ class Create_WorkoutPlanList_Activity : AppCompatActivity() {
                 val Title = doc.id
                 val workoutplan = doc.getString("Workoutplan").toString()
                 if(!itemlist.any{it.Title == Title}){
-                itemlist.add(WoroutPlan_Data(Title,workoutplan, R.drawable.workout))
+                itemlist.add(WoroutPlan_Data("",Title,workoutplan, R.drawable.workout))
 
                 }
                 biding.RecyclerView.adapter = Display_Workoutplan_ListTiming_Adapter(itemlist) {

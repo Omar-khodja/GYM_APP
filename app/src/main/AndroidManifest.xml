@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools" >
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -13,7 +13,10 @@
         android:roundIcon="@color/dark_blue"
         android:supportsRtl="true"
         android:theme="@style/Theme.GYM_APP"
-        tools:targetApi="31">
+        tools:targetApi="31" >
+        <activity
+            android:name=".Activity.Coach_Profile_Activity"
+            android:exported="false" />
         <activity
             android:name=".Activity.Workout_plan.CeateExerciseList_Activity"
             android:exported="false" />
@@ -35,8 +38,8 @@
             android:name=".Activity.Notification_Activity"
             android:exported="false" />
         <activity
-            android:name=".Activity.SelectedUserProfile_Activity"
-            android:exported="false">
+            android:name=".Activity.Client_Profile_Activity"
+            android:exported="false" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Activity.HomeActivity" />
@@ -46,14 +49,14 @@
             android:exported="false" />
         <activity
             android:name=".Activity.Workout_plan.PlayVideo_Activity"
-            android:exported="false">
+            android:exported="false" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Activity.Workout_plan.Display_List_Activity" />
         </activity>
         <activity
             android:name=".Activity.Workout_plan.Display_List_Activity"
-            android:exported="false">
+            android:exported="false" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Activity.HomeActivity" />
@@ -67,7 +70,7 @@
         <activity
             android:name=".Activity.Workout_plan.DisplayExerciseList_Activity"
             android:exported="false"
-            android:theme="@style/Theme.MaterialComponents.DayNight.DarkActionBar">
+            android:theme="@style/Theme.MaterialComponents.DayNight.DarkActionBar" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Activity.HomeActivity" />
@@ -76,7 +79,7 @@
             android:name=".Activity.Messages.ChatActivity"
             android:exported="false"
             android:theme="@style/Theme.MaterialComponents.DayNight.DarkActionBar"
-            android:windowSoftInputMode="adjustResize">
+            android:windowSoftInputMode="adjustResize" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Activity.Messages.NewMessageActivity" />
@@ -84,14 +87,14 @@
         <activity
             android:name=".Activity.Messages.MessagesActivity"
             android:exported="false"
-            android:theme="@style/Theme.MaterialComponents.DayNight.DarkActionBar">
+            android:theme="@style/Theme.MaterialComponents.DayNight.DarkActionBar" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Activity.HomeActivity" />
         </activity>
         <activity
             android:name=".Activity.Messages.NewMessageActivity"
-            android:exported="false">
+            android:exported="false" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Activity.Messages.MessagesActivity" />
@@ -101,13 +104,17 @@
             android:exported="false" />
         <activity
             android:name=".Login.SingupActivity"
-            android:exported="false" />
+            android:exported="false" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Login.MainActivity" />
+        </activity>
         <activity
             android:name=".Login.LoginActivity"
             android:exported="false" />
         <activity
             android:name=".Login.MainActivity"
-            android:exported="true">
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -7,9 +7,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
-import com.example.gym_app.Activity.SelectedUserProfile_Activity
+import com.example.gym_app.Activity.Client_Profile_Activity
+import com.example.gym_app.Activity.Coach_Profile_Activity
 import com.example.gym_app.Adapter.Coach_Search_Adapter
-import com.example.gym_app.Adapter.NewMessageAdapter
 import com.example.gym_app.NewMessageData
 import com.example.gym_app.databinding.FragmentChoachSearchBinding
 import com.google.firebase.firestore.FirebaseFirestore
@@ -17,14 +17,14 @@ import com.google.firebase.firestore.Query
 
 class CoachSearch_Fragment : Fragment() {
     lateinit var biding:FragmentChoachSearchBinding
-    lateinit var db:FirebaseFirestore
+    var db = FirebaseFirestore.getInstance()
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         biding = FragmentChoachSearchBinding.inflate(inflater,container,false)
-        db = FirebaseFirestore.getInstance()
         val collection = db.collection("Users")
 
         fetchCoach(collection)
@@ -55,11 +55,32 @@ class CoachSearch_Fragment : Fragment() {
                 if (type == "Coach") {
                     var username = doc.getString("username").toString()
                     var userid = doc.getString("userId").toString()
-                    var type = doc.getString("type").toString()
                     var imgUrl = doc.getString("ProfileimagUri").toString()
                     itemlist.add(NewMessageData(userid, username,type, imgUrl))
                 }
-                biding.ViewPager2.adapter = Coach_Search_Adapter(itemlist)
+                biding.RecyclerView.adapter = Coach_Search_Adapter(itemlist){
+                    if(it.type == "Coach"){
+                        val intent = Intent(context, Coach_Profile_Activity::class.java)
+                        val id = it.userId
+                        val img = it.imguri
+                        val username = it.username
+                        intent.putExtra("id",id)
+                        intent.putExtra("img",img)
+                        intent.putExtra("username",username)
+                        startActivity(intent)
+
+                    }else {
+                        val intent = Intent(context, Client_Profile_Activity::class.java)
+                        val id = it.userId
+                        val img = it.imguri
+                        val username = it.username
+                        intent.putExtra("id",id)
+                        intent.putExtra("img",img)
+                        intent.putExtra("username",username)
+                        startActivity(intent)
+
+                    }
+                }
 
             }
 

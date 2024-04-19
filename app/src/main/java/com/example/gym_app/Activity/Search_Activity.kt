@@ -64,7 +64,7 @@ class Search_Activity : AppCompatActivity() {
 
                 }
                 biding.RecyclerViewClient.adapter = NewMessageAdapter( adapter){
-                    var intent =Intent(this,SelectedUserProfile_Activity::class.java)
+                    var intent =Intent(this,Client_Profile_Activity::class.java)
                     var id = it.userId
                     var username = it.username
                     var img = it.imguri

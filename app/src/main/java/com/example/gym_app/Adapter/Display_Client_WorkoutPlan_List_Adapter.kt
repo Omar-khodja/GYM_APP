@@ -32,12 +32,9 @@ class Display_Client_WorkoutPlan_List_Adapter(val itemlis:MutableList<MyWorckout
                         binding.video.start()
                     }
                 }
-                binding.video.setOnClickListener{
-                    if (binding.video.isPlaying) {
+                binding.cardView.setOnClickListener{
                         binding.video.stopPlayback()
                         binding.cardView.visibility = View.INVISIBLE
-
-                    }
 
                 }
             }

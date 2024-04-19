@@ -21,7 +21,6 @@ class Create_List_Activity : AppCompatActivity() {
     lateinit var biding:ActivityCreatelistVideoBinding
     val db = FirebaseFirestore.getInstance()
     val auth = Firebase.auth
-    val storage = FirebaseStorage.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -29,14 +29,13 @@ class WorkoutPlan_Adapter(val itemlist:MutableList<WoroutPlan_Data>, val OnClik 
                 showInputDialog(biding.root.context, data.Title)
             }
                 biding.share.setOnClickListener{
-                    sharebtn(data.Title,data.wourkoutplanName)
+                    sharebtn(data.Title)
                 }
             }
 
-            private fun sharebtn(title: String, wourkoutplan: String) {
+            private fun sharebtn(title: String) {
                 var intent = Intent(biding.root.context, Share_Activity::class.java)
                 intent.putExtra("Title",title)
-                intent.putExtra("wourkoutplan",wourkoutplan)
                 biding.root.context.startActivity(intent)
             }
 

@@ -30,11 +30,12 @@ class Display_Workoutplan_List_Activity : AppCompatActivity() {
         biding = DataBindingUtil.setContentView(this,R.layout.activity_display_workoutplan_list)
         val title = intent.getStringExtra("name").toString()
         val plan = intent.getStringExtra("plan").toString()
-        displaylist(title , plan)
+        val coachId =  intent.getStringExtra("CoachId").toString()
+        displaylist(title , plan,coachId)
         biding.toolbar.title= title
     }
 
-    private fun displaylist(title: String, plan: String) {
+    private fun displaylist(title: String, plan: String, coachId: String) {
         var itemlist = mutableListOf<WoroutPlan_Data>()
         var collection = db.collection(plan)
             .document(User.instance?.UserId.toString())
@@ -46,7 +47,7 @@ class Display_Workoutplan_List_Activity : AppCompatActivity() {
                 val Title = doc.id
                 val workoutplanName = doc.getString("Workoutplan").toString()
                 if(!itemlist.any{it.Title == Title}){
-                    itemlist.add(WoroutPlan_Data(Title,workoutplanName, 0))
+                    itemlist.add(WoroutPlan_Data("",Title,workoutplanName, 0))
 
                 }
                 biding.RecyclerView.adapter = Display_Workoutplan_ListTiming_Adapter(itemlist) {
@@ -54,6 +55,7 @@ class Display_Workoutplan_List_Activity : AppCompatActivity() {
                     var title1 = it.Title
                     var title2= it.wourkoutplanName
                     var title3 = plan
+                    intent.putExtra("CoachId",coachId)
                     intent.putExtra("Title",title1)
                     intent.putExtra("planName",title2)
                     intent.putExtra("workout",title3)

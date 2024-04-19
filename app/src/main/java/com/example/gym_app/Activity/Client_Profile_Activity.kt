@@ -16,24 +16,24 @@ import com.example.gym_app.Activity.Messages.ChatActivity
 import com.example.gym_app.R
 import com.example.gym_app.Singlton.ChatOtherUser
 import com.example.gym_app.Singlton.User
-import com.example.gym_app.databinding.ActivitySelecteduserProfileBinding
+import com.example.gym_app.databinding.ActivityClientProfileBinding
 import com.google.firebase.firestore.FirebaseFirestore
 
-class SelectedUserProfile_Activity : AppCompatActivity() {
-    lateinit var biding : ActivitySelecteduserProfileBinding
+class Client_Profile_Activity : AppCompatActivity() {
+    lateinit var biding : ActivityClientProfileBinding
      var db = FirebaseFirestore.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         enableEdgeToEdge()
-        setContentView(R.layout.activity_selecteduser_profile)
+        setContentView(R.layout.activity_client_profile)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        biding = DataBindingUtil.setContentView(this, R.layout.activity_selecteduser_profile)
+        biding = DataBindingUtil.setContentView(this, R.layout.activity_client_profile)
         var id = intent.getStringExtra("id").toString()
         var img = intent.getStringExtra("img").toString()
         var username = intent.getStringExtra("username").toString()
@@ -41,7 +41,7 @@ class SelectedUserProfile_Activity : AppCompatActivity() {
         buttonenable(id)
         butonfollowing(id)
         biding.followbtn.setOnClickListener {
-            addFollow(User.instance?.UserId, id)
+            addFollow(id)
         }
         biding.messagebtn.setOnClickListener{
             var intent= Intent(this , ChatActivity::class.java)
@@ -82,8 +82,7 @@ class SelectedUserProfile_Activity : AppCompatActivity() {
             value?.documents?.forEach { doc ->
 
                 val id = doc.id
-                val imgUri = doc.getString("imagUri").toString()
-                val username = doc.getString("UserName").toString()
+
 
                 // Check if im in his followers
                 if (id == User.instance?.UserId) {
@@ -98,7 +97,7 @@ class SelectedUserProfile_Activity : AppCompatActivity() {
         }
     }
 
-    private fun addFollow(userId: String?, id: String) {
+    private fun addFollow(id: String) {
         var collection = db.collection("Follow_request").document(id)
             .collection("Followers").document(User.instance?.UserId.toString())
             var data = hashMapOf(
