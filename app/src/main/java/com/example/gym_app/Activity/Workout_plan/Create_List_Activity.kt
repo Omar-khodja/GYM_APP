@@ -37,6 +37,8 @@ class Create_List_Activity : AppCompatActivity() {
         val itemlis:MutableList<CardView_CreateData> = mutableListOf()
         itemlis.add(CardView_CreateData(R.drawable.abs,"Abs","Abs Exersice","9 Videos"))
         itemlis.add(CardView_CreateData(R.drawable.back,"Back","Back Exersice","9 Videos"))
+        itemlis.add(CardView_CreateData(R.drawable.biceps,"Biceps","Biceps Exersice","7 Videos"))
+
 
         biding.createRecyclerView.adapter = CardView_CreateAdapter(itemlis){item->
             val intent = Intent(this, CeateExerciseList_Activity::class.java)
