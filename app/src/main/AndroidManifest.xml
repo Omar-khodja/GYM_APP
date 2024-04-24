@@ -15,6 +15,12 @@
         android:theme="@style/Theme.GYM_APP"
         tools:targetApi="31">
         <activity
+            android:name=".coachProfileCustomizationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".reviewCoachProfileActivity"
+            android:exported="false" />
+        <activity
             android:name=".Activity.Workout_plan.CeateExerciseList_Activity"
             android:exported="false" />
         <activity
