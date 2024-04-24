@@ -34,7 +34,11 @@ class Display_Card_List_Activity : AppCompatActivity() {
         var Title = intent.getStringExtra("title").toString()
         val itemlis:MutableList<CardView_CreateData> = mutableListOf()
         itemlis.add(CardView_CreateData(R.drawable.abs,"Abs","Abs Exersice","9 Videos"))
-        itemlis.add(CardView_CreateData(R.drawable.back,"Back","Back Exersice","4 Videos"))
+        itemlis.add(CardView_CreateData(R.drawable.back,"Back","Back Exersice","9 Videos"))
+        itemlis.add(CardView_CreateData(R.drawable.biceps,"Biceps","Biceps Exersice","7 Videos"))
+        itemlis.add(CardView_CreateData(R.drawable.calf,"Calf","Calf Exersice","6 Videos"))
+        itemlis.add(CardView_CreateData(R.drawable.chest,"Chest","Chest Exersice","8 Videos"))
+
 
         biding.createRecyclerView.adapter = CardView_CreateAdapter(itemlis){item->
             val intent = Intent(this, Display_ExerciseList_Video_Activity::class.java)

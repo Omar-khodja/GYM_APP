@@ -51,7 +51,7 @@ class SingupActivity : AppCompatActivity() {
             var password = biding.singupPassword.text.toString().trim()
             var phone = biding.singupPhonenb.text.toString().trim()
            if(username.isNotEmpty() && email.isNotEmpty() && password.isNotEmpty() && phone.isNotEmpty()) {
-               biding.progressBar.visibility = View.VISIBLE
+                biding.progressBar.visibility = View.VISIBLE
                    creataccount()
             }else{
                 Toast.makeText(this,"Please enter all your information",Toast.LENGTH_SHORT).show()
