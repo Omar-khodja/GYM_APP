@@ -138,6 +138,9 @@ class Coach_Profile_Activity : AppCompatActivity() {
                     .load(Uri.parse(it.getString("ProfileimagUri")))
                     .into(biding.coachPFP)
                 biding.coachNametextView.text = it.getString("username")
+                biding.bioTextView.text = it.getString("Bio")
+                biding.AboutVideoPlayer.setVideoURI(Uri.parse(it.getString("VideoUri").toString()))
+
 
             }
         }

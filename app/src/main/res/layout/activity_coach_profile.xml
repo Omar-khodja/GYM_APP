@@ -167,7 +167,7 @@
             android:layout_margin="10dp"
             android:backgroundTint="@color/gray"
             app:cardCornerRadius="10dp">
-            <ImageView
+            <VideoView
                 android:id="@+id/AboutVideoPlayer"
                 android:layout_margin="20dp"
                 android:layout_width="300dp"
