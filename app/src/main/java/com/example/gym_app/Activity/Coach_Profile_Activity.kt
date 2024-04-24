@@ -125,6 +125,9 @@ class Coach_Profile_Activity : AppCompatActivity() {
         )
         collection.set(data).addOnSuccessListener {
             Toast.makeText(this,"Request sent", Toast.LENGTH_SHORT).show()
+            biding.followbtn.text = "Requested"
+            biding.followbtn.isEnabled = false
+            biding.followbtn.background = ContextCompat.getDrawable(biding.root.context, R.drawable.unablebtn)
         }
     }
     private fun fetchUser(id: String) {
@@ -134,7 +137,7 @@ class Coach_Profile_Activity : AppCompatActivity() {
                 Glide.with(this)
                     .load(Uri.parse(it.getString("ProfileimagUri")))
                     .into(biding.coachPFP)
-                supportActionBar?.title = it.getString("username")
+                biding.coachNametextView.text = it.getString("username")
 
             }
         }
@@ -152,9 +155,7 @@ class Coach_Profile_Activity : AppCompatActivity() {
             value?.documents?.forEach { doc ->
 
                 val id = doc.id
-
-                // Check if the message is new
-                if (id == User.instance?.UserId) {
+                if (id == User.instance?.UserId.toString()) {
                     biding.followbtn.background =
                         ContextCompat.getDrawable(biding.root.context, R.drawable.unablebtn)
                     biding.followbtn.text = "Requested"

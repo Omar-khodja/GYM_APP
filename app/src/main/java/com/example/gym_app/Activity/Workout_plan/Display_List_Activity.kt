@@ -67,7 +67,7 @@ class Display_List_Activity : AppCompatActivity() {
             val imagUrl = doc.getString("ImahUrl").toString()
             val Title = doc.getString("VideoName").toString()
             val videoUrl = doc.getString("VideoUrl").toString()
-            val CoachName = doc.getString("CoachId").toString()
+            val CoachId = doc.getString("CoachId").toString()
             val note = doc.getString("Note").toString()
             val sets = doc.getString("sets").toString()
             val repsets = doc.getString("repsets").toString()
@@ -75,7 +75,7 @@ class Display_List_Activity : AppCompatActivity() {
             val workoutplan = doc.getString("Workoutplan").toString()
 
             Log.i("tagy",id)
-            itemlist.add(MyWorckout_Plna_List_Data(id,imagUrl,Title,videoUrl,CoachName,note,sets,repsets,listname,workoutplan))
+            itemlist.add(MyWorckout_Plna_List_Data(id,imagUrl,Title,videoUrl,CoachId,note,sets,repsets,listname,workoutplan))
             biding.RecyclerView.adapter = Display_Client_WorkoutPlan_List_Adapter(itemlist)
 
 

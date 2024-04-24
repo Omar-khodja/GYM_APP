@@ -114,26 +114,28 @@ class Share_Adapter(val title:String,val itemlist:MutableList<NewMessageData>)
                                 }
                             }
                     }
+                    collectionCoach.get().addOnSuccessListener {
+                        if (it.exists()) {
+                            i = i*4
+                            val plan = it.getString("Title").toString()
+                            val data = hashMapOf(
+                                "Title" to plan,
+                                "CoachId" to User.instance?.UserId,
+                                "ClientName" to username,
+                                "ClientImag" to imguri,
+                                "goal" to i.toString(),
+                                "progress" to "0"
+                            )
+                            db.collection("Client_Progress")
+                                .document(User.instance?.UserId.toString())
+                                .collection("Client")
+                                .document(userId).set(data)
+
+
+                        }
 
                 }
-            collectionCoach.get().addOnSuccessListener {
-                if (it.exists()) {
-                    val plan = it.getString("Title").toString()
-                    val data = hashMapOf(
-                        "Title" to plan,
-                        "CoachId" to User.instance?.UserId,
-                        "ClientName" to username,
-                        "ClientImag" to imguri,
-                        "goal" to (i * 4).toString(),
-                        "progress" to "0"
-                    )
-                    db.collection("Client_Progress")
-                        .document(User.instance?.UserId.toString())
-                        .collection("Client")
-                        .document(userId).set(data)
 
-
-                }
 
 
             }

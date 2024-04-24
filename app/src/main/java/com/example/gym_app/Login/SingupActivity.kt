@@ -110,7 +110,9 @@ class SingupActivity : AppCompatActivity() {
                     "username" to biding.singupUsername.text.toString().trim(),
                     "userphonenb" to biding.singupPhonenb.text.toString().trim(),
                     "type" to "Coach",
-                    "ProfileimagUri" to imagUri
+                    "ProfileimagUri" to imagUri,
+                    "VideoUri" to "",
+                    "Bio" to ""
                 )
                 colaction.set(userMap)
                     .addOnSuccessListener {

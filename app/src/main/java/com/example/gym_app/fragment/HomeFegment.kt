@@ -6,11 +6,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.gym_app.Activity.Workout_plan.DisplayExerciseList_Activity
 import com.example.gym_app.Activity.Messages.MessagesActivity
 import com.example.gym_app.Activity.Search_Activity
-import com.example.gym_app.Adapter.CardView_CreateAdapter
-import com.example.gym_app.CardView_CreateData
 import com.example.gym_app.R
 import com.example.gym_app.databinding.FragmentHomeBinding
 

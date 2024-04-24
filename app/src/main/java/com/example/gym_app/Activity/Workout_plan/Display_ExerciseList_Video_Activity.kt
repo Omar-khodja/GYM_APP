@@ -14,7 +14,7 @@ import com.example.gym_app.Singlton.DisplayVideo_Singlton
 import com.example.gym_app.databinding.ActivityCeateExerciseListBinding
 import com.google.firebase.firestore.FirebaseFirestore
 
-class CeateExerciseList_Activity : AppCompatActivity() {
+class Display_ExerciseList_Video_Activity : AppCompatActivity() {
     lateinit var biding : ActivityCeateExerciseListBinding
     var db = FirebaseFirestore.getInstance()
     lateinit var Title: String

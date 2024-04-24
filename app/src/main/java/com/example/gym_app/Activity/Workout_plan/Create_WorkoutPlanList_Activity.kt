@@ -56,7 +56,7 @@ class Create_WorkoutPlanList_Activity : AppCompatActivity() {
         alertDialog.setPositiveButton("OK") { dialog, _ ->
             val enteredText = input.text.toString()
             // Handle the entered text here
-            var intent = Intent(this,Create_List_Activity::class.java)
+            var intent = Intent(this,Display_Card_List_Activity::class.java)
             TrueOrFalse.instance?.boolean = true
             intent.putExtra("title",enteredText )
             startActivity(intent)
@@ -92,13 +92,11 @@ class Create_WorkoutPlanList_Activity : AppCompatActivity() {
 
                 }
                 biding.RecyclerView.adapter = Display_Workoutplan_ListTiming_Adapter(itemlist) {
-                    var intent = Intent(this,Display_List_Activity::class.java)
+                    var intent = Intent(this,Display_Coach_ExerciseList_Activity::class.java)
                     var title1 = it.Title
                     var title2= it.wourkoutplanName
-                    var title3 = "Coach_Workout_Plan"
                     intent.putExtra("Title",title1)
                     intent.putExtra("planName",title2)
-                    intent.putExtra("workout",title3)
                     startActivity(intent)
 
                 }
