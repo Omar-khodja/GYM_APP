@@ -34,11 +34,10 @@ class Share_Activity : AppCompatActivity() {
             .document(User.instance?.UserId.toString())
             .collection("Followers")
         var title = intent.getStringExtra("Title").toString()
-        var wourkoutplan = intent.getStringExtra("wourkoutplan").toString()
-        fechUsers(collection,title,wourkoutplan)
+        fechUsers(collection,title)
     }
 
-    private fun fechUsers(collection: Query, title: String, wourkoutplan: String) {
+    private fun fechUsers(collection: Query, title: String) {
         collection.get()
             .addOnSuccessListener {
                 val itemlist: MutableList<NewMessageData> = mutableListOf()
@@ -52,7 +51,7 @@ class Share_Activity : AppCompatActivity() {
                             ,doucment.getString("imagUri").toString())
                     )
                 }
-                biding.recyclerView2.adapter = Share_Adapter( title,wourkoutplan,itemlist)
+                biding.recyclerView2.adapter = Share_Adapter( title,itemlist)
                 biding.recyclerView2.addItemDecoration(
                     DividerItemDecoration(this,
                         DividerItemDecoration.VERTICAL)

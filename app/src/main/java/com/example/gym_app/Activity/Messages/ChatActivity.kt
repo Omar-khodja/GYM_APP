@@ -18,6 +18,8 @@ import com.google.firebase.Firebase
 import com.google.firebase.Timestamp
 import com.google.firebase.auth.auth
 import com.google.firebase.firestore.FirebaseFirestore
+import java.text.SimpleDateFormat
+import java.util.Locale
 import java.util.UUID
 
 class ChatActivity : AppCompatActivity() {
@@ -55,6 +57,10 @@ class ChatActivity : AppCompatActivity() {
         biding.Senbtn.setOnClickListener {
             var messag = biding.chat.text.toString()
             val id = UUID.randomUUID().toString()
+            val timestamp = Timestamp.now().toDate()
+            val dateFormat = SimpleDateFormat("EEE MMM dd HH:mm:ss", Locale.getDefault())
+            val formattedDate = dateFormat.format(timestamp)
+            Log.i("tagy","$formattedDate")
             var x = ChatActivityData(
                 id,
                 User.instance?.ProfileimagUri.toString(),
@@ -62,7 +68,7 @@ class ChatActivity : AppCompatActivity() {
                 "RIGHT",
                 fromid,
                 toid,
-                Timestamp.now().toString()
+                formattedDate.toString()
             )
             biding.chat.text.clear()
             collectionfrom.add(x).addOnSuccessListener {
@@ -73,7 +79,7 @@ class ChatActivity : AppCompatActivity() {
                     "LEFT",
                     fromid,
                     toid,
-                    Timestamp.now().toString()
+                    formattedDate.toString()
                 )
                 collectioninto.add(x)
             }

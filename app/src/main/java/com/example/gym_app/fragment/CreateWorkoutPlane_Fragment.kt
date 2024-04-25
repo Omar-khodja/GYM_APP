@@ -26,7 +26,7 @@ import com.google.firebase.firestore.firestore
 
 class CreateWorkoutPlane_Fragment : Fragment() {
     lateinit var binding: FragmentCtreateworoutplaneBinding
-    lateinit var db: FirebaseFirestore
+    var db = Firebase.firestore
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,14 +42,13 @@ class CreateWorkoutPlane_Fragment : Fragment() {
     }
 
     private fun collections() {
-        db = Firebase.firestore
+
         var itemlist = mutableListOf<WoroutPlan_Data>()
         val collection =
             db.collection("Coach_Workout_Plan")
                 .document(User.instance?.UserId.toString())
                 .collection("Workoutplan")
 
-        var Title = ""
         collection.addSnapshotListener{ value, error ->
             if(error!=null){
                 Log.i("tagy", "Error listening for messages: $error")
@@ -58,17 +57,17 @@ class CreateWorkoutPlane_Fragment : Fragment() {
 
             if (value != null) {
                 for (document in value.documents) {
-                    Title = document.id
-                    itemlist.add(WoroutPlan_Data(Title,"", R.drawable.workout))
+                    var Title = document.id
+                    var coachid = document.getString("CiachId").toString()
+
+                    itemlist.add(WoroutPlan_Data(coachid,Title,"", R.drawable.workout))
 
                 }
             }
             binding.RecyclerView.adapter = WorkoutPlan_Adapter(itemlist) { item ->
-                var intent = Intent(context, Display_Workoutplan_List_Activity::class.java)
-                val title = item.Title
-                val plan = "Coach_Workout_Plan"
-                intent.putExtra("name", title)
-                intent.putExtra("plan",plan)
+                var intent = Intent(context, Create_WorkoutPlanList_Activity::class.java)
+                TrueOrFalse.instance?.boolean = true
+                TrueOrFalse.instance?.name = item.Title
                 startActivity(intent)
             }
             binding.textView.visibility = View.INVISIBLE
@@ -94,6 +93,15 @@ class CreateWorkoutPlane_Fragment : Fragment() {
             var intent = Intent(context, Create_WorkoutPlanList_Activity::class.java)
             TrueOrFalse.instance?.boolean = true
             TrueOrFalse.instance?.name = enteredText
+            var collection = db.collection("Coach_Workout_Plan")
+                .document(User.instance?.UserId.toString())
+                .collection("Workoutplan")
+                .document(enteredText)
+            var data= hashMapOf(
+                "Title" to enteredText,
+                "CiachId" to User.instance?.UserId.toString()
+            )
+            collection.set(data)
             startActivity(intent)
             dialog.dismiss()
 

@@ -2,6 +2,7 @@ package com.example.gym_app.Login
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -31,11 +32,21 @@ class LoginActivity : AppCompatActivity() {
         }
         binding = DataBindingUtil.setContentView(this, R.layout.activity_login)
 
+
+
         binding.loginbtn.setOnClickListener {
-            LoginWithPassword(
-                binding.loginEmail.text.toString().trim(),
-                binding.loginPassword.text.toString().trim()
-            )
+            var email = binding.loginEmail.text.toString().trim()
+            var password = binding.loginPassword.text.toString().trim()
+            if(email.isNotEmpty() && password.isNotEmpty()) {
+
+                binding.progressBar2.visibility = View.VISIBLE
+                LoginWithPassword(
+                    email,
+                    password
+                )
+            }else{
+                Toast.makeText(this, "please enter all information", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 
@@ -46,6 +57,7 @@ class LoginActivity : AppCompatActivity() {
                     Toast.makeText(this, "Login", Toast.LENGTH_SHORT).show()
                     var intent = Intent(this, HomeActivity::class.java)
                     intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                    binding.progressBar2.visibility = View.INVISIBLE
                     startActivity(intent)
                 }else{
                     Toast.makeText(this, "Authentication failed: ${task.exception?.message}", Toast.LENGTH_SHORT).show()

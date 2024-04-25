@@ -36,14 +36,7 @@ class Create_WorkoutPlanList_Activity : AppCompatActivity() {
         var Title = TrueOrFalse.instance?.name.toString()
         biding.toolbar.title =Title
 
-        var collection = db.collection("Coach_Workout_Plan")
-            .document(User.instance?.UserId.toString())
-            .collection("Workoutplan")
-                .document(Title)
-        var data= hashMapOf(
-            "Title" to Title
-        )
-        collection.set(data)
+
         //add list btn
         biding.floatingActionButton.setOnClickListener{
             showInputDialog(this)
@@ -63,7 +56,7 @@ class Create_WorkoutPlanList_Activity : AppCompatActivity() {
         alertDialog.setPositiveButton("OK") { dialog, _ ->
             val enteredText = input.text.toString()
             // Handle the entered text here
-            var intent = Intent(this,Create_List_Activity::class.java)
+            var intent = Intent(this,Display_Card_List_Activity::class.java)
             TrueOrFalse.instance?.boolean = true
             intent.putExtra("title",enteredText )
             startActivity(intent)
@@ -95,17 +88,15 @@ class Create_WorkoutPlanList_Activity : AppCompatActivity() {
                 val Title = doc.id
                 val workoutplan = doc.getString("Workoutplan").toString()
                 if(!itemlist.any{it.Title == Title}){
-                itemlist.add(WoroutPlan_Data(Title,workoutplan, R.drawable.workout))
+                itemlist.add(WoroutPlan_Data("",Title,workoutplan, R.drawable.workout))
 
                 }
                 biding.RecyclerView.adapter = Display_Workoutplan_ListTiming_Adapter(itemlist) {
-                    var intent = Intent(this,Display_List_Activity::class.java)
+                    var intent = Intent(this,Display_Coach_ExerciseList_Activity::class.java)
                     var title1 = it.Title
                     var title2= it.wourkoutplanName
-                    var title3 = "Coach_Workout_Plan"
                     intent.putExtra("Title",title1)
                     intent.putExtra("planName",title2)
-                    intent.putExtra("workout",title3)
                     startActivity(intent)
 
                 }

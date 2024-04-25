@@ -26,7 +26,6 @@ class ProfileFragment : Fragment() {
      var auth=Firebase.auth
      var db= FirebaseFirestore.getInstance()
     var storage = FirebaseStorage.getInstance()
-    lateinit var storageReference : StorageReference
     var userId = auth.currentUser?.uid
     var userCollection = db.collection("Users").whereEqualTo("userId", userId)
 

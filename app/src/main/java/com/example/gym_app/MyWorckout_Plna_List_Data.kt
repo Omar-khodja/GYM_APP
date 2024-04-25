@@ -5,7 +5,7 @@ class MyWorckout_Plna_List_Data(
     val imagUrl:String,
     val Title:String,
     val videoUrl:String,
-    val CoachName:String,
+    val CoachId:String,
     val note:String,
     val sets:String,
     val repsets:String,

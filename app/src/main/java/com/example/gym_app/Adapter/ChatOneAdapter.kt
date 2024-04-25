@@ -10,7 +10,7 @@ import com.example.gym_app.ChatActivityData
 import com.example.gym_app.databinding.ChatOneBinding
 import com.example.gym_app.databinding.ChatTowBinding
 
-class ChatOneAdapter(val context: Context,val itemlist:List<ChatActivityData>)
+class ChatOneAdapter(val context: Context,val itemlist:MutableList<ChatActivityData>)
     :RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         lateinit var binding : ChatOneBinding
     lateinit var binding1 : ChatTowBinding
@@ -18,6 +18,7 @@ class ChatOneAdapter(val context: Context,val itemlist:List<ChatActivityData>)
     private val VIEW_TYPE_RIGHT = 2
     inner class LeftViewHolder(var biding:ChatOneBinding ) : RecyclerView.ViewHolder(biding.root) {
         fun bind(chat: ChatActivityData){
+            biding.time.text = chat.time
             biding.chatmessage.text = chat.mesg
             Glide.with(biding.root)
                 .load(Uri.parse(chat.imagUri))
@@ -27,6 +28,7 @@ class ChatOneAdapter(val context: Context,val itemlist:List<ChatActivityData>)
 
     inner class RightViewHolder(var biding:ChatTowBinding) : RecyclerView.ViewHolder(biding.root) {
         fun bind(chat: ChatActivityData){
+            biding.time.text = chat.time
             biding.chatmessage.text = chat.mesg
             Glide.with(biding.root)
                 .load(chat.imagUri)

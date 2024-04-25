@@ -1,12 +1,16 @@
 package com.example.gym_app.Adapter
 
 import android.content.Intent
+import android.net.Uri
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.gym_app.Activity.Workout_plan.PlayVideo_Activity
 import com.example.gym_app.MyWorckout_Plna_List_Data
+import com.example.gym_app.R
 import com.example.gym_app.databinding.ExerciseCardviewDesignBinding
 import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
@@ -22,9 +26,16 @@ class DisplayWorkoutPlan_List_Adapter(val itemlis:MutableList<MyWorckout_Plna_Li
                     .load(data.imagUrl)
                     .into(binding.ExerciseVideo)
                 binding.cardviewVideo.setOnClickListener{
-                    var intent = Intent(binding.root.context, PlayVideo_Activity::class.java)
-                    intent.putExtra("videUrl",data.videoUrl)
-                    binding.root.context.startActivity(intent)
+                    binding.cardView.visibility = View.VISIBLE
+                    binding.video.setVideoURI(Uri.parse(data.videoUrl))
+                    binding.video.setOnPreparedListener{
+                        it.isLooping =true
+                        binding.video.start()
+                    }
+                }
+                binding.cardView.setOnClickListener{
+                    binding.video.stopPlayback()
+                    binding.cardView.visibility = View.INVISIBLE
 
                 }
                 //set coach note to database
@@ -50,6 +61,10 @@ class DisplayWorkoutPlan_List_Adapter(val itemlis:MutableList<MyWorckout_Plna_Li
 
                             // Update both fields in a single call
                             collection.update(updates as Map<String, Any>)
+                                binding.savebtn.text = "Saved"
+                                binding.savebtn.background = ContextCompat.getDrawable(binding.root.context, R.drawable.unablebtn)
+                                binding.savebtn.isEnabled = false
+
 
                         }
                 }

@@ -9,12 +9,15 @@
         android:background="@color/gray"
         tools:context=".fragment.HomeFegment">
 
+
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/appbar"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="0dp"
+            android:layout_marginBottom="424dp"
             android:background="#373737"
             app:drawableTint="@color/white"
+            app:titleTextColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -56,16 +59,18 @@
             app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
         <TextView
+            android:id="@+id/textView9"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="5dp"
             android:text="Your videos"
             android:textColor="@color/white"
             android:textSize="25sp"
-            android:layout_margin="5dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/createRecyclerView" />
+
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

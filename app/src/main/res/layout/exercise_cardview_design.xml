@@ -25,6 +25,27 @@
 
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/cardView"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:visibility="invisible"
+                app:cardCornerRadius="20dp"
+                app:layout_constraintBottom_toBottomOf="@+id/textView7"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <VideoView
+                    android:id="@+id/video"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
                 android:id="@+id/cardviewVideo"
                 android:layout_width="120dp"
                 android:layout_height="120dp"
@@ -101,6 +122,7 @@
                 android:padding="10dp"
                 android:backgroundTint="@color/gray"
                 android:background="@drawable/coustomborder"
+                android:text="@{data.sets}"
                 android:hint="4 sets"
                 android:textColorHint="@color/white"
                 android:textColor="@color/white"
@@ -131,6 +153,7 @@
                 android:backgroundTint="@color/gray"
                 android:background="@drawable/coustomborder"
                 android:hint="4 reps"
+                android:text="@{data.repsets}"
                 android:textColorHint="@color/white"
                 android:textColor="@color/white"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -188,6 +211,26 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/coachNotetextView" />
+            <androidx.cardview.widget.CardView
+                android:id="@+id/VideoCardView"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:visibility="invisible"
+                app:cardCornerRadius="20dp"
+                app:layout_constraintBottom_toBottomOf="@+id/textView7"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <VideoView
+                    android:id="@+id/PlayVideo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.cardview.widget.CardView>
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

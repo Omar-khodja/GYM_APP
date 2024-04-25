@@ -13,6 +13,7 @@ import com.example.gym_app.databinding.ActivityHomeBinding
 import com.example.gym_app.fragment.HomeFegment
 import com.example.gym_app.Adapter.FragmentAdapter
 import com.example.gym_app.Singlton.User
+import com.example.gym_app.fragment.Client_Progresse_Fragment
 import com.example.gym_app.fragment.Client_Workoutplan_Fragment
 import com.example.gym_app.fragment.CoachSearch_Fragment
 import com.example.gym_app.fragment.CreateWorkoutPlane_Fragment
@@ -58,9 +59,10 @@ class HomeActivity : AppCompatActivity() {
                     User.instance?.CoachOrClient = document.getString("type").toString()
                     type = document.getString("type").toString()
                     if (type == "Coach") {
-                        tabarry = arrayOf(R.drawable.home, R.drawable.add, R.drawable.profile)
+                        tabarry = arrayOf(R.drawable.home, R.drawable.add,R.drawable.progress, R.drawable.profile)
                         adapter.AddFragmentToList(HomeFegment())
                         adapter.AddFragmentToList(CreateWorkoutPlane_Fragment())
+                        adapter.AddFragmentToList(Client_Progresse_Fragment())
                         adapter.AddFragmentToList(ProfileFragment())
                     } else {
                         tabarry = arrayOf(R.drawable.home, R.drawable.coach, R.drawable.profile)
