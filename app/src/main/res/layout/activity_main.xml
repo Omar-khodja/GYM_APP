@@ -93,7 +93,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="24dp"
             android:fontFamily="@font/lexendpeta"
-            android:text="do you have an account ?"
+            android:text="Already have an account?"
             android:textAlignment="center"
             android:textColor="#B3B3B3"
             app:layout_constraintBottom_toTopOf="@+id/loginbtn"

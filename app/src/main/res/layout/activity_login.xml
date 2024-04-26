@@ -144,7 +144,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:fontFamily="@font/lexendpeta"
-            android:text="you don't have account ?"
+            android:text="Don't have an account?"
             android:textAlignment="center"
             android:textColor="#B3B3B3"
             app:layout_constraintBottom_toTopOf="@+id/singup"
