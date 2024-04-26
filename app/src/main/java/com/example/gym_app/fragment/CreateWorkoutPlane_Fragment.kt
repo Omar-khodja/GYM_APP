@@ -11,6 +11,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.LinearLayout
+import com.example.gym_app.Activity.Messages.MessagesActivity
+import com.example.gym_app.Activity.Search_Activity
 import com.example.gym_app.Activity.Workout_plan.Create_WorkoutPlanList_Activity
 import com.example.gym_app.Activity.Workout_plan.Display_Workoutplan_List_Activity
 import com.example.gym_app.Adapter.WorkoutPlan_Adapter
@@ -37,6 +39,7 @@ class CreateWorkoutPlane_Fragment : Fragment() {
             context?.let { it1 -> showInputDialog(it1) }
         }
         collections()
+        toolbar()
 
         return binding.root
     }
@@ -74,6 +77,24 @@ class CreateWorkoutPlane_Fragment : Fragment() {
         }
 
 
+    }
+    private fun toolbar() {
+        binding.appbar.apply {
+            inflateMenu(R.menu.messages_menu)
+            setOnMenuItemClickListener { menuItem ->
+                when (menuItem.itemId) {
+                    R.id.message -> {
+                        startActivity(Intent(context, MessagesActivity::class.java))
+                        true
+                    }
+                    R.id.Search -> {
+                        startActivity(Intent(context, Search_Activity::class.java))
+                        true
+                    }
+                    else -> false
+                }
+            }
+        }
     }
 
     fun showInputDialog(context: Context) {

@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
 import com.example.gym_app.Adapter.Client_Progress_Adapter
 import com.example.gym_app.Client_Progress_Data
 import com.example.gym_app.R
@@ -28,10 +29,28 @@ class Client_Progresse_Fragment : Fragment() {
             .document(User.instance?.UserId.toString())
             .collection("Client")
         getProgress(collection)
+        biding.Search.setOnEditorActionListener { v, actionId, event ->
+            if(actionId == EditorInfo.IME_ACTION_SEARCH){
+                search()
+            }
+            true
+        }
 
 
         return biding.root
     }
+    private fun search() {
+        var text = biding.Search.text.toString().trim()
+        if (text.isNotEmpty()) {
+            var collection = db.collection("Client_Progress")
+                .document(User.instance?.UserId.toString())
+                .collection("Client")
+                .whereEqualTo("ClientName" , text)
+            getProgress(collection)
+        }
+    }
+
+
 
     private fun getProgress(collection: Query) {
         var itemlist = mutableListOf<Client_Progress_Data>()

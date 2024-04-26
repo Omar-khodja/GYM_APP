@@ -22,6 +22,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:background="@drawable/gymbackground"
                 android:padding="10dp">
 
                 <androidx.cardview.widget.CardView
@@ -153,6 +154,7 @@
             android:layout_margin="10dp"
             android:padding="10dp"/>
         <TextView
+            android:id="@+id/Video"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="About video"
@@ -162,26 +164,23 @@
             android:gravity="center"/>
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/card"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="300dp"
             android:layout_margin="10dp"
+            android:visibility="visible"
             android:backgroundTint="@color/gray"
             app:cardCornerRadius="10dp">
             <VideoView
                 android:id="@+id/AboutVideoPlayer"
                 android:layout_margin="20dp"
-                android:layout_width="300dp"
+                android:layout_width="match_parent"
                 android:layout_gravity="center"
                 android:layout_height="match_parent"
-                android:background="#C3C3C3"/>
-            <ImageView
-                android:id="@+id/AboutVideoPlayerBTN"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/baseline_play_circle_outline_48"
-                android:layout_gravity="center"/>
-        </androidx.cardview.widget.CardView>
+                />
 
+
+        </androidx.cardview.widget.CardView>
 
 
 

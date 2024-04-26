@@ -10,5 +10,6 @@ class MessagesData(
     val sender:String,
 
 ) {
+    constructor():this("","","","","",)
 
 }

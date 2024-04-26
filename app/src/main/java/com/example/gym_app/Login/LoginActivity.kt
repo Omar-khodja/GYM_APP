@@ -48,6 +48,9 @@ class LoginActivity : AppCompatActivity() {
                 Toast.makeText(this, "please enter all information", Toast.LENGTH_SHORT).show()
             }
         }
+        binding.singup.setOnClickListener {
+            startActivity(Intent(this,SingupActivity::class.java))
+        }
     }
 
     private fun LoginWithPassword(email: String, password: String) {

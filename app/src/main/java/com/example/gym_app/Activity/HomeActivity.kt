@@ -1,5 +1,6 @@
 package com.example.gym_app.Activity
 
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
@@ -12,6 +13,7 @@ import com.example.gym_app.R
 import com.example.gym_app.databinding.ActivityHomeBinding
 import com.example.gym_app.fragment.HomeFegment
 import com.example.gym_app.Adapter.FragmentAdapter
+import com.example.gym_app.Login.MainActivity
 import com.example.gym_app.Singlton.User
 import com.example.gym_app.fragment.Client_Progresse_Fragment
 import com.example.gym_app.fragment.Client_Workoutplan_Fragment
@@ -59,11 +61,13 @@ class HomeActivity : AppCompatActivity() {
                     User.instance?.CoachOrClient = document.getString("type").toString()
                     type = document.getString("type").toString()
                     if (type == "Coach") {
-                        tabarry = arrayOf(R.drawable.home, R.drawable.add,R.drawable.progress, R.drawable.profile)
-                        adapter.AddFragmentToList(HomeFegment())
+                        tabarry = arrayOf(R.drawable.home,R.drawable.progress, R.drawable.profile)
                         adapter.AddFragmentToList(CreateWorkoutPlane_Fragment())
                         adapter.AddFragmentToList(Client_Progresse_Fragment())
                         adapter.AddFragmentToList(ProfileFragment())
+                        User.instance?.VideoUri = Uri.parse(document.getString("VideoUri"))
+                        User.instance?.Bio = document.getString("Bio").toString()
+
                     } else {
                         tabarry = arrayOf(R.drawable.home, R.drawable.coach, R.drawable.profile)
                         adapter.AddFragmentToList(Client_Workoutplan_Fragment())
@@ -82,6 +86,13 @@ class HomeActivity : AppCompatActivity() {
                     }.attach()
                 }
             }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        if(auth.currentUser ==null){
+            startActivity(Intent(this,MainActivity::class.java))
+        }
     }
 }
 

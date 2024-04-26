@@ -45,9 +45,7 @@ class HomeFegment : Fragment() {
 
 
 
-    override fun onStart() {
-        super.onStart()
-    }
+
 
 
 }

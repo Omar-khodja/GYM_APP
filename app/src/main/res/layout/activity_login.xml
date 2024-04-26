@@ -123,6 +123,34 @@
             app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
             app:layout_constraintVertical_bias="0.094" />
 
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/singup"
+            android:layout_width="220dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="32dp"
+            android:backgroundTint="#EDBDBD"
+            android:fontFamily="@font/lexendpeta"
+            android:text="Singup"
+            android:textColor="#CD3C3C"
+            android:textSize="17sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="@font/lexendpeta"
+            android:text="you don't have account ?"
+            android:textAlignment="center"
+            android:textColor="#B3B3B3"
+            app:layout_constraintBottom_toTopOf="@+id/singup"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -14,12 +14,12 @@ import com.bumptech.glide.Glide
 import com.example.gym_app.Activity.Notification_Activity
 import com.example.gym_app.Login.MainActivity
 import com.example.gym_app.Singlton.User
+import com.example.gym_app.Activity.coachProfileCustomizationActivity
 import com.example.gym_app.databinding.FragmentProfileBinding
 import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
-import com.google.firebase.storage.StorageReference
 
 class ProfileFragment : Fragment() {
     lateinit var binding: FragmentProfileBinding
@@ -58,10 +58,14 @@ class ProfileFragment : Fragment() {
         }
 
         binding.editeImag.setOnClickListener {
-            // Create an intent to pick an image from the device
-            val intent = Intent(Intent.ACTION_PICK)
-            intent.type = "image/*" // Allow only images
-            startActivityForResult(intent, 1)
+            if(User.instance?.CoachOrClient == "Coach"){
+                startActivity(Intent(context, coachProfileCustomizationActivity::class.java))
+            }else {
+                // Create an intent to pick an image from the device
+                val intent = Intent(Intent.ACTION_PICK)
+                intent.type = "image/*" // Allow only images
+                startActivityForResult(intent, 1)
+            }
         }
 
         binding.card3.setOnClickListener{

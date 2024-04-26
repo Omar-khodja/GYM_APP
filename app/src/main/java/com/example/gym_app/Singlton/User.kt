@@ -9,6 +9,9 @@ class User {
      var UserPhonenb: String ?= null
      var CoachOrClient: String ?= null
      var ProfileimagUri: Uri ?= null
+     var VideoUri: Uri ?= null
+     var Bio: String ?= null
+
     companion object {
         var instance: User? = null
             get(){

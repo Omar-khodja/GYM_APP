@@ -5,6 +5,8 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.widget.MediaController
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -14,16 +16,21 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.databinding.DataBindingUtil
 import com.bumptech.glide.Glide
 import com.example.gym_app.Activity.Messages.ChatActivity
+import com.example.gym_app.Adapter.Comment_Adapter
+import com.example.gym_app.MessagesData
 import com.example.gym_app.R
 import com.example.gym_app.Singlton.ChatOtherUser
 import com.example.gym_app.Singlton.User
 import com.example.gym_app.databinding.ActivityClientProfileBinding
 import com.example.gym_app.databinding.ActivityCoachProfileBinding
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.storage.FirebaseStorage
+import java.io.File
 
 class Coach_Profile_Activity : AppCompatActivity() {
     lateinit var biding : ActivityCoachProfileBinding
     var db = FirebaseFirestore.getInstance()
+    var storage = FirebaseStorage.getInstance()
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,7 +47,7 @@ class Coach_Profile_Activity : AppCompatActivity() {
         var username = intent.getStringExtra("username").toString()
         fetchUser(id)
         buttonenable(id)
-        butonfollowing(id)
+
 
         biding.messagebtn.setOnClickListener{
             var intent= Intent(this , ChatActivity::class.java)
@@ -60,6 +67,9 @@ class Coach_Profile_Activity : AppCompatActivity() {
         }
 
     }
+
+
+
     private fun followingNb(id: String,callback: (Int) -> Unit) {
         var collection = db.collection("Following")
             .document(id)
@@ -100,7 +110,7 @@ class Coach_Profile_Activity : AppCompatActivity() {
 
             value?.documents?.forEach { doc ->
 
-                val id = doc.id
+                val id = doc.getString("UserId")
 
                 // Check if im in his followers
                 if (id == User.instance?.UserId) {
@@ -114,7 +124,7 @@ class Coach_Profile_Activity : AppCompatActivity() {
     }
     private fun addFollow( id: String) {
         var collection = db.collection("Follow_request").document(id)
-            .collection("Followers").document(id)
+            .collection("Followers").document(User.instance?.UserId.toString())
         var data = hashMapOf(
             "UserId" to User.instance?.UserId,
             "Email" to User.instance?.Email,
@@ -139,32 +149,47 @@ class Coach_Profile_Activity : AppCompatActivity() {
                     .into(biding.coachPFP)
                 biding.coachNametextView.text = it.getString("username")
                 biding.bioTextView.text = it.getString("Bio")
-                biding.AboutVideoPlayer.setVideoURI(Uri.parse(it.getString("VideoUri").toString()))
-
-
+                val videoUri = it.getString("VideoUri")
+                if (!videoUri.isNullOrEmpty()) {
+                    downloadAndPlayVideo(videoUri)
+                }
             }
         }
 
     }
+    private fun downloadAndPlayVideo(videoUrl: String) {
+        val storageRef = storage.getReferenceFromUrl(videoUrl)
+        val localFile = File.createTempFile("video", "mp4")
+
+        storageRef.getFile(localFile).addOnSuccessListener {
+            playVideo(localFile.absolutePath)
+        }.addOnFailureListener { exception ->
+            Toast.makeText(this, "Failed to download video: ${exception.message}", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun playVideo(videoPath: String) {
+        val mediaController = MediaController(this)
+        mediaController.setAnchorView(biding.AboutVideoPlayer)
+        biding.AboutVideoPlayer.setMediaController(mediaController)
+        biding.AboutVideoPlayer.setVideoPath(videoPath)
+        biding.AboutVideoPlayer.start()
+    }
     private fun buttonenable(userId: String) {
         var collection =  db.collection("Follow_request").document(userId)
             .collection("Followers")
-        collection.addSnapshotListener { value, error ->
-            if (error != null) {
-                Log.i("tagy", "Error listening for messages: $error")
-                return@addSnapshotListener
-            }
-
-            value?.documents?.forEach { doc ->
-
-                val id = doc.id
-                if (id == User.instance?.UserId.toString()) {
-                    biding.followbtn.background =
-                        ContextCompat.getDrawable(biding.root.context, R.drawable.unablebtn)
-                    biding.followbtn.text = "Requested"
-                    biding.followbtn.isEnabled = false
+        collection.get().addOnSuccessListener {
+            for(doc in it.documents){
+                var id = doc.getString("UserId").toString()
+                if(id == User.instance?.UserId.toString()) {
+                        biding.followbtn.background =
+                            ContextCompat.getDrawable(biding.root.context, R.drawable.unablebtn)
+                        biding.followbtn.text = "Requested"
+                        biding.followbtn.isEnabled = false
+                    }
                 }
-            }
+            butonfollowing(userId)
+
 
 
         }

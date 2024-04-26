@@ -6,15 +6,22 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/gray"
         tools:context=".fragment.Client_Progresse_Fragment">
 
         <EditText
             android:id="@+id/Search"
             android:layout_width="0dp"
             android:layout_height="50dp"
+            android:layout_marginTop="20dp"
+            android:drawableLeft="@drawable/search"
             android:textColor="@color/white"
+            android:hint="Search..."
+            android:imeOptions="actionSearch"
             android:background="@drawable/char_editetext_background"
             android:backgroundTint="#636363"
+            android:inputType="text"
+
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -23,6 +30,7 @@
             android:id="@+id/RecyclerView"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:background="@color/gray"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
