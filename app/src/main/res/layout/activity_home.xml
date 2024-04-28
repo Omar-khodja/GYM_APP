@@ -28,6 +28,8 @@
         android:background="#373737"
         app:itemIconTint="@color/darkRed"
         app:itemTextColor="@color/darkRed"
+        app:tabIconTint="@color/darkRed"
+        app:tabTextColor="@color/darkRed"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

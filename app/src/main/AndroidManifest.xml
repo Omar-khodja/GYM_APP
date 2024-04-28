@@ -73,7 +73,7 @@
         <activity
             android:name=".Activity.Workout_plan.Display_Coach_ExerciseList_Activity"
             android:exported="false"
-            android:theme="@style/Theme.MaterialComponents.DayNight.DarkActionBar" >
+             >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Activity.HomeActivity" />
