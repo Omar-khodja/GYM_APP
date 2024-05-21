@@ -28,6 +28,7 @@ class DisplayWorkoutPlan_List_Adapter(val itemlis:MutableList<MyWorckout_Plna_Li
                 binding.cardviewVideo.setOnClickListener{
                     binding.cardView.visibility = View.VISIBLE
                     binding.video.setVideoURI(Uri.parse(data.videoUrl))
+                    binding.cardviewVideo.visibility = View.INVISIBLE
                     binding.video.setOnPreparedListener{
                         it.isLooping =true
                         binding.video.start()
@@ -36,6 +37,8 @@ class DisplayWorkoutPlan_List_Adapter(val itemlis:MutableList<MyWorckout_Plna_Li
                 binding.cardView.setOnClickListener{
                     binding.video.stopPlayback()
                     binding.cardView.visibility = View.INVISIBLE
+                    binding.cardviewVideo.visibility = View.VISIBLE
+
 
                 }
                 //set coach note to database

@@ -108,14 +108,14 @@ class ProfileFragment : Fragment() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == 1 && resultCode == Activity.RESULT_OK && data != null) {
-            Log.i("tagy","im in onActivityResult")
             val imageUri = data.data
-            if (imageUri != null) {
-                Log.i("tagy","im in ")
+            if (imageUri != null){
+                Glide.with(binding.root)
+                    .load(imageUri)
+                    .into(binding.imageView1)
                 uploadImageAndSetUserProfile(imageUri)
             } else {
                 Toast.makeText(context, "Failed to retrieve image URI", Toast.LENGTH_SHORT).show()
-                Log.i("tagy","Failed to retrieve image URI")
             }
         }
     }

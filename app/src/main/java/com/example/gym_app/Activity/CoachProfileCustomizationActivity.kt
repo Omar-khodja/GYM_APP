@@ -20,7 +20,6 @@ import com.example.gym_app.databinding.ActivityCoachProfileCustomizationBinding
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import java.io.File
-
 class coachProfileCustomizationActivity : AppCompatActivity() {
     lateinit var bindaing : ActivityCoachProfileCustomizationBinding
     var db = FirebaseFirestore.getInstance()
@@ -38,7 +37,7 @@ class coachProfileCustomizationActivity : AppCompatActivity() {
         bindaing = DataBindingUtil.setContentView(this,
             R.layout.activity_coach_profile_customization
         )
-        fretchUser()
+        featchUser()
         bindaing.bioTextView.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 db.collection("Users")
@@ -72,7 +71,7 @@ class coachProfileCustomizationActivity : AppCompatActivity() {
             if (imageUri != null) {
                 uploadImageAndSetUserProfile(imageUri)
             } else {
-                Toast.makeText(this, "Failed to retrieve image URI", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Failed to retrieve Video URI", Toast.LENGTH_SHORT).show()
                 Log.i("tagy","Failed to retrieve image URI")
             }
         }else if(requestCode == 2 && resultCode == Activity.RESULT_OK && data != null){
@@ -122,7 +121,7 @@ class coachProfileCustomizationActivity : AppCompatActivity() {
         }
     }
 
-    private fun fretchUser() {
+    private fun featchUser() {
         //set imag and name
         Glide.with(this)
             .load(User.instance?.ProfileimagUri)
@@ -200,3 +199,4 @@ class coachProfileCustomizationActivity : AppCompatActivity() {
 
     }
 }
+
