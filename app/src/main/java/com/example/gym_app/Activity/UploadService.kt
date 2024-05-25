@@ -33,9 +33,11 @@ class UploadService : JobIntentService(){
 
         storageRef.putFile(videoUri).addOnSuccessListener {
             storageRef.downloadUrl.addOnSuccessListener { uri ->
+                User.instance?.VideoUri = uri
                 db.collection("Users").document(User.instance?.UserId.toString())
                     .update("VideoUri", uri.toString())
                     .addOnSuccessListener {
+
                         Log.d("tagy", "Video successfully uploaded and URI updated")
                     }
                     .addOnFailureListener { e ->

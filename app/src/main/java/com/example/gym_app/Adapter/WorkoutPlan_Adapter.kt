@@ -80,6 +80,10 @@ class WorkoutPlan_Adapter(val itemlist:MutableList<WoroutPlan_Data>, val OnClik 
             OnClik(data)
         }
     }
+    fun clearData() {
+        itemlist.clear()
+        notifyDataSetChanged()
+    }
 
     override fun getItemCount(): Int {
         return itemlist.size

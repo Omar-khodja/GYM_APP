@@ -57,6 +57,7 @@ class CreateWorkoutPlane_Fragment : Fragment() {
                 Log.i("tagy", "Error listening for messages: $error")
                 return@addSnapshotListener
             }
+            itemlist.clear()
 
             if (value != null) {
                 for (document in value.documents) {
