@@ -19,6 +19,10 @@ import com.example.gym_app.Singlton.User
 import com.example.gym_app.databinding.ActivityCoachProfileCustomizationBinding
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.launch
 import java.io.File
 class coachProfileCustomizationActivity : AppCompatActivity() {
     lateinit var bindaing : ActivityCoachProfileCustomizationBinding
@@ -66,38 +70,28 @@ class coachProfileCustomizationActivity : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == 1 && resultCode == Activity.RESULT_OK && data != null) {
-            val imageUri = data.data
-            if (imageUri != null) {
-                uploadImageAndSetUserProfile(imageUri)
+        if (resultCode == Activity.RESULT_OK && data != null) {
+            val uri = data.data
+            if (uri != null) {
+                when (requestCode) {
+                    1 -> {
+                        uploadImageAndSetUserProfile(uri)
+                    }
+                    2 -> {
+                        bindaing.AboutVideoPlayer.setVideoURI(uri)
+                        val intent = Intent(this, UploadService::class.java)
+                        intent.putExtra("VIDEO_URI", uri)
+                        UploadService.enqueueWork(this, intent)
+                    }
+                }
             } else {
-                Toast.makeText(this, "Failed to retrieve Video URI", Toast.LENGTH_SHORT).show()
-                Log.i("tagy","Failed to retrieve image URI")
-            }
-        }else if(requestCode == 2 && resultCode == Activity.RESULT_OK && data != null){
-            val videoUri = data.data!!
-            if(videoUri != null){
-                uploadVideoUri(videoUri)
-
+                Toast.makeText(this, "Failed to retrieve URI", Toast.LENGTH_SHORT).show()
+                Log.i("tagy", "Failed to retrieve URI")
             }
         }
     }
 
-    private fun uploadVideoUri(videoUri: Uri) {
-        val videoName = "${User.instance?.UserId}"
-        val storageRef = storage.getReference().child("profile_video").child(videoName)
-        storageRef.putFile(videoUri).addOnSuccessListener {
-            storageRef.downloadUrl.addOnSuccessListener {
-                bindaing.AboutVideoPlayer.setVideoURI(it)
-                db.collection("Users")
-                    .document(User.instance?.UserId.toString())
-                    .update("VideoUri",it.toString())
 
-
-            }
-        }
-
-    }
 
     private fun uploadImageAndSetUserProfile(imageUri: Uri) {
         val imageName = "${User.instance?.UserId}"
